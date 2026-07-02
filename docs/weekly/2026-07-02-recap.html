@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이번주 디자인 에이전트 — 작업 정리</title>
+<style>
+  :root{
+    --bg:#0f1115; --surface:#171a21; --surface-2:#1e222b; --line:#2a2f3a;
+    --text:#e7ebf2; --muted:#9aa4b2; --accent:#6ea8fe; --accent-2:#7ee0c0;
+    --warn:#f5c26b; --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:-apple-system,"Pretendard","Apple SD Gothic Neo",system-ui,sans-serif;
+    line-height:1.6; padding:48px 20px; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto}
+  header{margin-bottom:36px}
+  .eyebrow{color:var(--accent);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+  h1{font-size:30px;font-weight:700;margin:8px 0 6px;letter-spacing:-.02em}
+  .sub{color:var(--muted);font-size:15px}
+  section{margin-top:32px}
+  h2{font-size:18px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+  h2::before{content:"";width:4px;height:16px;background:var(--accent);border-radius:2px}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 20px;position:relative;overflow:hidden;
+  }
+  .card .num{position:absolute;top:14px;right:16px;font-size:34px;font-weight:800;color:var(--surface-2);line-height:1}
+  .card h3{font-size:16px;font-weight:700;margin-bottom:6px}
+  .card p{color:var(--muted);font-size:14px}
+  .tag{display:inline-block;margin-top:12px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px}
+  .tag.design{background:rgba(110,168,254,.15);color:var(--accent)}
+  .tag.build{background:rgba(126,224,192,.15);color:var(--accent-2)}
+  .tag.verify{background:rgba(245,194,107,.15);color:var(--warn)}
+
+  .flow{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px;text-align:center;
+  }
+  .flow .row{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+  .node{
+    background:var(--surface-2);border:1px solid var(--line);border-radius:10px;
+    padding:12px 18px;font-size:14px;font-weight:600;min-width:150px;
+  }
+  .node small{display:block;color:var(--muted);font-weight:400;font-size:12px;margin-top:2px}
+  .arrow{color:var(--accent);font-size:20px}
+  .down{margin:12px 0;color:var(--accent);font-size:20px}
+
+  table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  th,td{padding:13px 16px;text-align:left;font-size:14px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--surface-2);color:var(--muted);font-weight:600;font-size:12px;letter-spacing:.03em}
+  tr:last-child td{border-bottom:none}
+  .ok{color:var(--accent-2);font-weight:600}
+  .gap{color:var(--warn);font-weight:600}
+  td b{color:var(--text)}
+
+  .note{margin-top:14px;padding:14px 16px;background:var(--surface-2);border-left:3px solid var(--warn);border-radius:8px;font-size:13px;color:var(--muted)}
+  footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;display:flex;justify-content:space-between}
+  @media(max-width:640px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">MIDAS Design Agent · Weekly</div>
+    <h1>이번주 디자인 에이전트 작업 정리</h1>
+    <div class="sub">4개 작업 병렬 진행 — 정책(what) · DS(how) · 프로토타입(검증)</div>
+  </header>
+
+  <section>
+    <h2>한 일 (4개 동시)</h2>
+    <div class="grid">
+      <div class="card">
+        <span class="num">1</span>
+        <h3>UX 정책 파이프라인 흐름 정리</h3>
+        <p>정책·규칙 → 판단 → UI 생성으로 이어지는 전체 흐름 정의. 에이전트 뼈대.</p>
+        <span class="tag design">설계 · WHAT</span>
+      </div>
+      <div class="card">
+        <span class="num">2</span>
+        <h3>온사이트 DS 탑재</h3>
+        <p>온사이트 먼저 하기로 결정. 제품 DS를 에이전트에 올리는 중.</p>
+        <span class="tag build">구현 · HOW</span>
+      </div>
+      <div class="card">
+        <span class="num">3</span>
+        <h3>한국 DS 버전 테스트</h3>
+        <p>한국 DS 여러 버전 가져와 탑재 후 실측. 실제로 맞물리는지 확인.</p>
+        <span class="tag verify">검증 · HOW</span>
+      </div>
+      <div class="card">
+        <span class="num">4</span>
+        <h3>프로토타입</h3>
+        <p>1~3 합쳐서 서비스 관점 end-to-end 전체 플로우 점검.</p>
+        <span class="tag verify">검증 · FLOW</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>어떻게 맞물리나</h2>
+    <div class="flow">
+      <div class="row">
+        <div class="node">① UX 정책 파이프라인<small>규칙 = 무엇을 만들지</small></div>
+      </div>
+      <div class="down">↓</div>
+      <div class="row">
+        <div class="node">② 온사이트 DS 탑재<small>토큰 = 어떻게</small></div>
+        <div class="arrow">↔</div>
+        <div class="node">③ 한국 DS 테스트<small>탑재 결과 실측</small></div>
+      </div>
+      <div class="down">↓</div>
+      <div class="row">
+        <div class="node" style="border-color:var(--warn)">④ 프로토타입<small>전체 서비스로 굴러가나</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>검증 내용 (메모리 대조)</h2>
+    <table>
+      <thead>
+        <tr><th>작업</th><th>검증 포인트</th><th>메모리 대조 결과</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>① UX 정책 파이프라인</b></td>
+          <td>정책→판단→생성 흐름이 에이전트 뼈대로 성립하나</td>
+          <td><span class="gap">부분 일치</span> — 메모리엔 "기획→DS→멀티페이지 생성" 루프만 기록. 정책 파이프라인은 신규분.</td>
+        </tr>
+        <tr>
+          <td><b>② 온사이트 DS 탑재</b></td>
+          <td>온사이트 우선 + 제품 DS 누적</td>
+          <td><span class="ok">일치</span> — <code>midas-design-agent</code> = 온사이트 제품 DS. 충실도 규칙 존재.</td>
+        </tr>
+        <tr>
+          <td><b>③ 한국 DS 테스트</b></td>
+          <td>DS 값이 토큰으로 스냅·누적되나 (하드코딩 방지)</td>
+          <td><span class="ok">일치</span> — <code>mda-onsite-ds-sync</code> 스킬 = 토큰 누적 강제. 이걸로 검증.</td>
+        </tr>
+        <tr>
+          <td><b>④ 프로토타입</b></td>
+          <td>1~3 합쳐 end-to-end 서비스 흐름 성립하나</td>
+          <td><span class="gap">기록 없음</span> — Phase 0 역설계 검증 루프만 있음. 이번주 신규 점검.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <b>주의</b> — ①·④는 실제 파일/커밋으로 아직 대조 안 함. 위 결과는 대화+메모리 기준.
+      정확한 검증 원하면 <code>~/midas-design-agent</code> 리포 열어 git 로그·파일로 확인 필요.
+    </div>
+  </section>
+
+  <section>
+    <h2>한 줄 요약</h2>
+    <div class="flow" style="text-align:left">
+      <p style="font-size:15px">
+        <b style="color:var(--accent)">정책(①)</b>으로 뼈대 세우고 →
+        <b style="color:var(--accent-2)">DS(②③)</b>로 살 붙이고 →
+        <b style="color:var(--warn)">프로토타입(④)</b>으로 서비스 전체가 굴러가나 확인.
+        온사이트 우선, 4개 병렬.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <span>MIDAS Design Agent — Weekly Recap</span>
+    <span>2026-07-02</span>
+  </footer>
+</div>
+</body>
+</html>
