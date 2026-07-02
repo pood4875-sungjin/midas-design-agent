@@ -77,32 +77,21 @@
     <div class="snb__grp">패턴 카탈로그</div>
     <a data-md="patterns/data-representation.md">데이터표현 (8종)</a>
     <a data-md="patterns/overlays.md">오버레이 · 모달 (5종)</a>
-
-    <div class="snb__grp">실전 화면 (검증)</div>
-    <a data-screen="../screens/member-management.html" class="ext">멤버 관리 (드로어)</a>
-    <a data-screen="../screens/member-invite-modal.html" class="ext">멤버 초대 (모달)</a>
   </nav>
 
   <main class="main">
     <div class="doc" id="doc">로딩…</div>
-    <div class="frame-wrap" id="frameWrap" style="display:none">
-      <div class="frame-bar"><b id="frameTitle"></b><a id="frameOpen" target="_blank">새 탭에서 열기 ↗</a></div>
-      <iframe id="frame" title="screen"></iframe>
-    </div>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
     const doc = document.getElementById('doc');
-    const frameWrap = document.getElementById('frameWrap');
-    const frame = document.getElementById('frame');
     const links = [...document.querySelectorAll('.snb a')];
 
     function activate(el){ links.forEach(a => a.classList.toggle('is-active', a === el)); }
 
     async function loadMd(path, el){
-      activate(el); frameWrap.style.display = 'none'; doc.style.display = '';
-      doc.textContent = '로딩…';
+      activate(el); doc.textContent = '로딩…';
       try {
         const res = await fetch(path + '?t=' + Date.now());
         if (!res.ok) throw new Error(res.status);
@@ -123,16 +112,8 @@
       } catch(e){ doc.textContent = '불러오기 실패: ' + path + ' (' + e.message + ')'; }
     }
 
-    function loadScreen(path, el){
-      activate(el); doc.style.display = 'none'; frameWrap.style.display = '';
-      document.getElementById('frameTitle').textContent = el.textContent;
-      document.getElementById('frameOpen').href = path;
-      frame.src = path;
-    }
-
     links.forEach(a => a.addEventListener('click', () => {
       if (a.dataset.md) loadMd(a.dataset.md, a);
-      else if (a.dataset.screen) loadScreen(a.dataset.screen, a);
     }));
 
     loadMd('README.md', links[0]);
