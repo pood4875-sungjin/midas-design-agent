@@ -19,6 +19,8 @@
   display: flex; flex-direction: column;
 }
 .modal--md { max-width: 560px; }
+/* 대형(초대/관리) — 실측 w1000 r16. node 12774:40857 */
+.modal--lg { max-width: 1000px; border-radius: var(--radius-lg); }
 
 .modal__head { padding: var(--space-6) var(--space-6) var(--space-3); }
 .modal__title {

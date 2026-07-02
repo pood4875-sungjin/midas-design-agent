@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>온사이트 — 프로젝트 멤버 초대</title>
+  <link rel="stylesheet" href="member-invite-modal.css?v=1" />
+</head>
+<body>
+  <div class="stage">
+    <div class="stage__topbar">
+      <div class="stage__logo"></div>
+      <span class="stage__proj">강남역 지하차도 공사</span>
+    </div>
+
+    <div class="modal-backdrop">
+      <div class="modal modal--lg modal--invite" role="dialog" aria-label="프로젝트 멤버 초대">
+        <button class="im__x" aria-label="닫기">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+
+        <div class="im__head">
+          <h1 class="im__title">프로젝트 멤버를 초대하세요</h1>
+          <p class="im__sub">프로젝트 멤버를 추가 초대하고 관리하세요</p>
+        </div>
+
+        <div class="im__body">
+          <!-- 초대 입력 -->
+          <div class="im-add">
+            <div class="im-add__field">
+              <span class="chip"><span>김관홍</span><button aria-label="제거"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span>
+              <span class="chip"><span>lth0610@midasit.com</span><button aria-label="제거"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span>
+              <input type="text" placeholder="이름이나 이메일 입력후 Enter" />
+            </div>
+            <div class="im-role" role="button" tabindex="0">통합관리자
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+            <button class="btn btn--filled btn--l">초대</button>
+          </div>
+
+          <div class="im-secs">
+            <!-- 접근 요청 -->
+            <section class="im-sec">
+              <div class="im-sec__head"><span class="im-sec__title">접근 요청</span><span class="im-sec__count">(2)</span></div>
+              <div class="im-sec__rows">
+                <div class="irow">
+                  <div class="irow__left">
+                    <span class="avatar">김</span>
+                    <div class="irow__meta">
+                      <div class="irow__name">김성진</div>
+                      <div class="irow__meta-sub"><span>lth0610@midasit.com</span><i class="irow__dot"></i><span>30분 전</span></div>
+                    </div>
+                  </div>
+                  <div class="irow__right">
+                    <span class="irole">통합관리자 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+                    <div class="irow__acts">
+                      <button class="act-btn">거절</button>
+                      <button class="act-btn act-btn--accept">수락</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="irow">
+                  <div class="irow__left">
+                    <span class="avatar">양</span>
+                    <div class="irow__meta">
+                      <div class="irow__name">양소희</div>
+                      <div class="irow__meta-sub"><span>lth0610@midasit.com</span><i class="irow__dot"></i><span>30분 전</span></div>
+                    </div>
+                  </div>
+                  <div class="irow__right">
+                    <span class="irole">통합관리자 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+                    <div class="irow__acts">
+                      <button class="act-btn">거절</button>
+                      <button class="act-btn act-btn--accept">수락</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- 초대중 -->
+            <section class="im-sec">
+              <div class="im-sec__head"><span class="im-sec__title">초대중</span><span class="im-sec__count">(2)</span></div>
+              <div class="im-sec__rows">
+                <div class="irow">
+                  <div class="irow__left">
+                    <span class="avatar">D</span>
+                    <div class="irow__meta">
+                      <div class="irow__name">developer@midasit.co.kr</div>
+                      <div class="irow__meta-sub"><span>2일 전 초대 발송</span><i class="irow__dot"></i><span>5일 후 만료</span></div>
+                    </div>
+                  </div>
+                  <div class="irow__right">
+                    <span class="irole">통합관리자 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+                    <div class="irow__acts"><button class="act-btn">재발송</button></div>
+                  </div>
+                </div>
+                <div class="irow">
+                  <div class="irow__left">
+                    <span class="avatar">D</span>
+                    <div class="irow__meta">
+                      <div class="irow__name">developer@midasit.co.kr</div>
+                      <div class="irow__meta-sub"><span>5일 전 초대 발송</span><i class="irow__dot"></i><span>3일 후 만료</span></div>
+                    </div>
+                  </div>
+                  <div class="irow__right">
+                    <span class="irole">통합관리자 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+                    <div class="irow__acts"><button class="act-btn">재발송</button></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- 프로젝트 멤버 -->
+            <section class="im-sec">
+              <div class="im-sec__head"><span class="im-sec__title">프로젝트 멤버</span><span class="im-sec__count">(3)</span></div>
+              <div class="im-sec__rows">
+                <div class="irow">
+                  <div class="irow__left">
+                    <span class="avatar">양</span>
+                    <div class="irow__meta">
+                      <div class="irow__name">양소희</div>
+                      <div class="irow__meta-sub"><span>lth0610@midasit.com</span></div>
+                    </div>
+                  </div>
+                  <div class="irow__right"><span class="irole irole--static">통합 관리자</span></div>
+                </div>
+                <div class="irow">
+                  <div class="irow__left">
+                    <span class="avatar">박</span>
+                    <div class="irow__meta">
+                      <div class="irow__name">박미영</div>
+                      <div class="irow__meta-sub"><span>lth0610@midasit.com</span></div>
+                    </div>
+                  </div>
+                  <div class="irow__right"><span class="irole">현장관리자 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+                </div>
+                <div class="irow">
+                  <div class="irow__left">
+                    <span class="avatar">김</span>
+                    <div class="irow__meta">
+                      <div class="irow__name">김성진</div>
+                      <div class="irow__meta-sub"><span>lth0610@midasit.com</span></div>
+                    </div>
+                  </div>
+                  <div class="irow__right"><span class="irole">현장관리자 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <div class="im__foot">
+          <button class="btn btn--primary btn--m" style="min-width:79px">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

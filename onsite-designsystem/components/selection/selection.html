@@ -4,32 +4,61 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Component — Selection Controls</title>
-  <link rel="stylesheet" href="selection.css?v=2" />
+  <link rel="stylesheet" href="selection.css?v=3" />
   <style>
     body { margin: 0; padding: 28px; background: #fff; font-family: var(--font-sans); }
-    .grp { display: flex; align-items: center; gap: 32px; margin-bottom: 22px; }
-    .grp > b { width: 80px; font-size: 12px; color: #878a93; font-weight: 600; }
+    .matrix { display: grid; grid-template-columns: 84px repeat(4, 96px); align-items: center;
+      row-gap: 20px; column-gap: 8px; }
+    .matrix .rowlabel { font-size: 13px; color: #4b5563; font-weight: 700; }
+    .matrix .colhead { font-size: 11px; color: #878a93; font-weight: 600; text-align: center; }
+    .matrix .cell { display: flex; justify-content: center; }
+    .withtext { display: flex; gap: 28px; align-items: center; margin-top: 26px;
+      padding-top: 22px; border-top: 1px dashed #eaecef; }
   </style>
 </head>
 <body>
-  <div class="grp"><b>Checkbox</b>
-    <label class="ctrl"><input type="checkbox"><span class="chk__box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></label>
-    <label class="ctrl"><input type="checkbox" checked><span class="chk__box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></label>
-    <label class="ctrl is-disabled"><input type="checkbox" disabled><span class="chk__box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></label>
+  <div class="matrix">
+    <!-- header -->
+    <div></div>
+    <div class="colhead">Default</div>
+    <div class="colhead">Hover</div>
+    <div class="colhead" data-checked>Checked / Selected</div>
+    <div class="colhead">Disable</div>
+
+    <!-- Checkbox -->
+    <div class="rowlabel">Checkbox</div>
+    <div class="cell"><label class="ctrl"><input type="checkbox"><span class="chk__box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></label></div>
+    <div class="cell"><label class="ctrl is-hover"><input type="checkbox"><span class="chk__box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></label></div>
+    <div class="cell"><label class="ctrl"><input type="checkbox" checked><span class="chk__box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></label></div>
+    <div class="cell"><label class="ctrl is-disabled"><input type="checkbox" disabled><span class="chk__box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></label></div>
+
+    <!-- Radio -->
+    <div class="rowlabel">Radio</div>
+    <div class="cell"><label class="ctrl"><input type="radio" name="rd"><span class="rad__box"></span></label></div>
+    <div class="cell"><label class="ctrl is-hover"><input type="radio" name="rh"><span class="rad__box"></span></label></div>
+    <div class="cell"><label class="ctrl"><input type="radio" name="rs" checked><span class="rad__box"></span></label></div>
+    <div class="cell"><label class="ctrl is-disabled"><input type="radio" disabled><span class="rad__box"></span></label></div>
+  </div>
+
+  <!-- Toggle : 공식 DS는 Off / On / Disable 3상태만 (Hover 없음) -->
+  <div class="matrix" style="margin-top:24px">
+    <div></div>
+    <div class="colhead">Off</div>
+    <div class="colhead">On</div>
+    <div class="colhead">Disable</div>
+    <div></div>
+
+    <div class="rowlabel">Toggle</div>
+    <div class="cell"><label class="ctrl"><input type="checkbox"><span class="tgl__track"></span></label></div>
+    <div class="cell"><label class="ctrl"><input type="checkbox" checked><span class="tgl__track"></span></label></div>
+    <div class="cell"><label class="ctrl is-disabled"><input type="checkbox" disabled><span class="tgl__track"></span></label></div>
+    <div></div>
+  </div>
+
+  <!-- + 텍스트 (128:400 / 128:395) -->
+  <div class="withtext">
     <label class="ctrl"><input type="checkbox" checked><span class="chk__box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span>텍스트</label>
-  </div>
-
-  <div class="grp"><b>Radio</b>
-    <label class="ctrl"><input type="radio" name="r1"><span class="rad__box"></span></label>
-    <label class="ctrl"><input type="radio" name="r1" checked><span class="rad__box"></span></label>
-    <label class="ctrl is-disabled"><input type="radio" disabled><span class="rad__box"></span></label>
-    <label class="ctrl"><input type="radio" name="r2" checked><span class="rad__box"></span>텍스트</label>
-  </div>
-
-  <div class="grp"><b>Toggle</b>
-    <label class="ctrl"><input type="checkbox"><span class="tgl__track"></span></label>
-    <label class="ctrl"><input type="checkbox" checked><span class="tgl__track"></span></label>
-    <label class="ctrl is-disabled"><input type="checkbox" disabled><span class="tgl__track"></span></label>
+    <label class="ctrl"><input type="radio" name="rt" checked><span class="rad__box"></span>텍스트</label>
     <label class="ctrl"><input type="checkbox" checked><span class="tgl__track"></span>알림 받기</label>
   </div>
 </body>

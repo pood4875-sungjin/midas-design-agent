@@ -92,6 +92,7 @@
   /* Common */
   --p-black: #000000;
   --p-white: #ffffff;
+  --p-neutral-5: #0f0f0f;  /* 공식 Neutral/neutral-5 — 딤 백드롭 (node 12774:41303 실측) */
 
   /* ========== Tier 2 — Semantic ========== */
   /* Brand */
@@ -182,6 +183,7 @@
   /* ========== Radius ==========
      확정: --radius-xs=8(Spacing System/radius-xs), 컴포넌트 실측 6px도 등장.
      ⚠ sm/md/lg 은 PROVISIONAL 추정. */
+  --radius-3xs: 4px;       /* 확정 — 뱃지·칩 재등장 (node 12774:41143 초대칩 실측) */
   --radius-2xs: 6px;       /* 확정 — 컴포넌트(소형 버튼 등) 실측 재등장 */
   --radius-xs: 8px;        /* 확정 */
   --radius-sm: 10px;       /* provisional */
@@ -200,9 +202,9 @@
     0 4px 18px -8px #1319272e;
 
   /* ========== Overlay ========== */
-  /* 모달/드로어 백드롭 딤. bootstrap 모달 5종 전부 딤 배경 → 재사용 semantic (ADD) */
-  --color-dim: #131927; /* rgba 적용은 사용처에서 opacity로 (color-mix) */
-  --dim-backdrop: color-mix(in srgb, var(--color-dim) 45%, transparent);
+  /* 모달/드로어 백드롭 딤. 실측(node 12774:41303, 초대모달) = neutral-5 @ 80%. */
+  --color-dim: var(--p-neutral-5);
+  --dim-backdrop: color-mix(in srgb, var(--color-dim) 80%, transparent);
 }
 
 /* 다크모드: 원본(사이트뷰)에 다크 값 없음 — 추후 시안 받으면 semantic만 override.

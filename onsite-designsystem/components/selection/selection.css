@@ -18,7 +18,8 @@
   background: var(--p-white); display: grid; place-items: center; flex: none; transition: .12s; }
 .chk__box svg { width: 10px; height: 10px; stroke: var(--p-white); stroke-width: 2.4; fill: none;
   stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
-.ctrl:hover input:not(:checked) + .chk__box { border-color: var(--p-blue-55); }                /* Hover */
+.ctrl:hover input:not(:checked) + .chk__box,
+.ctrl.is-hover input:not(:checked) + .chk__box { border-color: var(--p-blue-55); }             /* Hover */
 .ctrl input:checked + .chk__box { background: var(--p-blue-55); border-color: var(--p-blue-55); }/* Checked */
 .ctrl input:checked + .chk__box svg { opacity: 1; }
 .ctrl input:focus-visible + .chk__box { box-shadow: 0 0 0 3px var(--p-blue-95); }
@@ -29,7 +30,8 @@
   background: var(--p-white); display: grid; place-items: center; flex: none; transition: .12s; }
 .rad__box::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--p-blue-55);
   transform: scale(0); transition: .12s; }
-.ctrl:hover input:not(:checked) + .rad__box { border-color: var(--p-blue-55); }                /* Hover */
+.ctrl:hover input:not(:checked) + .rad__box,
+.ctrl.is-hover input:not(:checked) + .rad__box { border-color: var(--p-blue-55); }             /* Hover */
 .ctrl input:checked + .rad__box { border-color: var(--p-blue-55); }                            /* Selected */
 .ctrl input:checked + .rad__box::after { transform: scale(1); }
 .ctrl input:focus-visible + .rad__box { box-shadow: 0 0 0 3px var(--p-blue-95); }

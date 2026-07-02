@@ -9,7 +9,8 @@
 .avatar {
   display: inline-grid; place-items: center; flex: none;
   border-radius: var(--radius-full);
-  background: var(--color-surface-sunken); color: var(--color-label-neutral);
+  /* 실측(node 12774:41189 초대모달): bg bluegray-80 / 글자 bluegray-60 */
+  background: var(--p-bluegray-80); color: var(--p-bluegray-60);
   font-family: var(--font-sans); font-weight: var(--fw-semibold);
   overflow: hidden; user-select: none;
 }

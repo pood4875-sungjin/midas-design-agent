@@ -127,6 +127,7 @@ audit: `audit/listview-sitesummary-pass1.md`.
 | | | | | |
 
 ## 변경 이력
+- 2026-07-02 **Selection 데모 = 공식 상태 매트릭스로 재구성** (128:279·128:298·231:652 스크린샷 재확인). 지적: 기존 데모가 4상태를 안 보여줌(Hover 누락). 원소 스타일(16/16·28×16·blue-55·bluegray-80/90/70·thumb 좌우)은 소스와 일치 확인. 데모를 Figma 프레임 그대로 열=상태(Checkbox/Radio: Default·Hover·Checked/Selected·Disable / Toggle: Off·On·Disable)로 재작성 + `.is-hover` 정적 모디파이어 추가(문서용 hover 시각화). 토큰 변경 없음(전부 기존 참조). 사이트 iframe 높이 180→400.
 - 2026-06-22 레포 생성, 골격 작성.
 - 2026-06-22 Pass A — 사이트뷰 5종 get_variable_defs로 Foundation 토큰 추출. color/type/radius/shadow 확정, spacing 8pt 기본. `tokens/tokens.css` 생성.
 - 2026-06-22 사이트뷰(지도뷰) 재생성 + audit. 컴포넌트 11개.
@@ -166,3 +167,10 @@ audit: `audit/listview-sitesummary-pass1.md`.
   - 화면 CSS 전량 토큰 참조(1회성 drawer 폭 440만 raw). 상태색 = bootstrap §5 정책(참여중 safe·초대중 caution·검토대기 info).
   - 검증(preview 5190): 드로어·권한 게이팅(통합관리자 제거 비활성)·제거 danger 모달·외부이메일 자동완성 분기 전부 정상, 콘솔 에러 0.
   - 발견 gap→규칙 후보: 우측 드로어 골격·autocomplete·권한 위계 게이팅·상태 태그·아바타·모달·danger 버튼·빈상태. → rulebook 파일화 대상.
+- 2026-07-02 **동일 기능 실제 Figma 시안 구현**(file ZBz3Nc, node 12774:40857 "프로젝트 멤버 초대") → `screens/member-invite-modal.html`. 위 PRD 드로어 추측과 대조 = rulebook 교정 재료. THE LOOP 실측 적용:
+  - **토큰 정정(실측이 추측을 이김)**: `--color-dim` #131927(추측)→**neutral-5 #0f0f0f**, dim opacity 45→**80%**(node 12774:41303 실측). 신규 primitive `--p-neutral-5`. 신규 `--radius-3xs:4px`(칩·뱃지 재등장 확정).
+  - **컴포넌트 정정**: avatar 기본 bg surface-sunken→**bluegray-80**, 글자 label-neutral→**bluegray-60**(실측). modal `--lg`(w1000 r16) 추가.
+  - **진입형태**: PRD 추측=드로어 / 실제 시안=**중앙 모달**. → rulebook "진입형태" 규칙은 소스 우선.
+  - **상태 표현**: 실제 시안은 상태태그 미사용, **섹션 그룹**(접근요청/초대중/프로젝트멤버)으로 상태 구분. → §5 상태정책 = "표=컬러텍스트 / 리스트카드=태그 / **관리모달=섹션그룹**" 컨텍스트 조건부로 확정.
+  - 실측 매핑: 타이틀 title-3(28)·부제 body-2·역할 label-1 Medium bluegray-55·행이름 body-1 SB bluegray-30·메타 caption-1 bluegray-60·칩 label-1 bluegray-30 r4·액션버튼 w48h32 r6 caption-1 Bold. 전 토큰 참조, raw 폰트 0.
+  - 검증(preview): Figma 시안과 레이아웃·컬러·컴포넌트 일치, 콘솔 에러 0.
