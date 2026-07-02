@@ -14,7 +14,7 @@
 .ctrl.is-disabled { cursor: not-allowed; color: var(--color-label-disabled); }
 
 /* ---- Checkbox (16×16, radius 4) ---- */
-.chk__box { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid var(--p-bluegray-80);
+.chk__box { box-sizing: border-box; width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid var(--p-bluegray-80);
   background: var(--p-white); display: grid; place-items: center; flex: none; transition: .12s; }
 .chk__box svg { width: 10px; height: 10px; stroke: var(--p-white); stroke-width: 2.4; fill: none;
   stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
@@ -26,9 +26,9 @@
 .ctrl.is-disabled .chk__box { background: var(--p-bluegray-90); border-color: var(--p-bluegray-90); }/* Disable */
 
 /* ---- Radio (16×16) ---- */
-.rad__box { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--p-bluegray-80);
+.rad__box { box-sizing: border-box; width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--p-bluegray-80);
   background: var(--p-white); display: grid; place-items: center; flex: none; transition: .12s; }
-.rad__box::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--p-blue-55);
+.rad__box::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--p-blue-55);
   transform: scale(0); transition: .12s; }
 .ctrl:hover input:not(:checked) + .rad__box,
 .ctrl.is-hover input:not(:checked) + .rad__box { border-color: var(--p-blue-55); }             /* Hover */

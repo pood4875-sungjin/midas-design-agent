@@ -127,6 +127,7 @@ audit: `audit/listview-sitesummary-pass1.md`.
 | | | | | |
 
 ## 변경 이력
+- 2026-07-02 **Radio selected dot 6→8px 교정** (128:303 재확인). 지적: 체크 시 안쪽 원이 소스보다 작음. 링 16 대비 dot ≈50%(=8px)인데 6px(37%)로 작았음 → `.rad__box::after` 8px. 측정 confirmed(box19=16+1.5×2, dot 8×8). 사이트 iframe v3→v4.
 - 2026-07-02 **Selection 데모 = 공식 상태 매트릭스로 재구성** (128:279·128:298·231:652 스크린샷 재확인). 지적: 기존 데모가 4상태를 안 보여줌(Hover 누락). 원소 스타일(16/16·28×16·blue-55·bluegray-80/90/70·thumb 좌우)은 소스와 일치 확인. 데모를 Figma 프레임 그대로 열=상태(Checkbox/Radio: Default·Hover·Checked/Selected·Disable / Toggle: Off·On·Disable)로 재작성 + `.is-hover` 정적 모디파이어 추가(문서용 hover 시각화). 토큰 변경 없음(전부 기존 참조). 사이트 iframe 높이 180→400.
 - 2026-06-22 레포 생성, 골격 작성.
 - 2026-06-22 Pass A — 사이트뷰 5종 get_variable_defs로 Foundation 토큰 추출. color/type/radius/shadow 확정, spacing 8pt 기본. `tokens/tokens.css` 생성.
