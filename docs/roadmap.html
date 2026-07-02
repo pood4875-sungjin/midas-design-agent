@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>디자인 에이전트 로드맵</title>
+<style>
+  :root {
+    --bg: #f4f7fb;
+    --card: #ffffff;
+    --line: #e2e8f0;
+    --ink: #1e293b;
+    --muted: #64748b;
+    --accent: #98bbef;
+    --accent-deep: #4f7fd6;
+    --head: #2b3a55;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
+    line-height: 1.6;
+  }
+  .gnb { position: sticky; top: 0; z-index: 10; background: var(--head); box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+  .gnb-inner { max-width: 880px; margin: 0 auto; display: flex; align-items: center; gap: 4px; padding: 0 20px; }
+  .brand { color: #fff; font-weight: 700; font-size: 15px; margin-right: 20px; padding: 16px 0; white-space: nowrap; }
+  .nav-btn { background: none; border: none; cursor: pointer; color: #b9c6dd; font-size: 15px; font-weight: 600; padding: 18px 16px; border-bottom: 3px solid transparent; font-family: inherit; }
+  .nav-btn:hover { color: #fff; }
+  .nav-btn.active { color: #fff; border-bottom-color: var(--accent); }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 36px 20px 60px; }
+  .page { display: none; }
+  .page.active { display: block; }
+
+  h1 { font-size: 26px; margin: 0 0 4px; color: var(--head); }
+  .sub { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+
+  table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.06); margin-bottom: 28px; }
+  th { background: var(--head); color: #fff; text-align: left; padding: 14px 18px; font-size: 14px; font-weight: 600; }
+  td { padding: 14px 18px; border-top: 1px solid var(--line); font-size: 15px; vertical-align: top; }
+  td .goal-main { font-weight: 600; }
+  td ul.subtasks { margin: 8px 0 0; padding-left: 18px; }
+  td ul.subtasks li { margin: 3px 0; font-size: 13.5px; color: var(--muted); }
+  .week-link { display: inline-block; margin-top: 10px; font-size: 13px; font-weight: 700; color: var(--accent-deep); cursor: pointer; }
+  .week-link:hover { text-decoration: underline; }
+  tr.clickable { cursor: pointer; }
+  tr.clickable:hover td { background: #f0f6ff; }
+  .back-link { display: inline-block; margin-bottom: 18px; font-size: 14px; font-weight: 600; color: var(--accent-deep); cursor: pointer; }
+  .back-link:hover { text-decoration: underline; }
+  .rec-meta { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+  .rec-card h3 { margin: 0 0 8px; font-size: 15px; color: var(--head); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; background: #eef2f8; padding: 1px 6px; border-radius: 5px; color: var(--accent-deep); }
+  .issue { background: #fff7ed; border: 1px solid #f5d5a8; border-left: 4px solid #d97706; border-radius: 10px; padding: 16px 20px; margin-bottom: 18px; }
+  .issue .label { font-size: 12px; font-weight: 700; color: #b45309; text-transform: uppercase; letter-spacing: .5px; }
+  .issue p { margin: 8px 0 0; font-size: 15px; }
+  .issue b { color: var(--head); }
+  .vld-label { font-size: 13px; font-weight: 700; color: var(--accent-deep); margin: 4px 0 10px; }
+  ul.substeps { margin: 10px 0 18px; padding-left: 22px; }
+  ul.substeps li { margin: 6px 0; font-size: 14px; color: var(--muted); }
+  table.vld { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-bottom: 18px; }
+  table.vld th { background: var(--head); color: #fff; text-align: left; padding: 10px 16px; font-size: 13px; font-weight: 600; }
+  table.vld td { padding: 9px 16px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink); }
+  table.vld td:first-child { font-weight: 600; color: var(--head); width: 150px; }
+  table.vld tr:nth-child(even) td { background: #fafcff; }
+  tr:nth-child(even) td { background: #fafcff; }
+  tr.done td { background: #eef7ee !important; color: #4a6b4a; }
+  .tag { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; background: #16a34a; color: #fff; font-size: 12px; font-weight: 600; vertical-align: middle; }
+  .goal-tag { background: var(--accent-deep); }
+  .progress-tag { background: #d97706; }
+  .wk { font-weight: 700; color: var(--accent-deep); white-space: nowrap; }
+  .date { color: var(--muted); font-size: 13px; white-space: nowrap; }
+
+  h2 { font-size: 18px; color: var(--head); margin: 28px 0 12px; border-left: 4px solid var(--accent); padding-left: 10px; }
+  .summary { display: grid; gap: 10px; }
+  .summary div { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; font-size: 15px; }
+  .summary b { color: var(--accent-deep); margin-right: 8px; }
+  .goal { background: #eef4ff; border: 1px solid #bcd4f5; border-radius: 10px; padding: 14px 18px; color: var(--accent-deep); font-weight: 600; font-size: 15px; margin: 0 0 24px; }
+  .link { color: var(--accent-deep); font-weight: 600; }
+
+  .flow { display: grid; gap: 10px; counter-reset: step; }
+  .flow .step { display: flex; align-items: flex-start; gap: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; font-size: 15px; }
+  .flow .step::before { counter-increment: step; content: counter(step); flex: none; width: 26px; height: 26px; border-radius: 999px; background: var(--accent-deep); color: #fff; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body>
+
+<nav class="gnb">
+  <div class="gnb-inner">
+    <span class="brand">MIDAS Design Agent</span>
+    <button class="nav-btn active" data-page="roadmap">로드맵</button>
+    <button class="nav-btn" data-page="week-7-1">이번주 기록</button>
+  </div>
+</nav>
+
+<!-- ===== 로드맵 ===== -->
+<section class="page active" id="roadmap">
+<div class="wrap">
+  <h1>주차별 로드맵</h1>
+  <div class="sub">기간 6/30 ~ 8월 · 월~금 기준 · <b style="color:var(--accent-deep)">7월 말 실사용 기반 + 활용 가이드 배포</b></div>
+
+  <div class="goal">최종 목표 — 온사이트 DS와 생성 정책 문서만으로 기획 입력(PRD·시안)을 "사람이 만든 것처럼" DS 준수 화면으로 자동 생성하는 <b>제너레이터</b> 구축. 온사이트 프로젝트는 별개 테스트베드로 자동생성 검증.</div>
+
+  <table>
+    <thead><tr><th>주차</th><th>기간</th><th>목표</th></tr></thead>
+    <tbody>
+      <tr class="clickable" data-goto="week-7-1"><td class="wk">7월 1주차</td><td class="date">6/30~7/4</td><td><span class="goal-main">기반 3갈래 착수 (분산 진행)</span><span class="tag progress-tag">진행중</span>
+        <ul class="subtasks">
+          <li>온사이트 → 디자인 시스템으로 시스템화 시작</li>
+          <li>생성 파이프라인의 판단근거(정책) rulebook 세우기</li>
+          <li>한국 기업 DS 탑재해 별도 생성 테스트</li>
+        </ul>
+        <span class="week-link" data-goto="week-7-1">주간 기록 자세히 →</span>
+      </td></tr>
+      <tr><td class="wk">7월 2주차</td><td class="date">7/7~7/11</td><td><span class="goal-main">온사이트 DS 시스템 탑재 + 파이프라인 문서 고도화</span>
+        <ul class="subtasks">
+          <li>온사이트 DS를 에이전트에 정식 탑재</li>
+          <li>rulebook 판단근거 문서(규칙·패턴) 고도화</li>
+        </ul>
+      </td></tr>
+      <tr><td class="wk">7월 3주차</td><td class="date">7/14~7/18</td><td><span class="goal-main">문서 고도화 이어가며 생성 테스트</span>
+        <ul class="subtasks">
+          <li>정책·패턴 문서 계속 고도화</li>
+          <li>온사이트 시안 투입 → 생성 결과 검증 시작</li>
+        </ul>
+      </td></tr>
+      <tr><td class="wk">7월 4주차</td><td class="date">7/21~7/25</td><td><span class="goal-main">생성 테스트 + 실사용 기반 마련</span>
+        <ul class="subtasks">
+          <li>생성 테스트 반복 — 빗나간 규칙 gap 보완</li>
+          <li>실제 사용을 위한 기반(입출력·워크플로) 정리</li>
+        </ul>
+      </td></tr>
+      <tr><td class="wk">7월 5주차</td><td class="date">7/28~8/1</td><td><span class="goal-main">온사이트 활용 가이드 마련 및 배포</span><span class="tag goal-tag">배포</span>
+        <ul class="subtasks">
+          <li>온사이트 활용 가이드 문서화</li>
+          <li>사내 공유 · 배포</li>
+        </ul>
+      </td></tr>
+      <tr><td class="wk">8월~</td><td class="date">8/4~</td><td><span class="goal-main">제너레이터 구축 + 온사이트 테스트베드 운영·검증</span>
+        <ul class="subtasks">
+          <li>제너레이터(생성 도구) 만들기</li>
+          <li>온사이트 프로젝트는 별개로 — DS·정책 문서만으로 알아서 생성되는지 운영·검증</li>
+          <li>테스트베드로 반복 실행 · 검증</li>
+        </ul>
+      </td></tr>
+    </tbody>
+  </table>
+
+  <h2>장표용 월 요약</h2>
+  <div class="summary">
+    <div><b>7월</b>온사이트 DS 탑재 + 파이프라인 문서 고도화 + 생성 테스트 → <b style="color:#4f7fd6">7월 말 실사용 기반·활용 가이드 배포</b></div>
+    <div><b>8월</b>제너레이터 구축 + 온사이트 테스트베드로 자동생성 운영·검증</div>
+  </div>
+
+  <h2>최종 모습</h2>
+  <div class="flow">
+    <div class="step"><span><b>기획 입력</b> — PRD 텍스트 또는 Figma 시안</span></div>
+    <div class="step"><span><b>파이프라인 판단</b> — rulebook 규칙으로 IA·레이아웃·UX축·컴포넌트·토큰 결정</span></div>
+    <div class="step"><span><b>DS 준수 생성</b> — 온사이트 DS 토큰·컴포넌트로 화면 조립</span></div>
+    <div class="step"><span><b>audit 검증</b> — "사람이 만든 것처럼" 나왔는지 자동 점검</span></div>
+    <div class="step"><span><b>제너레이터 · 테스트베드</b> — 도구화 + 온사이트로 자동생성 검증</span></div>
+  </div>
+</div>
+</section>
+
+<!-- ===== 7월 1주차 주간 기록 ===== -->
+<section class="page" id="week-7-1">
+<div class="wrap">
+  <span class="back-link" data-goto="roadmap">← 로드맵으로</span>
+  <h1>7월 1주차 주간 기록</h1>
+  <div class="rec-meta">6/30 ~ 7/4 · 기반 3갈래 착수 <span class="tag progress-tag">진행중</span></div>
+
+  <div class="goal">이번 주 — 각각 따로 굴린 3갈래. 온사이트 시스템화 · 정책 파이프라인(rulebook) · 한국 DS 테스트. 결국 "판단근거 파이프라인" 하나로 수렴.</div>
+
+  <h2>한 일</h2>
+  <div class="card rec-card">
+    <ul>
+      <li><b>온사이트 → 시스템화</b> — 온사이트 제품을 디자인 시스템(토큰·컴포넌트)으로 정리 시작. 파이프라인이 준수할 기준 DS.</li>
+      <li><b>정책 / 판단근거 파이프라인</b> — PRD·시안 → DS 준수 화면을 "사람이 만든 것처럼" 생성하는 판단 기준서 <code>rulebook</code> 구축. 커널 루프: IA → 레이아웃 → UX축(7) → 컴포넌트 → 토큰 → audit.</li>
+      <li><b>한국 기업 DS 탑재 테스트</b> — 한국 기업 DS를 가져와 탑재 후 별도 생성 테스트.</li>
+    </ul>
+  </div>
+
+  <h2>이슈 · 인사이트</h2>
+  <div class="issue">
+    <span class="label">확인</span>
+    <p>결국 필요한 건 <b>판단근거 파이프라인</b>을 세우는 것. 온사이트 시안을 하나씩 던지면서 DS·정책대로 나오는지 <b>계속 검증</b>해야 신뢰 확보.</p>
+  </div>
+
+  <h2>다음 할 일</h2>
+  <div class="issue" style="background:#eef4ff;border-color:#bcd4f5;border-left-color:var(--accent-deep)">
+    <span class="label" style="color:var(--accent-deep)">다음 주</span>
+    <p><b>온사이트 DS 시스템 정식 탑재</b> + <b>파이프라인 판단근거 문서 고도화</b>. 이후 온사이트 시안 투입 → 검증 → 규칙 누적 사이클로 이어감.</p>
+  </div>
+  <ul class="substeps">
+    <li>온사이트 DS를 에이전트에 정식 탑재</li>
+    <li>rulebook 규칙·패턴 문서 고도화</li>
+    <li>온사이트 시안 하나씩 파이프라인에 투입 → 결과 검증</li>
+    <li>빗나간 지점(gap) → 규칙 제안·승인·누적 (잠정 → 확정 승격)</li>
+  </ul>
+
+  <div class="vld-label">판단근거 파이프라인 (rulebook 노드)</div>
+  <table class="vld">
+    <thead><tr><th>노드</th><th>판단 내용</th></tr></thead>
+    <tbody>
+      <tr><td>1 · IA</td><td>아키타입 판정</td></tr>
+      <tr><td>2 · 레이아웃</td><td>골격 · 진입형태</td></tr>
+      <tr><td>3 · UX축 (7)</td><td>결정축별 규칙</td></tr>
+      <tr><td>4 · 컴포넌트</td><td>패턴 → 컴포넌트 레시피 + 권한 게이팅</td></tr>
+      <tr><td>5 · 토큰</td><td>상태 · 토큰 컨텍스트</td></tr>
+      <tr><td>6 · audit</td><td>"사람이 만든 것처럼" 검증</td></tr>
+    </tbody>
+  </table>
+
+  <h2>자료</h2>
+  <div class="card rec-card">
+    <ul>
+      <li>생성 정책 rulebook — <a class="link" href="rulebook/index.html">rulebook 열기 ↗</a></li>
+      <li>이번주 상세 정리 — <a class="link" href="weekly/2026-07-02-recap.html">주간 recap ↗</a></li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<script>
+  function showPage(id){
+    if(!document.getElementById(id)) id = 'roadmap';
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.toggle('active', p.id===id); });
+    document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.page===id); });
+    if(location.hash.slice(1) !== id) location.hash = id;
+    window.scrollTo(0,0);
+  }
+  document.querySelectorAll('.nav-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ showPage(btn.dataset.page); });
+  });
+  document.querySelectorAll('[data-goto]').forEach(function(el){
+    el.addEventListener('click', function(e){ e.stopPropagation(); showPage(el.dataset.goto); });
+  });
+  window.addEventListener('hashchange', function(){ showPage(location.hash.slice(1) || 'roadmap'); });
+  showPage(location.hash.slice(1) || 'roadmap');
+</script>
+</body>
+</html>
