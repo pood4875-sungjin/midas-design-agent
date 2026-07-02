@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>온사이트 화면 유형 분류 — 확인용</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<style>
+  :root{
+    --bg:#0b0e13;--surface:#141923;--surface2:#1b2230;--line:#262e3d;
+    --text:#e8edf3;--muted:#9aa4b2;--faint:#6b7480;
+    --green:#5fdc8a;--orange:#f0a93c;--blue:#4cb8f5;--gold:#ffd24d;--red:#ff6b6b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:"Pretendard Variable",Pretendard,sans-serif;line-height:1.6}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  h1{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.25}
+  h2{font-size:24px;font-weight:800;margin-bottom:6px}
+  .kicker{font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+  .lead{font-size:16px;color:var(--muted);max-width:780px;margin-top:12px}
+  .hl{color:var(--text);font-weight:700}
+  /* flow */
+  .flow{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;align-items:stretch}
+  .fstep{flex:1;min-width:120px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:13px}
+  .fstep.now{border-color:var(--gold);background:linear-gradient(180deg,rgba(255,210,77,.1),transparent)}
+  .fstep .n{font-size:10.5px;font-weight:800;color:var(--faint)}
+  .fstep .t{font-size:13.5px;font-weight:700;margin-top:3px}
+  .fstep.now .t{color:var(--gold)}
+  .fstep .s{font-size:11px;color:var(--muted);margin-top:3px}
+  .fnow{display:inline-block;font-size:10px;font-weight:800;color:#0b0e13;background:var(--gold);padding:1px 7px;border-radius:10px;margin-top:7px}
+  .arrow{align-self:center;color:var(--faint)}
+  /* method */
+  .m{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+  @media(max-width:760px){.m{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .card h3{font-size:15px;font-weight:800;margin-bottom:10px}
+  .q{font-family:ui-monospace,monospace;font-size:12.5px;color:var(--muted);line-height:1.9}
+  .q b{color:var(--green)}
+  .peel{font-size:13px;color:var(--muted)}
+  .peel .x{color:var(--red);font-weight:700}
+  /* gallery */
+  .gal{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+  @media(max-width:860px){.gal{grid-template-columns:1fr}}
+  .tcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .tcard .shot{width:100%;display:block;border-bottom:1px solid var(--line);background:#0c1017}
+  .tcard .body{padding:14px 16px}
+  .tcard .tt{font-size:16px;font-weight:800}
+  .tcard .en{font-size:12px;color:var(--faint);font-weight:600;font-family:ui-monospace,monospace}
+  .tcard .ds{font-size:13px;color:var(--muted);margin-top:7px}
+  .tcard . q1{display:inline-block;font-size:11.5px;font-weight:700;color:var(--blue);background:rgba(76,184,245,.12);padding:2px 9px;border-radius:20px;margin-top:9px}
+  .num{display:inline-block;width:22px;height:22px;line-height:22px;text-align:center;background:var(--surface2);border:1px solid var(--line);border-radius:6px;font-size:12px;font-weight:800;color:var(--gold);margin-right:8px}
+  .callout{border-left:3px solid var(--gold);padding:12px 16px;background:var(--surface);border-radius:0 10px 10px 0;margin-top:18px;font-size:14px}
+  .big{font-size:40px;font-weight:800;color:var(--gold);line-height:1}
+  .foot{padding:34px 0 60px;color:var(--faint);font-size:13px}
+</style>
+</head>
+<body>
+
+<header style="padding:64px 0 12px"><div class="wrap">
+  <div class="kicker">지금 어디까지 했나 · 확인용</div>
+  <h1>온사이트 화면을<br>7개 유형으로 분류했다.</h1>
+  <p class="lead">AI가 화면을 자동 생성하려면, 먼저 <span class="hl">"온사이트엔 어떤 종류의 화면이 있나"</span>를 알아야 한다.
+  실제 화면 약 60개를 분류한 결과 — 모두 <span class="hl">7종</span>에 들어갔다.</p>
+</div></header>
+
+<!-- WHERE -->
+<section><div class="wrap">
+  <div class="kicker">전체 흐름에서 지금 위치</div>
+  <h2>두 가지를 동시에 진행 중</h2>
+  <p class="lead">최종 목표 = 기획 넣으면 AI가 온사이트 화면을 자동 생성. 그러려면 ① <span class="hl">재료(디자인 시스템)</span> 와 ② <span class="hl">설명서(화면 유형·규칙)</span> 둘 다 필요하다.</p>
+  <div class="flow">
+    <div class="fstep now"><div class="n">A · 재료</div><div class="t">디자인 시스템 탑재</div><div class="s">Figma 시안 → 토큰·컴포넌트 추출</div><div class="fnow">진행 중</div></div>
+    <div class="arrow">＋</div>
+    <div class="fstep now"><div class="n">B · 설명서</div><div class="t">페이지 유형 분류</div><div class="s">온사이트 화면을 종류로 묶기</div><div class="fnow">진행 중 · 이 문서</div></div>
+    <div class="arrow">→</div>
+    <div class="fstep"><div class="n">다음</div><div class="t">유형별 설명서</div><div class="s">종류마다 뼈대·규칙 1장</div></div>
+    <div class="arrow">→</div>
+    <div class="fstep"><div class="n">그다음</div><div class="t">AI 화면 생성</div><div class="s">설명서+재료로 자동 조립</div></div>
+  </div>
+  <div class="callout">📍 <b class="hl">지금</b> — (A) 디자인 시스템을 실제 화면 구현하며 다듬는 중 + (B) 이 문서처럼 <b class="hl">화면 유형을 분류</b>하는 중.
+  A는 "재료", B는 "레시피북". 둘이 합쳐져야 AI가 화면을 만든다.</div>
+</div></section>
+
+<!-- METHOD -->
+<section><div class="wrap">
+  <div class="kicker">어떻게 분류했나</div>
+  <h2>겉모습이 아니라 "목적"으로 가른다</h2>
+  <div class="m">
+    <div class="card">
+      <h3>1단계 · 껍데기 걷어내기</h3>
+      <p class="peel">분류 전에 아래를 벗기고 <b class="hl">목적</b>만 남긴다. 이게 화면 수를 종류 수로 줄이는 핵심.</p>
+      <p class="peel" style="margin-top:10px"><span class="x">✕ 상태</span> — 빈 화면·입력중·업로드중·완료<br>
+      <span class="x">✕ 표면</span> — 모달·위저드·도면 캔버스·인라인 편집</p>
+      <p class="peel" style="margin-top:10px;color:var(--gold)">→ "단면 추가 모달"도 "완료 화면"도 목적은 <b>등록</b> → 같은 종류.</p>
+    </div>
+    <div class="card">
+      <h3>2단계 · 목적 질문 7개</h3>
+      <p class="q">
+        지도 위 위치로? → <b>지도형</b><br>
+        여러 항목 표로? → <b>목록형</b><br>
+        한 대상 깊이? → <b>상세형</b><br>
+        여러 지표 차트? → <b>모니터링형</b><br>
+        시간축(단계)? → <b>일정/간트형</b><br>
+        값 넣고 저장? → <b>등록/설정형</b><br>
+        정적 보고/인쇄? → <b>보고서형</b>
+      </p>
+    </div>
+  </div>
+  <div class="callout">이 <b class="hl">7개 질문</b>이 곧 "AI가 화면 종류를 고르는 규칙"의 초안이 된다.</div>
+</div></section>
+
+<!-- GALLERY -->
+<section><div class="wrap">
+  <div class="kicker">7종 × 실제 온사이트 화면</div>
+  <h2>이렇게 생긴 화면들이 — 7칸에 다 들어갔다</h2>
+  <div class="gal">
+    <div class="tcard"><img class="shot" src="assets/classify/map.png" alt="지도형">
+      <div class="body"><span class="num">1</span><span class="tt">지도형</span> <span class="en">Map</span>
+        <div class="ds">지도 위에 현장 위치·위험도를 핀으로 표시. 전체 지도 화면.</div>
+        <span class="q1">위치로 보여줘?</span></div></div>
+    <div class="tcard"><img class="shot" src="assets/classify/list.png" alt="목록형">
+      <div class="body"><span class="num">2</span><span class="tt">목록형</span> <span class="en">List</span>
+        <div class="ds">센서를 표로 나열. 행마다 상태 색. 페이지네이션.</div>
+        <span class="q1">여러 항목 표로?</span></div></div>
+    <div class="tcard"><img class="shot" src="assets/classify/detail.png" alt="상세형">
+      <div class="body"><span class="num">3</span><span class="tt">상세형</span> <span class="en">Detail</span>
+        <div class="ds">한 센서 깊이 — KPI+차트+표. 표면=모달. (가장 흔함)</div>
+        <span class="q1">한 대상 깊이?</span></div></div>
+    <div class="tcard"><img class="shot" src="assets/classify/monitor.png" alt="모니터링형">
+      <div class="body"><span class="num">4</span><span class="tt">모니터링형</span> <span class="en">Dashboard</span>
+        <div class="ds">여러 센서 종합 차트(통합보기). 어느 게 튀나 한눈에.</div>
+        <span class="q1">여러 지표 차트?</span></div></div>
+    <div class="tcard"><img class="shot" src="assets/classify/schedule.png" alt="일정형">
+      <div class="body"><span class="num">5</span><span class="tt">일정/간트형</span> <span class="en">Schedule</span>
+        <div class="ds">공정 관리 — 시공 단계를 시간축(간트)으로. 표 같지만 시간축.</div>
+        <span class="q1">시간축(단계)?</span></div></div>
+    <div class="tcard"><img class="shot" src="assets/classify/form.png" alt="등록설정형">
+      <div class="body"><span class="num">6</span><span class="tt">등록/설정형</span> <span class="en">Form/Setup</span>
+        <div class="ds">계측기 설정 — 값 넣고 저장. (파일 업로드 위저드도 같은 종류)</div>
+        <span class="q1">값 넣고 저장?</span></div></div>
+    <div class="tcard"><img class="shot" src="assets/classify/report.png" alt="보고서형">
+      <div class="body"><span class="num">7</span><span class="tt">보고서형</span> <span class="en">Report</span>
+        <div class="ds">주간 현황 요약 보고서. 정적 문서, 인쇄/공유용.</div>
+        <span class="q1">정적 보고/인쇄?</span></div></div>
+  </div>
+</div></section>
+
+<!-- MEANING -->
+<section><div class="wrap">
+  <div class="kicker">이게 무슨 의미냐</div>
+  <h2>화면은 60개여도, 만들 설명서는 7장</h2>
+  <div class="m" style="grid-template-columns:1fr 1fr 1fr">
+    <div class="card"><div class="big">~60</div><div class="ds" style="margin-top:8px;color:var(--muted)">던진 실제 화면 수</div></div>
+    <div class="card"><div class="big">7</div><div class="ds" style="margin-top:8px;color:var(--muted)">실제 화면 종류</div></div>
+    <div class="card"><div class="big">7</div><div class="ds" style="margin-top:8px;color:var(--muted)">써야 할 설명서 장수</div></div>
+  </div>
+  <div class="callout">화면 수만큼 설명서를 쓰면 끝이 없다. <b class="hl">목적으로 묶으면 7종</b> → 종류마다 설명서 1장이면 AI가 같은 종류 화면을 다 만든다.
+  이게 "제어 가능한 생성"이 가능해지는 이유다. <span class="hl">(PRD 가설 "소수 패턴으로 수렴" 이 데이터로 확인됨)</span></div>
+</div></section>
+
+<div class="foot"><div class="wrap">
+  MIDAS Design Agent · Phase 0 · 온사이트 테스트베드 — (A) 디자인 시스템 탑재 + (B) 화면 유형 분류 동시 진행 중.
+</div></div>
+
+</body>
+</html>

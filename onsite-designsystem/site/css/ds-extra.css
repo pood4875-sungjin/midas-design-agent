@@ -1,0 +1,107 @@
+/* ds-extra.css — midas 토큰에 없는 온사이트 DS 데이터 토큰 (비충돌). 소비 전용. */
+:root {
+  --p-emerald-99: #eaf8fa;
+  --p-emerald-90: #cceff4;
+  --p-emerald-80: #a3e3eb;
+  --p-emerald-70: #78d5e1;
+  --p-emerald-60: #50c9d6;
+  --p-emerald-55: #29bdd0;
+  --p-emerald-50: #1bb9cd;   /* Primary */
+  --p-emerald-40: #23a1b1;
+  --p-emerald-30: #1d8694;
+  --p-emerald-20: #176c77;
+  --p-emerald-10: #12555e;
+  --p-blue-50: #0068ff;   /* checkbox/radio/toggle checked·on */
+  --p-blue-55: #1a75ff;
+  --p-blue-60: #3385ff;
+  --p-blue-90: #c8d9f9;
+  --p-blue-95: #eaf2fe;
+  --p-red-45: #f82e36;   /* deepest — siren/critical */
+  --p-red-50: #ff4242;   /* danger default */
+  --p-red-55: #ff5c4e;   /* RD50(Default) */
+  --p-red-70: #ff8c8c;
+  --p-red-95: #feecec;
+  --p-red-99: #fffafa;
+  --p-orange-48: #f55a00;  /* 진한 주황 (강조) */
+  --p-orange-60: #ff7b2e;
+  --p-orange-95: #feeee5;
+  --p-yellow-99: #fffcf7;
+  --p-yellow-90: #fee8c6;
+  --p-yellow-80: #ffd49c;
+  --p-yellow-55: #ff9d1a;
+  --p-yellow-45: #ea8704;
+  --p-yellow-20: #663a00;
+  --p-green-99: #ebf7ef;
+  --p-green-90: #c0e5cc;
+  --p-green-70: #77c792;
+  --p-green-60: #34ac5c;
+  --p-green-30: #1d5f33;
+  --p-green-10: #0c3d10;
+  --p-bluegray-20: #1f2937;
+  --p-bluegray-30: #374151;
+  --p-bluegray-40: #4b5563;
+  --p-bluegray-50: #6b7280;
+  --p-bluegray-55: #7a808d;
+  --p-bluegray-60: #9ca3af;
+  --p-bluegray-65: #babfc7;
+  --p-bluegray-70: #d1d5db;
+  --p-bluegray-75: #dadde2;
+  --p-bluegray-80: #dfe2e6;
+  --p-bluegray-85: #e5e7eb;
+  --p-bluegray-90: #eaecef;
+  --p-bluegray-95: #f3f4f6;
+  --p-bluegray-99: #f9fafb;
+  --p-coolgray-5:  #0f0f10;
+  --p-coolgray-60: #878a93;
+  --p-coolgray-120: #e8ecf2;
+  --p-whiteblue-50: #c9d1db;
+  --p-whiteblue-60: #d2d9e1;
+  --p-whiteblue-70: #e1e7ee;
+  --p-whiteblue-80: #e7edf4;
+  --p-whiteblue-85: #eef2f7;
+  --p-whiteblue-90: #f8f9fc;
+  --p-whiteblue-99: #fdfdfe;
+  --p-black: #000000;
+  --p-white: #ffffff;
+  --color-primary:        var(--p-emerald-50);
+  --color-primary-hover:  var(--p-emerald-55);
+  --color-safe:        var(--p-green-60);    --color-safe-bg:    var(--p-green-99);
+  --color-caution:     var(--p-orange-60);   --color-caution-bg: var(--p-orange-95);
+  --color-danger:      var(--p-red-50);      --color-danger-bg:  var(--p-red-95);
+  --color-siren:       var(--p-red-45);      --color-siren-bg:   var(--p-red-99);  /* critical/사이렌 */
+  --color-info:        var(--p-blue-60);     --color-info-bg:    var(--p-blue-95);
+  --grad-exceed-3: linear-gradient(90deg, #fe2217, #ff6410);  /* 3차 초과/경고 (red) — 확정 */
+  --grad-exceed-2: linear-gradient(90deg, #ff6410, #ff9d1a);  /* 2차 (orange) — provisional */
+  --grad-exceed-1: linear-gradient(90deg, #ff9d1a, #ffc800);  /* 1차 (yellow) — provisional */
+  --grad-safe:     linear-gradient(90deg, #1a75ff, #3dc2ff);  /* 안전 (blue) — provisional */
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --fs-display-2: 48px;  /* Bold 700, lh 1.286, ls -2.82px */
+  --fs-display-3: 40px;  /* Bold 700, lh 1.30,  ls -2.82px */
+  --fs-title-2:   32px;  /* Bold 700, lh 1.334, ls -2.7px */
+  --fs-title-3:   28px;  /* Bold 700, lh 1.358, ls -2.36px */
+  --fs-title-4:   24px;  /* Bold 700, lh 1.334, ls -2.3px */
+  --fs-heading-2: 20px;  /* Bold 700, lh 1.40,  ls -1.2px */
+  --fs-heading-3: 18px;  /* SemiBold 600, lh 1.445, ls -0.02px (보고서 섹션) */
+  --fs-headline-2: 17px; /* 공식 Headline 2 — SemiBold 600, lh 1.412, ls 0 */
+  --fs-body-1:    16px;  /* SemiBold/Bold, lh 1.5 */
+  --fs-body-2:    15px;  /* SemiBold/Medium, lh 1.467 */
+  --fs-label-1:   14px;  /* Medium/SemiBold/Bold, lh 1.429 */
+  --fs-label-2:   13px;  /* Medium/SemiBold/Regular/Bold, lh 1.385 */
+  --fs-caption-1: 12px;  /* lh 1.334 */
+  --fs-caption-2: 11px;  /* lh 1.273 */
+  --fw-regular: 400; --fw-medium: 500; --fw-semibold: 600; --fw-bold: 700;
+  --lh-title:   1.334;   /* 133% */
+  --lh-heading: 1.40;    /* 140% */
+  --lh-body:    1.50;    /* 150% */
+  --lh-label-1: 1.429;   /* 143% */
+  --lh-label-2: 1.385;   /* 139% */
+  --lh-caption: 1.273;   /* 127% */
+  --lh-reading: 1.60;    /* 본문 가독(Reading) */
+  --lh-reading-lg: 1.625;/* Body1 Reading */
+  --ls-tight:  -0.194px; /* 대부분의 본문/라벨 */
+  --ls-display: -2.82px; /* Display 2/3 (node 10142:16670 현장요약 제목 실측) */
+  --ls-title-2: -2.7px;
+  --ls-title-3: -2.36px;
+  --ls-title-4: -2.3px;
+  --ls-heading: -1.2px;
+}

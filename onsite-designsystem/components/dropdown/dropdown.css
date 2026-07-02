@@ -1,0 +1,56 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+@import url("../../tokens/tokens.css");
+
+/* ============================================================
+   Component: Dropdown — 공식 DS (file 6cMbzix, 376:211 Large·376:266 Medium·935:643 Small)
+   Trigger = Input 필드와 동일: h Large48/Medium40/Small32 · 240w · pad L12·M8·S8 · gap12 · r8
+   border bluegray-90 · bg 흰(Outline)/bluegray-99(Filled) · Select Medium bluegray-60 · chevron 24/16
+   ============================================================ */
+.dd { font-family: var(--font-sans); width: 240px; max-width: 100%; position: relative; }
+
+/* ---- Trigger ---- */
+.dd__trigger { display: flex; align-items: center; gap: 12px; background: var(--p-white);
+  border: 1px solid var(--p-bluegray-90); border-radius: var(--radius-xs); cursor: pointer;
+  transition: border-color .12s, box-shadow .12s; }
+.dd__trigger--fill { background: var(--p-bluegray-99); }
+.dd__trigger > span { flex: 1; min-width: 0; font-weight: var(--fw-medium); color: var(--p-bluegray-60);
+  letter-spacing: -0.031px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dd__trigger.has-value > span { color: var(--p-bluegray-20); }
+.dd__chev { flex: none; color: var(--p-bluegray-60); display: grid; place-items: center; transition: transform .15s; }
+.dd.is-open .dd__chev { transform: rotate(180deg); }
+.dd.is-open .dd__trigger { border-color: var(--p-blue-55); box-shadow: 0 0 0 3px var(--p-blue-95); }
+.dd__trigger.is-disabled { background: var(--p-bluegray-90); cursor: not-allowed; color: var(--color-label-disabled); }
+
+/* Size (필드 높이 = content + pad) */
+.dd--lg .dd__trigger { padding: 12px; }                            /* h48 (icon24) */
+.dd--lg .dd__trigger > span { font-size: var(--fs-body-1); }       /* 16 */
+.dd--lg .dd__chev svg { width: 24px; height: 24px; }
+.dd--md .dd__trigger { padding: 8px 12px; }                        /* h40 */
+.dd--md .dd__trigger > span { font-size: var(--fs-body-1); }       /* 16 */
+.dd--md .dd__chev svg { width: 24px; height: 24px; }
+.dd--sm .dd__trigger { padding: 8px; gap: 8px; }                   /* h32 (icon16) */
+.dd--sm .dd__trigger > span { font-size: var(--fs-caption-1); }    /* 12 */
+.dd--sm .dd__chev svg { width: 16px; height: 16px; }
+
+/* multi-select chips */
+.dd__chips { display: flex; align-items: center; gap: 4px; flex: 1; overflow: hidden; }
+.dd__chip { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px;
+  background: var(--color-bg-muted); border-radius: var(--radius-2xs); font-size: var(--fs-label-2);
+  color: var(--color-label-neutral); white-space: nowrap; }
+.dd__chip button { border: none; background: none; cursor: pointer; color: var(--color-label-assistive); font-size: var(--fs-caption-2); }
+
+/* ---- Menu ---- */
+.dd__menu { margin-top: 6px; background: var(--color-surface); border: 1px solid var(--color-line);
+  border-radius: var(--radius-xs); box-shadow: var(--shadow-card); padding: 6px; min-width: 200px; }
+.dd__group { font-size: var(--fs-caption-1); font-weight: var(--fw-semibold); color: var(--color-label-assistive);
+  padding: 8px 10px 4px; }
+.dd__item { display: flex; align-items: center; gap: 8px; padding: 9px 10px; border-radius: var(--radius-2xs);
+  font-size: var(--fs-label-1); color: var(--color-label-neutral); cursor: pointer; }
+.dd__item:hover { background: var(--color-bg-subtle); }
+.dd__item.is-selected { color: var(--color-label-strong); font-weight: var(--fw-semibold); }
+.dd__item .chk { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid var(--p-bluegray-80);
+  display: grid; place-items: center; flex: none; }
+.dd__item.is-selected .chk { background: var(--p-blue-55); border-color: var(--p-blue-55); }
+.dd__item .chk svg { width: 10px; height: 10px; stroke: var(--p-white); stroke-width: 2.4; fill: none;
+  stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+.dd__item.is-selected .chk svg { opacity: 1; }

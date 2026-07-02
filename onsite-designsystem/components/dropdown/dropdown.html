@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Component — Dropdown</title>
+  <link rel="stylesheet" href="dropdown.css?v=2" />
+  <style>
+    body { margin: 0; padding: 28px; background: #fff; font-family: var(--font-sans);
+      display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap; }
+    .col > h4 { font-size: 12px; color: #878a93; margin: 0 0 12px; font-weight: 600; }
+    .col { display: flex; flex-direction: column; gap: 16px; }
+  </style>
+</head>
+<body>
+  <div class="col">
+    <h4>Trigger · Large 48</h4>
+    <div class="dd dd--lg"><div class="dd__trigger"><span>Select</span>__CHEV__</div></div>
+    <div class="dd dd--lg"><div class="dd__trigger has-value"><span>계측 결과</span>__CHEV__</div></div>
+    <div class="dd dd--lg is-open"><div class="dd__trigger"><span>Select</span>__CHEV__</div></div>
+    <div class="dd dd--lg"><div class="dd__trigger is-disabled"><span>Select</span>__CHEV__</div></div>
+  </div>
+  <div class="col">
+    <h4>Medium 40 · Small 32</h4>
+    <div class="dd dd--md"><div class="dd__trigger"><span>Select</span>__CHEV__</div></div>
+    <div class="dd dd--md"><div class="dd__trigger has-value"><span>계측 결과</span>__CHEV__</div></div>
+    <div class="dd dd--sm"><div class="dd__trigger"><span>Select</span>__CHEV__</div></div>
+    <div class="dd dd--sm"><div class="dd__trigger has-value"><span>계측 결과</span>__CHEV__</div></div>
+    <div class="dd dd--md"><div class="dd__trigger has-value"><div class="dd__chips"><span class="dd__chip">아이템<button>✕</button></span><span class="dd__chip">+1</span></div>__CHEV__</div></div>
+  </div>
+
+  <div class="col">
+    <h4>Menu — 기본</h4>
+    <div class="dd__menu" id="m1"></div>
+  </div>
+
+  <div class="col">
+    <h4>Menu — 체크박스 + 그룹</h4>
+    <div class="dd__menu" id="m2"></div>
+  </div>
+
+  <script>
+    var CHEV = '<span class="dd__chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>';
+    document.body.innerHTML = document.body.innerHTML.replace(/__CHEV__/g, CHEV);
+    var CHK = '<span class="chk"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span>';
+    var items = ["프로젝트 위험도순", "프로젝트 종료일(최신순)", "이름(오름차순)", "최근 수정순"];
+    document.getElementById("m1").innerHTML = items.map(function (t, i) {
+      return '<div class="dd__item' + (i === 0 ? ' is-selected' : '') + '">' + t + '</div>';
+    }).join("");
+    document.getElementById("m2").innerHTML =
+      '<div class="dd__group">Favorites</div>' +
+      ['동탄IC','일산IC'].map(function (t, i) { return '<div class="dd__item' + (i === 0 ? ' is-selected' : '') + '">' + CHK + t + '</div>'; }).join("") +
+      '<div class="dd__group">Recent</div>' +
+      ['판교 3단지','대곡IC','마성IC'].map(function (t) { return '<div class="dd__item">' + CHK + t + '</div>'; }).join("");
+  </script>
+</body>
+</html>

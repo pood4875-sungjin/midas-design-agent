@@ -1,0 +1,19 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+@import url("../../tokens/tokens.css");
+
+/* ============================================================
+   Component: Pagination — node 500:588 (MIDAS Onsite DS)
+   item 40×40 r8, Pretendard 14/Medium
+   ============================================================ */
+.pgn { display: flex; align-items: center; font-feature-settings: "ss10" 1; }
+.pgn__item {
+  width: 40px; height: 40px; border-radius: 8px; border: none; background: none;
+  display: grid; place-items: center; cursor: pointer;
+  font-family: var(--font-sans); font-size: var(--fs-label-1); font-weight: var(--fw-medium);
+  letter-spacing: -0.027px; line-height: 1.571; color: var(--p-bluegray-60);
+}
+.pgn__item:hover { background: var(--p-whiteblue-85); }            /* #eef2f7 */
+.pgn__item.is-active { background: var(--p-whiteblue-70); color: var(--p-bluegray-40); } /* #e1e7ee / #4b5563 */
+.pgn__item.is-disabled { color: var(--p-bluegray-70); pointer-events: none; }            /* #d1d5db */
+.pgn__item svg { width: 18px; height: 18px; display: block; stroke: currentColor; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }

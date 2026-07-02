@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Component — Selection Controls</title>
+  <link rel="stylesheet" href="selection.css?v=2" />
+  <style>
+    body { margin: 0; padding: 28px; background: #fff; font-family: var(--font-sans); }
+    .grp { display: flex; align-items: center; gap: 32px; margin-bottom: 22px; }
+    .grp > b { width: 80px; font-size: 12px; color: #878a93; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="grp"><b>Checkbox</b>
+    <label class="ctrl"><input type="checkbox"><span class="chk__box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></label>
+    <label class="ctrl"><input type="checkbox" checked><span class="chk__box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></label>
+    <label class="ctrl is-disabled"><input type="checkbox" disabled><span class="chk__box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></label>
+    <label class="ctrl"><input type="checkbox" checked><span class="chk__box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span>텍스트</label>
+  </div>
+
+  <div class="grp"><b>Radio</b>
+    <label class="ctrl"><input type="radio" name="r1"><span class="rad__box"></span></label>
+    <label class="ctrl"><input type="radio" name="r1" checked><span class="rad__box"></span></label>
+    <label class="ctrl is-disabled"><input type="radio" disabled><span class="rad__box"></span></label>
+    <label class="ctrl"><input type="radio" name="r2" checked><span class="rad__box"></span>텍스트</label>
+  </div>
+
+  <div class="grp"><b>Toggle</b>
+    <label class="ctrl"><input type="checkbox"><span class="tgl__track"></span></label>
+    <label class="ctrl"><input type="checkbox" checked><span class="tgl__track"></span></label>
+    <label class="ctrl is-disabled"><input type="checkbox" disabled><span class="tgl__track"></span></label>
+    <label class="ctrl"><input type="checkbox" checked><span class="tgl__track"></span>알림 받기</label>
+  </div>
+</body>
+</html>

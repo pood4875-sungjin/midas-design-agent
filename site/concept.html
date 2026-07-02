@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MDA — S2 Concept · DS 제안</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<style>
+  :root{
+    --bg:#0d0f12; --panel:#141923; --panel-2:#1b2230; --line:#262b33;
+    --fg:#e8edf3; --fg-dim:#aab4c0; --fg-faint:#6b7480;
+    --accent:#4f8cff; --gold:#ffd24d; --green:#5fdc8a; --red:#ff6b6b;
+    --radius:12px; --radius-sm:8px;
+    --font:"Pretendard Variable",Pretendard,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--fg);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+
+  /* ── top bar ── */
+  .top{padding:22px 0 18px;border-bottom:1px solid var(--line)}
+  .brandline{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--fg-faint)}
+  .brandline b{color:var(--fg);font-weight:800;letter-spacing:-.01em}
+  .pipe{display:flex;gap:6px;margin-top:16px;flex-wrap:wrap}
+  .pstep{display:flex;align-items:center;gap:7px;background:var(--panel);border:1px solid var(--line);
+         border-radius:999px;padding:6px 13px;font-size:12px;color:var(--fg-faint)}
+  .pstep .id{font-family:var(--mono);font-size:10.5px}
+  .pstep.done{color:var(--green)} .pstep.done .id{color:var(--green)}
+  .pstep.active{border-color:var(--gold);background:linear-gradient(180deg,rgba(255,210,77,.12),transparent);color:var(--gold)}
+  .pstep.active .id{color:var(--gold)}
+
+  /* ── header ── */
+  .head{padding:34px 0 8px}
+  .kicker{font-size:12px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:.09em}
+  h1{font-size:30px;font-weight:800;letter-spacing:-.02em;margin-top:10px}
+  .lead{font-size:15px;color:var(--fg-dim);max-width:760px;margin-top:10px}
+  .ir{display:inline-flex;align-items:center;gap:8px;margin-top:18px;background:var(--panel-2);
+      border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:12.5px;color:var(--fg-dim)}
+  .ir b{color:var(--fg);font-weight:700}
+  .ir .dot{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+
+  /* ── injected banner ── */
+  .injected{display:none;margin:24px 0 0;background:linear-gradient(180deg,rgba(95,220,138,.12),transparent);
+            border:1px solid rgba(95,220,138,.4);border-radius:var(--radius);padding:16px 18px}
+  .injected.show{display:block}
+  .injected h3{font-size:15px;font-weight:800;color:var(--green);display:flex;align-items:center;gap:8px}
+  .injected p{font-size:13px;color:var(--fg-dim);margin-top:5px}
+  .injected .next{margin-top:12px;display:inline-flex;align-items:center;gap:7px;background:var(--green);
+       color:#0b1410;font-weight:800;font-size:13px;border:none;border-radius:var(--radius-sm);padding:9px 16px;cursor:pointer}
+
+  /* ── grid ── */
+  .gridhead{display:flex;align-items:baseline;justify-content:space-between;margin:30px 0 14px}
+  .gridhead .gt{font-size:14px;font-weight:800}
+  .gridhead .gc{font-size:12px;color:var(--fg-faint);font-family:var(--mono)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:920px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:640px){.grid{grid-template-columns:1fr}}
+
+  /* ── card ── */
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        overflow:hidden;display:flex;flex-direction:column;animation:rise .35s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .card.sel{border-color:var(--green);box-shadow:0 0 0 1px var(--green)}
+  .card.dim{opacity:.42;filter:saturate(.6)}
+  .chead{padding:15px 16px 12px;display:flex;align-items:flex-start;gap:11px}
+  .logo{width:34px;height:34px;border-radius:9px;flex:none;display:grid;place-items:center;
+        font-weight:900;font-size:15px;color:#fff}
+  .cmeta{flex:1;min-width:0}
+  .cname{font-size:15px;font-weight:800;letter-spacing:-.01em}
+  .cds{font-size:11.5px;color:var(--fg-faint);margin-top:1px}
+  .ctags{display:flex;gap:5px;margin-top:7px;flex-wrap:wrap}
+  .tag{font-size:10px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--fg-dim);font-weight:600}
+  .tag.warn{border-color:rgba(255,107,107,.4);color:var(--red)}
+  .match{flex:none;text-align:right}
+  .match .pct{font-size:18px;font-weight:900;font-family:var(--mono);line-height:1}
+  .match .lbl{font-size:9.5px;color:var(--fg-faint);text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
+
+  /* ── live preview (brand light surface) ── */
+  .prev{margin:0 16px;background:#fff;border-radius:10px;padding:14px;color:#1a1a1a}
+  .swatches{display:flex;gap:6px}
+  .sw{height:26px;flex:1;border-radius:5px}
+  .pvtitle{font-size:15px;font-weight:800;margin-top:11px;letter-spacing:-.01em;color:#111}
+  .pvsub{font-size:11px;color:#888;margin-top:1px}
+  .pvrow{display:flex;align-items:center;gap:8px;margin-top:11px}
+  .pvbtn{font-size:12px;font-weight:700;color:#fff;border:none;padding:7px 14px;cursor:default}
+  .pvchip{font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px}
+  .pvbadge{font-size:10px;font-weight:800;color:#fff;padding:2px 7px;border-radius:5px;margin-left:auto}
+
+  .why{padding:13px 16px 4px;font-size:12.5px;color:var(--fg-dim);line-height:1.55}
+  .why b{color:var(--fg);font-weight:700}
+  .cfoot{padding:13px 16px 16px;margin-top:auto;display:flex;gap:8px}
+  .inject{flex:1;background:var(--accent);color:#fff;font-weight:800;font-size:13px;border:none;
+          border-radius:var(--radius-sm);padding:10px;cursor:pointer;transition:filter .15s}
+  .inject:hover{filter:brightness(1.1)}
+  .card.sel .inject{background:var(--green);color:#0b1410}
+  .ghost{background:var(--panel-2);color:var(--fg-dim);font-weight:700;font-size:12.5px;border:1px solid var(--line);
+         border-radius:var(--radius-sm);padding:10px 13px;cursor:pointer}
+
+  /* ── more ── */
+  .more{display:flex;flex-direction:column;align-items:center;gap:8px;margin:26px 0 60px}
+  .morebtn{display:inline-flex;align-items:center;gap:9px;background:var(--panel);border:1px solid var(--line);
+       color:var(--fg);font-weight:700;font-size:13.5px;border-radius:999px;padding:12px 22px;cursor:pointer;transition:.15s}
+  .morebtn:hover{border-color:var(--accent);color:#fff}
+  .morebtn:disabled{opacity:.4;cursor:not-allowed}
+  .morebtn .plus{font-size:16px;line-height:1}
+  .moremeta{font-size:11.5px;color:var(--fg-faint);font-family:var(--mono)}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap">
+  <div class="brandline"><b>MIDAS Design Agent</b><span>·</span><span>Control Tower</span></div>
+  <div class="pipe">
+    <div class="pstep done"><span class="id">S1</span> Ingest</div>
+    <div class="pstep active"><span class="id">S2</span> Concept</div>
+    <div class="pstep"><span class="id">S3</span> DesignSys</div>
+    <div class="pstep"><span class="id">S4</span> Pages</div>
+    <div class="pstep"><span class="id">S5</span> Prototype</div>
+    <div class="pstep"><span class="id">S6</span> Render</div>
+  </div>
+</div></div>
+
+<div class="wrap">
+  <div class="head">
+    <div class="kicker">S2 · Concept</div>
+    <h1>디자인 시스템 제안</h1>
+    <p class="lead">기획 IR을 분석해 적재된 한국 DS 카탈로그에서 맞는 후보를 제안합니다. 고르면 해당 DS의 <b style="color:var(--fg)">전체 토큰을 그대로 주입</b>합니다. 부족하면 <b style="color:var(--fg)">추가 제안받기</b>로 카탈로그에서 다음 후보를 더 받으세요.</p>
+    <div class="ir"><span class="dot"></span>프로젝트 IR&nbsp; <b>계측 모니터링 SaaS</b> · status·density 중심 · archetype 6종 매핑</div>
+  </div>
+
+  <div class="injected" id="injected">
+    <h3>✓ <span id="injName"></span> 주입 완료</h3>
+    <p id="injDesc"></p>
+    <button class="next">S3 DesignSys로 진행 — 주입된 토큰 그대로 확장 →</button>
+  </div>
+
+  <div class="gridhead">
+    <div class="gt">추천 후보</div>
+    <div class="gc"><span id="shown">3</span> / 13 카탈로그</div>
+  </div>
+  <div class="grid" id="grid"></div>
+
+  <div class="more">
+    <button class="morebtn" id="moreBtn" onclick="reveal()">
+      <span class="plus">＋</span> 추가 제안받기
+    </button>
+    <div class="moremeta" id="moreMeta">적재 카탈로그 13개 중 10개 더 받기 가능</div>
+  </div>
+</div>
+
+<script>
+// 적재된 ko-design-md 13개 — 실제 tokens.json 추출값 (primary/brand/radius)
+const CATALOG = [
+ {slug:"bezier", name:"채널톡", ds:"Bezier Design System", cat:"developer", score:94,
+  pri:"oklch(0.483 0.229 280)", sw:["oklch(0.483 0.229 280)","oklch(0.7 0.16 280)","#1a1a1a","#f1f3f5"], rad:8,
+  why:"<b>B2B 운영 콘솔</b> 출신 — 고밀도 테이블·상태 뱃지·인박스 패턴이 모니터링 UI 척추와 직결."},
+ {slug:"vapor-ui", name:"구름", ds:"Vapor UI", cat:"developer", score:91,
+  pri:"oklch(0.581 0.181 254)", sw:["oklch(0.581 0.181 254)","oklch(0.72 0.12 254)","#202632","#eef1f5"], rad:8,
+  why:"<b>개발자 툴 DS</b> — 중립 톤·촘촘한 spacing·다크 친화. 계측 대시보드에 그대로 얹힘."},
+ {slug:"toss", name:"토스", ds:"TDS", cat:"finance", score:88,
+  pri:"oklch(0.624 0.176 254)", sw:["oklch(0.624 0.176 254)","oklch(0.78 0.1 254)","#191f28","#f2f4f6"], rad:16,
+  why:"<b>status·숫자 중심</b> 금융 UI — 단일 primary CTA·강한 위계가 알림/이상치 표시에 강점."},
+ {slug:"socar", name:"쏘카", ds:"SOCAR Frame 2.0", cat:"mobility", score:79,
+  pri:"oklch(0.620 0.219 257)", sw:["oklch(0.620 0.219 257)","oklch(0.76 0.13 257)","#1e2530","#eef0f3"], rad:12,
+  why:"<b>오퍼레이션 앱 DS</b> — 정보 우선 레이아웃·라운드 절제. 관제 화면 친화."},
+ {slug:"wanted", name:"원티드", ds:"Wanted DS", cat:"career", score:76,
+  pri:"#0066FF", sw:["#0066FF","#5a9bff","#1c1c1e","#f0f4ff"], rad:12, recon:true,
+  why:"<b>B2B 대시보드</b>(Talent) 자산 — 카드/필터/리스트 밀도가 적합."},
+ {slug:"krds", name:"KRDS", ds:"한국 정부 DS", cat:"gov", score:72,
+  pri:"#256EF4", sw:["#256EF4","#5B92F4","#1f2937","#ECF2FE"], rad:8,
+  why:"<b>WCAG 고대비</b>·focus 토큰 완비 — 임계치 경보·접근성 요구 시 안전."},
+ {slug:"line-design-system", name:"라인", ds:"LDSG", cat:"messenger", score:64,
+  pri:"#06C755", sw:["#06C755","#04A647","#000000","#f5f6f7"], rad:12,
+  why:"글로벌 멀티서비스 DS — 위계 명확. 다만 메신저 톤이라 <b>데이터밀도 보강 필요</b>."},
+ {slug:"kyobobook", name:"교보문고", ds:"Kyobo DS (KDS)", cat:"commerce", score:58,
+  pri:"#003477", sw:["#003477","#45B035","#1a1a1a","#f4f6f8"], rad:12,
+  why:"네이비 신뢰 톤 — 정적 콘텐츠 강점, <b>실시간 dense엔 보강</b> 필요."},
+ {slug:"seed-design", name:"당근", ds:"SEED Design", cat:"community", score:52,
+  pri:"oklch(0.696 0.204 43)", sw:["oklch(0.696 0.204 43)","oklch(0.84 0.09 46)","#212124","#fff4ec"], rad:12,
+  why:"따뜻한 캐럿 톤·둥근 폼 — 모니터링엔 <b>톤 과함</b>, 소비자 surface용."},
+ {slug:"11st", name:"11번가", ds:"11STREET DS", cat:"commerce", score:44,
+  pri:"#FF0038", sw:["#FF0038","#FF5A2E","#111111","#f4f4f4"], rad:8,
+  why:"커머스 고채도 레드 — 프로모션 강조용. <b>관제 화면엔 자극 과함</b>."},
+ {slug:"gmarket", name:"지마켓", ds:"Gmarket DS", cat:"commerce", score:41,
+  pri:"#00C400", sw:["#00C400","#222222","#616161","#f5f5f5"], rad:8,
+  why:"커머스 그린 — 가격/딜 위계 특화. <b>모니터링 도메인과 거리</b>."},
+ {slug:"teamsparta", name:"팀스파르타", ds:"스파르타클럽 DS", cat:"education", score:38,
+  pri:"oklch(0.613 0.214 19)", sw:["oklch(0.613 0.214 19)","oklch(0.78 0.13 25)","#1a1a1a","#f7f7f7"], rad:16, recon:true,
+  why:"교육 대시보드 레드 — 진행률/인증 패턴은 참고 가능하나 <b>도메인 상이</b>."},
+ {slug:"baemin", name:"배달의민족", ds:"Baemin DS", cat:"delivery", score:33,
+  pri:"oklch(0.88 0.18 178)", sw:["oklch(0.88 0.18 178)","#2ac1bc","#1a1a1a","#f0fafa"], rad:16,
+  why:"민트+캐릭터 톤 — 브랜딩 강함, <b>B2B 계측엔 부적합</b>."},
+];
+const CAT_KR = {developer:"개발자",finance:"핀테크",mobility:"모빌리티",career:"커리어",gov:"공공",
+  messenger:"메신저",commerce:"커머스",community:"커뮤니티",education:"교육",delivery:"배달"};
+
+let shown = 3;
+const grid = document.getElementById("grid");
+let selected = null;
+
+function card(d){
+  const el = document.createElement("div");
+  el.className = "card"; el.dataset.slug = d.slug;
+  const recon = d.recon ? '<span class="tag warn">출처 재구성</span>' : '';
+  el.innerHTML = `
+    <div class="chead">
+      <div class="logo" style="background:${d.pri}">${d.name[0]}</div>
+      <div class="cmeta">
+        <div class="cname">${d.name}</div>
+        <div class="cds">${d.ds}</div>
+        <div class="ctags"><span class="tag">${CAT_KR[d.cat]}</span>${recon}</div>
+      </div>
+      <div class="match"><div class="pct" style="color:${d.score>=80?'var(--green)':d.score>=60?'var(--gold)':'var(--fg-faint)'}">${d.score}</div><div class="lbl">match</div></div>
+    </div>
+    <div class="prev">
+      <div class="swatches">${d.sw.map(c=>`<div class="sw" style="background:${c}"></div>`).join("")}</div>
+      <div class="pvtitle">실시간 처리량 1.2M/s</div>
+      <div class="pvsub">${d.name} 토큰으로 렌더된 라이브 프리뷰</div>
+      <div class="pvrow">
+        <button class="pvbtn" style="background:${d.pri};border-radius:${d.rad}px">상세 보기</button>
+        <span class="pvchip" style="background:${d.sw[3]};color:${d.pri};border-radius:${d.rad}px">정상</span>
+        <span class="pvbadge" style="background:${d.pri}">LIVE</span>
+      </div>
+    </div>
+    <div class="why">${d.why}</div>
+    <div class="cfoot">
+      <button class="inject" onclick="inject('${d.slug}')">이 DS 주입</button>
+      <button class="ghost" onclick="alert('light/dark 프리뷰 — public/preview/${d.slug}/')">프리뷰</button>
+    </div>`;
+  return el;
+}
+
+function render(){
+  grid.innerHTML = "";
+  CATALOG.slice(0, shown).forEach(d => grid.appendChild(card(d)));
+  document.getElementById("shown").textContent = shown;
+  const rest = 13 - shown;
+  const btn = document.getElementById("moreBtn");
+  const meta = document.getElementById("moreMeta");
+  if(rest <= 0){ btn.disabled = true; btn.innerHTML = "카탈로그 13개 모두 표시됨"; meta.textContent = "더 받을 후보 없음 — 적재 카탈로그 소진"; }
+  else { meta.textContent = `적재 카탈로그 13개 중 ${rest}개 더 받기 가능`; }
+  if(selected) markSelected();
+}
+
+function reveal(){ shown = Math.min(13, shown + 3); render(); }
+
+function inject(slug){
+  selected = slug;
+  markSelected();
+  const d = CATALOG.find(x => x.slug === slug);
+  const inj = document.getElementById("injected");
+  document.getElementById("injName").textContent = `${d.name} · ${d.ds}`;
+  document.getElementById("injDesc").textContent =
+    `${d.ds}의 colors·typography·spacing·radius 전체 토큰이 프로젝트에 주입되었습니다. S3에서 이 토큰 위로 페이지를 조립합니다. (B 모드 — DS 통째 주입, 엔진 확장 스킵)`;
+  inj.classList.add("show");
+  inj.scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+
+function markSelected(){
+  [...grid.children].forEach(el=>{
+    el.classList.toggle("sel", el.dataset.slug === selected);
+    el.classList.toggle("dim", selected && el.dataset.slug !== selected);
+    const b = el.querySelector(".inject");
+    b.textContent = el.dataset.slug === selected ? "✓ 주입됨" : "이 DS 주입";
+  });
+}
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Component — GNB (Project)</title>
+  <link rel="stylesheet" href="gnb.css?v=3" />
+</head>
+<body>
+  <header class="gnb">
+    <!-- Left: 프로젝트 심볼 + 타이틀 -->
+    <div class="gnb__proj">
+      <img class="gnb__proj-sym" src="assets/proj-symbol.svg" alt="프로젝트" />
+      <img class="gnb__proj-div" src="assets/proj-divider.svg" alt="" />
+      <div class="gnb__proj-title">
+        <h1>강남역 지하차도 공사</h1>
+        <img class="arrow" src="assets/proj-arrow.svg" alt="" />
+      </div>
+    </div>
+
+    <!-- Center: nav (6 tabs) -->
+    <nav class="gnb__nav">
+      <a href="#" class="tab">프로젝트 홈</a>
+      <a href="#" class="tab">계측</a>
+      <a href="#" class="tab">해석</a>
+      <a href="#" class="tab">보고서</a>
+      <a href="#" class="tab is-active">현장 관리</a>
+      <a href="#" class="tab">설정</a>
+    </nav>
+
+    <!-- Right: 공통 유틸 -->
+    <div class="gnb__right">
+      <div class="weather" title="날씨">
+        <img class="weather__ico" src="assets/icon-weather.svg" alt="" />
+        <div class="weather__temp"><b>28°</b><span>구름많음</span></div>
+      </div>
+      <div class="util-cluster">
+        <div class="util-icons">
+          <div class="util util--siren" title="위험 알림 / 사이렌"><img src="assets/icon-siren.svg" alt="" /></div>
+          <div class="util util--bell" title="알림"><img src="assets/icon-bell.svg" alt="" /></div>
+          <div class="util util--disp" title="디스플레이 모드"><img src="assets/icon-disp.svg" alt="" /></div>
+        </div>
+        <div class="avatar">김</div>
+      </div>
+    </div>
+  </header>
+</body>
+</html>

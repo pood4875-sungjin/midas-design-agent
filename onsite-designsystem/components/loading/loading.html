@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Component — Loading Spinner</title>
+  <link rel="stylesheet" href="loading.css" />
+  <style>
+    body { margin: 0; padding: 28px; background: #fff; font-family: var(--font-sans); display: flex; gap: 20px; align-items: stretch; flex-wrap: wrap; }
+    .panel { display: flex; align-items: center; gap: 24px; padding: 20px 28px; border-radius: 12px; }
+    .panel--light { background: var(--color-bg-subtle); border: 1px solid var(--color-line); }
+    .panel--dark { background: #1b1c1e; }
+    .cell { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .cell span { font-size: 11px; font-family: ui-monospace, monospace; color: var(--color-label-assistive); }
+    .panel--dark .cell span { color: rgba(255,255,255,.55); }
+  </style>
+</head>
+<body>
+  <div class="panel panel--light">
+    <div class="cell"><span class="spin spin--16 spin--color"></span><span>16x · color</span></div>
+    <div class="cell"><span class="spin spin--24 spin--color"></span><span>24x · color</span></div>
+  </div>
+  <div class="panel panel--dark">
+    <div class="cell"><span class="spin spin--16 spin--white"></span><span>16x · white</span></div>
+    <div class="cell"><span class="spin spin--24 spin--white"></span><span>24x · white</span></div>
+  </div>
+</body>
+</html>

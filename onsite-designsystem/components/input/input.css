@@ -1,0 +1,51 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+@import url("../../tokens/tokens.css");
+
+/* ============================================================
+   Component: Input — 공식 DS (file 6cMbzix, 131:106 Large·131:196 Medium·924:1168 Small)
+   실측: 필드 h Large48/Medium40/Small32 · pad L12·M8·S8 · gap12 · radius8(radius-xs)
+   border bluegray-90 · bg 흰(Outline)/bluegray-99(Filled) · placeholder Medium bluegray-60
+   label SB (L14/S12) bluegray-40 · helper Regular (L13/S11) bluegray-60 · icon L/M24·S16
+   ============================================================ */
+.field { font-family: var(--font-sans); width: 350px; max-width: 100%; display: flex; flex-direction: column; gap: 6px; }
+.field__label { font-weight: var(--fw-semibold); color: var(--p-bluegray-40); letter-spacing: -0.0272px; }
+.field__label .req { color: var(--color-danger); }
+.field__help { color: var(--p-bluegray-60); }
+.field__help.is-error { color: var(--color-danger); }
+
+/* Field box (Outline default) */
+.input { display: flex; align-items: center; gap: 12px; background: var(--p-white);
+  border: 1px solid var(--p-bluegray-90); border-radius: var(--radius-xs);
+  transition: border-color .12s, box-shadow .12s; }
+.input--fill { background: var(--p-bluegray-99); }
+.input__ico, .input__chev { flex: none; color: var(--p-bluegray-60); display: grid; place-items: center; }
+.input input { flex: 1; min-width: 0; border: none; background: none; outline: none;
+  font-family: inherit; font-weight: var(--fw-medium); color: var(--p-bluegray-20); letter-spacing: -0.031px; }
+.input input::placeholder { color: var(--p-bluegray-60); }
+
+/* Size — padding·font·icon (필드 높이 = content + pad) */
+.field--lg .field__label { font-size: var(--fs-label-1); }        /* 14 */
+.field--lg .input { padding: 12px; }                              /* → h48 (icon24) */
+.field--lg .input input { font-size: var(--fs-body-1); }          /* 16 */
+.field--lg .input__ico svg, .field--lg .input__chev svg { width: 24px; height: 24px; }
+.field--lg .field__help { font-size: var(--fs-label-2); }         /* 13 */
+
+.field--md .field__label { font-size: var(--fs-label-1); }        /* 14 */
+.field--md .input { padding: 8px 12px; }                          /* → h40 (icon24) */
+.field--md .input input { font-size: var(--fs-body-1); }          /* 16 */
+.field--md .input__ico svg, .field--md .input__chev svg { width: 24px; height: 24px; }
+.field--md .field__help { font-size: var(--fs-label-2); }         /* 13 */
+
+.field--sm .field__label { font-size: var(--fs-caption-1); }      /* 12 */
+.field--sm .input { padding: 8px; gap: 8px; }                     /* → h32 (icon16) */
+.field--sm .input input { font-size: var(--fs-caption-1); }       /* 12 */
+.field--sm .input__ico svg, .field--sm .input__chev svg { width: 16px; height: 16px; }
+.field--sm .field__help { font-size: var(--fs-caption-2); }       /* 11 */
+
+/* States */
+.input:focus-within { border-color: var(--p-blue-55); box-shadow: 0 0 0 3px var(--p-blue-95); }
+.input.is-error { border-color: var(--color-danger); }
+.input.is-error:focus-within { box-shadow: 0 0 0 3px var(--color-danger-bg); }
+.input.is-disabled { background: var(--p-bluegray-90); border-color: var(--p-bluegray-90); }
+.input.is-disabled input { color: var(--color-label-disabled); }
+.input.is-disabled .input__ico, .input.is-disabled .input__chev { color: var(--color-label-disabled); }

@@ -1,0 +1,47 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+@import url("../../tokens/tokens.css");
+
+/* ============================================================
+   Component: Selection Controls — Checkbox/Radio/Toggle
+   공식 DS (file 6cMbzix, nodes 128:279 chk · 128:298 radio · 231:652 toggle)
+   실측: chk/radio 16×16 · toggle 28×16(thumb12) · 4상태(Default/Hover/Checked·Selected/Disable)
+   accent = blue-55 #1a75ff · default border = bluegray-80 · disable = bluegray-90 · toggle off = bluegray-70
+   ============================================================ */
+.ctrl { display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  font-family: var(--font-sans); font-size: var(--fs-label-1); color: var(--color-label-neutral);
+  user-select: none; }
+.ctrl input { position: absolute; opacity: 0; width: 0; height: 0; }
+.ctrl.is-disabled { cursor: not-allowed; color: var(--color-label-disabled); }
+
+/* ---- Checkbox (16×16, radius 4) ---- */
+.chk__box { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid var(--p-bluegray-80);
+  background: var(--p-white); display: grid; place-items: center; flex: none; transition: .12s; }
+.chk__box svg { width: 10px; height: 10px; stroke: var(--p-white); stroke-width: 2.4; fill: none;
+  stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+.ctrl:hover input:not(:checked) + .chk__box { border-color: var(--p-blue-55); }                /* Hover */
+.ctrl input:checked + .chk__box { background: var(--p-blue-55); border-color: var(--p-blue-55); }/* Checked */
+.ctrl input:checked + .chk__box svg { opacity: 1; }
+.ctrl input:focus-visible + .chk__box { box-shadow: 0 0 0 3px var(--p-blue-95); }
+.ctrl.is-disabled .chk__box { background: var(--p-bluegray-90); border-color: var(--p-bluegray-90); }/* Disable */
+
+/* ---- Radio (16×16) ---- */
+.rad__box { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--p-bluegray-80);
+  background: var(--p-white); display: grid; place-items: center; flex: none; transition: .12s; }
+.rad__box::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--p-blue-55);
+  transform: scale(0); transition: .12s; }
+.ctrl:hover input:not(:checked) + .rad__box { border-color: var(--p-blue-55); }                /* Hover */
+.ctrl input:checked + .rad__box { border-color: var(--p-blue-55); }                            /* Selected */
+.ctrl input:checked + .rad__box::after { transform: scale(1); }
+.ctrl input:focus-visible + .rad__box { box-shadow: 0 0 0 3px var(--p-blue-95); }
+.ctrl.is-disabled .rad__box { background: var(--p-bluegray-90); border-color: var(--p-bluegray-90); }/* Disable */
+.ctrl.is-disabled .rad__box::after { background: var(--p-bluegray-70); }
+
+/* ---- Toggle (track 28×16 · thumb 12) ---- */
+.tgl__track { width: 28px; height: 16px; border-radius: var(--radius-full); background: var(--p-bluegray-70);
+  position: relative; flex: none; transition: background .15s; }
+.tgl__track::after { content: ""; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px;
+  border-radius: 50%; background: var(--p-white); box-shadow: 0 1px 2px rgba(0,0,0,.18); transition: left .15s; }
+.ctrl input:checked + .tgl__track { background: var(--p-blue-55); }                             /* On */
+.ctrl input:checked + .tgl__track::after { left: 14px; }
+.ctrl input:focus-visible + .tgl__track { box-shadow: 0 0 0 3px var(--p-blue-95); }
+.ctrl.is-disabled .tgl__track { background: var(--p-bluegray-90); }                             /* Disable */

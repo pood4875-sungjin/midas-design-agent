@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>온사이트 — 컴포넌트 라이브러리</title>
+  <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <style>
+    @import url("../tokens/tokens.css");
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-sans); background: var(--color-bg-subtle);
+      color: var(--color-label-strong); -webkit-font-smoothing: antialiased; padding: 40px; }
+    h1 { font-size: var(--fs-title-4); font-weight: var(--fw-bold); letter-spacing: var(--ls-title-4); }
+    .sub { color: var(--color-label-alternative); font-size: var(--fs-label-1); margin: 6px 0 32px; }
+    .item { background: var(--color-surface); border: 1px solid var(--color-line);
+      border-radius: var(--radius-md); overflow: hidden; margin-bottom: 24px; max-width: 1180px; }
+    .item__bar { display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 20px; border-bottom: 1px solid var(--color-line); }
+    .item__name { font-size: var(--fs-heading-3); font-weight: var(--fw-semibold); }
+    .item__meta { font-size: var(--fs-caption-1); color: var(--color-label-assistive);
+      font-family: ui-monospace, monospace; }
+    .item__status { font-size: var(--fs-caption-1); font-weight: var(--fw-bold);
+      color: var(--color-safe); background: var(--color-safe-bg); padding: 4px 10px; border-radius: 999px; }
+    .item__frame { width: 100%; border: none; display: block; background: var(--color-bg-muted); }
+    .specs { padding: 12px 20px; font-size: var(--fs-label-2); color: var(--color-label-neutral);
+      border-top: 1px solid var(--color-line); }
+    .specs b { color: var(--color-label-strong); }
+  </style>
+</head>
+<body>
+  <h1>온사이트 컴포넌트 라이브러리</h1>
+  <p class="sub">Figma 노드별 정밀 추출 (Pass B). 각 컴포넌트는 토큰 참조, 원본과 1:1 audit.</p>
+
+  <section class="item">
+    <div class="item__bar">
+      <div><span class="item__name">GNB — 서비스 홈</span></div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="item__meta">node 14021:15304</span>
+        <span class="item__status">정밀 일치</span>
+      </div>
+    </div>
+    <iframe class="item__frame" src="gnb/gnb.html" height="73" title="GNB 서비스홈"></iframe>
+    <div class="specs"><b>탭 3개</b> 지도뷰·리스트뷰어·현장요약 · <b>우측 공통유틸</b> 날씨·사이렌·벨·디스플레이모드·아바타(틸) · 로고/아이콘 = 실 Figma SVG</div>
+  </section>
+
+  <section class="item">
+    <div class="item__bar">
+      <div><span class="item__name">GNB — 프로젝트</span></div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="item__meta">node 14001:159357</span>
+        <span class="item__status">정밀 일치</span>
+      </div>
+    </div>
+    <iframe class="item__frame" src="gnb/gnb-project.html" height="73" title="GNB 프로젝트"></iframe>
+    <div class="specs"><b>좌측</b> 프로젝트 심볼 + "강남역 지하차도 공사" ⌄ · <b>탭 6개</b> 프로젝트홈·계측·해석·보고서·현장관리·설정 · <b>우측</b> 공통유틸 동일</div>
+  </section>
+
+  <section class="item">
+    <div class="item__bar">
+      <div><span class="item__name">Button</span></div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="item__meta">node 17:3880</span>
+        <span class="item__status">정밀 일치</span>
+      </div>
+    </div>
+    <iframe class="item__frame" src="button/button.html" height="560" title="Button"></iframe>
+    <div class="specs"><b>Size</b> XS-24·S-32·M-40·ML-44·L-48·XL-56 r6 · <b>Style</b> Primary(emerald-50)·Filled(bluegray-30)·Outline·Clear · <b>State</b> Default·Hover·Focus·Press·Disabled(bluegray-99) — 소스 축 그대로</div>
+  </section>
+
+  <section class="item">
+    <div class="item__bar">
+      <div><span class="item__name">Pagination</span></div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="item__meta">node 500:588</span>
+        <span class="item__status">정밀 일치</span>
+      </div>
+    </div>
+    <iframe class="item__frame" src="pagination/pagination.html" height="120" title="Pagination"></iframe>
+    <div class="specs"><b>item</b> 40×40 r8 · Pretendard 14/Medium · <b>상태</b> Default(bluegray-60)·Selected(bg whitblue-70+bluegray-40)·Hover(bg whitblue-85)·Disabled(bluegray-70) · « ‹ 1 2 3 4 5 › »</div>
+  </section>
+
+  <section class="item">
+    <div class="item__bar">
+      <div><span class="item__name">Selection — Checkbox · Radio · Toggle</span></div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="item__meta">node 128:279 / 298 / 231:652</span>
+        <span class="item__status">정밀 일치</span>
+      </div>
+    </div>
+    <iframe class="item__frame" src="selection/selection.html" height="240" title="Selection"></iframe>
+    <div class="specs"><b>accent</b> blue-50 #0068ff · 체크박스(r5)·라디오·토글(36×20) · 상태 default·checked·focus(blue ring)·disabled · 라벨 옵션</div>
+  </section>
+
+  <section class="item">
+    <div class="item__bar">
+      <div><span class="item__name">Input</span></div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="item__meta">node 131:105</span>
+        <span class="item__status">정밀 일치</span>
+      </div>
+    </div>
+    <iframe class="item__frame" src="input/input.html" height="320" title="Input"></iframe>
+    <div class="specs"><b>구성</b> Label + Field(leading icon·input·chevron) + Helper · h44 · <b>상태(소스)</b> Default·Filled·Typing·Focus·Disabled</div>
+  </section>
+
+  <section class="item">
+    <div class="item__bar">
+      <div><span class="item__name">Dropdown</span></div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="item__meta">node 376:210 / 379:1125</span>
+        <span class="item__status">정밀 일치</span>
+      </div>
+    </div>
+    <iframe class="item__frame" src="dropdown/dropdown.html" height="480" title="Dropdown"></iframe>
+    <div class="specs"><b>Trigger</b> Select+chevron · open(blue)·disabled·멀티칩 · <b>Menu</b> 아이템·체크박스(multi)·그룹헤더(Favorites/Recent) shadow-card</div>
+  </section>
+</body>
+</html>

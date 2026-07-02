@@ -1,0 +1,212 @@
+/* ============================================================
+   온사이트(Onsite) Design Tokens — 3-tier
+   출처: Figma "온사이트 제품 최종" (사이트뷰 5종) get_variable_defs
+   추출일: 2026-06-22 / Pass A (Foundation)
+   원칙: Tier1 primitive → Tier2 semantic → Tier3 component.
+   컴포넌트는 semantic만 참조. 다크모드 = semantic만 override (값 미확보, TODO).
+   ============================================================ */
+
+:root {
+  /* ========== Tier 1 — Primitive ==========
+     공식 파운데이션(MIDAS Onsite DS ver0.1, node 1:435) 기준.
+     네이밍 컨벤션: {family}-{step}, step 99=가장 밝음 → 10/5=가장 어두움. */
+  /* Brand — Emerald blue (Primary). 풀 램프 */
+  --p-emerald-99: #eaf8fa;
+  --p-emerald-90: #cceff4;
+  --p-emerald-80: #a3e3eb;
+  --p-emerald-70: #78d5e1;
+  --p-emerald-60: #50c9d6;
+  --p-emerald-55: #29bdd0;
+  --p-emerald-50: #1bb9cd;   /* Primary */
+  --p-emerald-40: #23a1b1;
+  --p-emerald-30: #1d8694;
+  --p-emerald-20: #176c77;
+  --p-emerald-10: #12555e;
+
+  /* Blue (info / 선택컨트롤 accent). 원본: Blue/* */
+  --p-blue-50: #0068ff;   /* 제품 파일(Dlwg17) 선택컨트롤 값 */
+  --p-blue-55: #1a75ff;   /* 공식 DS(6cMbzix) 선택컨트롤 accent — checkbox/radio/toggle checked·on·hover */
+  --p-blue-60: #3385ff;
+  --p-blue-90: #c8d9f9;
+  --p-blue-95: #eaf2fe;
+
+  /* Red (danger/siren). 원본: Red/*, SecondaryColor/red/* */
+  --p-red-45: #f82e36;   /* deepest — siren/critical */
+  --p-red-50: #ff4242;   /* danger default */
+  --p-red-55: #ff5c4e;   /* RD50(Default) */
+  --p-red-70: #ff8c8c;
+  --p-red-95: #feecec;
+  --p-red-99: #fffafa;
+
+  /* Orange (caution/warning). 원본: Orange/* */
+  --p-orange-48: #f55a00;  /* 진한 주황 (강조) */
+  --p-orange-60: #ff7b2e;
+  --p-orange-95: #feeee5;
+
+  /* Yellow (1차 초과/위험 계열). 공식 yellow-nn */
+  --p-yellow-99: #fffcf7;
+  --p-yellow-90: #fee8c6;
+  --p-yellow-80: #ffd49c;
+  --p-yellow-55: #ff9d1a;
+  --p-yellow-45: #ea8704;
+  --p-yellow-20: #663a00;
+
+  /* Deep green (safe/positive). deep green-nn */
+  --p-green-99: #ebf7ef;
+  --p-green-90: #c0e5cc;
+  --p-green-70: #77c792;
+  --p-green-60: #34ac5c;
+  --p-green-30: #1d5f33;
+  --p-green-10: #0c3d10;
+
+  /* Neutral — Blue Gray ramp. ※ 역순 네이밍: 20=darkest, 95=lightest (원본 유지) */
+  --p-bluegray-20: #1f2937;
+  --p-bluegray-30: #374151;
+  --p-bluegray-40: #4b5563;
+  --p-bluegray-50: #6b7280;
+  --p-bluegray-55: #7a808d;
+  --p-bluegray-60: #9ca3af;
+  --p-bluegray-65: #babfc7;
+  --p-bluegray-70: #d1d5db;
+  --p-bluegray-75: #dadde2;
+  --p-bluegray-80: #dfe2e6;
+  --p-bluegray-85: #e5e7eb;
+  --p-bluegray-90: #eaecef;
+  --p-bluegray-95: #f3f4f6;
+  --p-bluegray-99: #f9fafb;
+
+  /* Cool Gray. 원본: CoolGray/* */
+  --p-coolgray-5:  #0f0f10;
+  --p-coolgray-60: #878a93;
+  --p-coolgray-120: #e8ecf2;
+
+  /* White Blue — light blue-tinted surfaces/lines. 원본: Whiteblue/* */
+  --p-whiteblue-50: #c9d1db;
+  --p-whiteblue-60: #d2d9e1;
+  --p-whiteblue-70: #e1e7ee;
+  --p-whiteblue-80: #e7edf4;
+  --p-whiteblue-85: #eef2f7;
+  --p-whiteblue-90: #f8f9fc;
+  --p-whiteblue-99: #fdfdfe;
+
+  /* Common */
+  --p-black: #000000;
+  --p-white: #ffffff;
+
+  /* ========== Tier 2 — Semantic ========== */
+  /* Brand */
+  --color-primary:        var(--p-emerald-50);
+  --color-primary-hover:  var(--p-emerald-55);
+  --color-on-primary:     var(--p-white);
+
+  /* ⚠ PROVISIONAL — 아래 semantic 매핑은 사용맥락 기반 추정. 공식 semantic 페이지 없음.
+     primitive 참조값은 확정이나 "역할 배정"은 잠정 — 소스 나올 때마다 교정. */
+  /* Text (label) — 위계 (provisional) */
+  --color-label-strong:      var(--p-bluegray-20);  /* 본문 강조/제목 */
+  --color-label-neutral:     var(--p-bluegray-40);  /* 기본 본문 */
+  --color-label-alternative: var(--p-bluegray-50);  /* 보조 */
+  --color-label-assistive:   var(--p-bluegray-60);  /* 약한 캡션/placeholder */
+  --color-label-disabled:    var(--p-bluegray-65);
+
+  /* Surface / Background */
+  --color-bg:            var(--p-white);
+  --color-bg-subtle:     var(--p-whiteblue-90);  /* #f8f9fc 페이지 바탕 */
+  --color-bg-muted:      var(--p-bluegray-95);   /* #f3f4f6 */
+  --color-surface:       var(--p-white);         /* 카드 */
+  --color-surface-sunken: var(--p-whiteblue-85); /* #eef2f7 입력 배경 등 */
+
+  /* Line / Border */
+  --color-line:         var(--p-bluegray-85);    /* #e5e7eb 기본 구분선 */
+  --color-line-subtle:  var(--p-whiteblue-70);   /* #e1e7ee */
+  --color-line-strong:  var(--p-bluegray-80);    /* #dfe2e6 */
+
+  /* Status — 모니터링 척추 (지도 마커 = safe/caution/danger) */
+  --color-safe:        var(--p-green-60);    --color-safe-bg:    var(--p-green-99);
+  --color-caution:     var(--p-orange-60);   --color-caution-bg: var(--p-orange-95);
+  --color-danger:      var(--p-red-50);      --color-danger-bg:  var(--p-red-95);
+  --color-siren:       var(--p-red-45);      --color-siren-bg:   var(--p-red-99);  /* critical/사이렌 */
+  --color-info:        var(--p-blue-60);     --color-info-bg:    var(--p-blue-95);
+
+  /* 계측 초과 단계 그라데이션 (공식 Gradient 섹션)
+     ⚠ 3차만 hex 판독 확정. 2/1/safe 의 2번째 stop은 PROVISIONAL(스샷서 정확 판독 못함) — 재추출 필요. */
+  --grad-exceed-3: linear-gradient(90deg, #fe2217, #ff6410);  /* 3차 초과/경고 (red) — 확정 */
+  --grad-exceed-2: linear-gradient(90deg, #ff6410, #ff9d1a);  /* 2차 (orange) — provisional */
+  --grad-exceed-1: linear-gradient(90deg, #ff9d1a, #ffc800);  /* 1차 (yellow) — provisional */
+  --grad-safe:     linear-gradient(90deg, #1a75ff, #3dc2ff);  /* 안전 (blue) — provisional */
+
+  /* ========== Typography ========== */
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+  /* size scale (px) — 공식 Display/Title/Headline/Body/Label/Caption */
+  --fs-display-2: 48px;  /* Bold 700, lh 1.286, ls -2.82px */
+  --fs-display-3: 40px;  /* Bold 700, lh 1.30,  ls -2.82px */
+  --fs-title-2:   32px;  /* Bold 700, lh 1.334, ls -2.7px */
+  --fs-title-3:   28px;  /* Bold 700, lh 1.358, ls -2.36px */
+  --fs-title-4:   24px;  /* Bold 700, lh 1.334, ls -2.3px */
+  --fs-heading-2: 20px;  /* Bold 700, lh 1.40,  ls -1.2px */
+  --fs-heading-3: 18px;  /* SemiBold 600, lh 1.445, ls -0.02px (보고서 섹션) */
+  --fs-headline-2: 17px; /* 공식 Headline 2 — SemiBold 600, lh 1.412, ls 0 */
+  --fs-body-1:    16px;  /* SemiBold/Bold, lh 1.5 */
+  --fs-body-2:    15px;  /* SemiBold/Medium, lh 1.467 */
+  --fs-label-1:   14px;  /* Medium/SemiBold/Bold, lh 1.429 */
+  --fs-label-2:   13px;  /* Medium/SemiBold/Regular/Bold, lh 1.385 */
+  --fs-caption-1: 12px;  /* lh 1.334 */
+  --fs-caption-2: 11px;  /* lh 1.273 */
+
+  /* weight */
+  --fw-regular: 400; --fw-medium: 500; --fw-semibold: 600; --fw-bold: 700;
+
+  /* line-height (unitless) */
+  --lh-title:   1.334;   /* 133% */
+  --lh-heading: 1.40;    /* 140% */
+  --lh-body:    1.50;    /* 150% */
+  --lh-label-1: 1.429;   /* 143% */
+  --lh-label-2: 1.385;   /* 139% */
+  --lh-caption: 1.273;   /* 127% */
+  --lh-reading: 1.60;    /* 본문 가독(Reading) */
+  --lh-reading-lg: 1.625;/* Body1 Reading */
+
+  /* letter-spacing (px, 원본 유지) */
+  --ls-tight:  -0.194px; /* 대부분의 본문/라벨 */
+  --ls-display: -2.82px; /* Display 2/3 (node 10142:16670 현장요약 제목 실측) */
+  --ls-title-2: -2.7px;
+  --ls-title-3: -2.36px;
+  --ls-title-4: -2.3px;
+  --ls-heading: -1.2px;
+
+  /* ========== Spacing ==========
+     ⚠ PROVISIONAL — 공식 소스서 확인된 건 p-6=24(--space-6)뿐. 나머지는 8pt 추정. */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; /* ←확정(p-6) */ --space-8: 32px; --space-10: 40px; --space-12: 48px;
+
+  /* ========== Radius ==========
+     확정: --radius-xs=8(Spacing System/radius-xs), 컴포넌트 실측 6px도 등장.
+     ⚠ sm/md/lg 은 PROVISIONAL 추정. */
+  --radius-2xs: 6px;       /* 확정 — 컴포넌트(소형 버튼 등) 실측 재등장 */
+  --radius-xs: 8px;        /* 확정 */
+  --radius-sm: 10px;       /* provisional */
+  --radius-md: 12px;       /* provisional */
+  --radius-lg: 16px;       /* provisional */
+  --radius-full: 999px;
+
+  /* ========== Effect ========== */
+  /* 원본: box-shadow-30 */
+  --shadow-card:
+    0 6px 32px -4px #1319271a,
+    0 3px 14px -6px #1319271f;
+  /* 드로어/모달 우측 패널 그림자 — card보다 강한 elevation (생성, PRD 멤버관리 드로어) */
+  --shadow-drawer:
+    0 8px 40px -6px #13192726,
+    0 4px 18px -8px #1319272e;
+
+  /* ========== Overlay ========== */
+  /* 모달/드로어 백드롭 딤. bootstrap 모달 5종 전부 딤 배경 → 재사용 semantic (ADD) */
+  --color-dim: #131927; /* rgba 적용은 사용처에서 opacity로 (color-mix) */
+  --dim-backdrop: color-mix(in srgb, var(--color-dim) 45%, transparent);
+}
+
+/* 다크모드: 원본(사이트뷰)에 다크 값 없음 — 추후 시안 받으면 semantic만 override.
+:root[data-theme="dark"] { ... } */
+
+/* density 모드(심플/디테일): inset 토큰 2벌 후보 — 컴포넌트 추출 후 정의.
+:root[data-density="simple"] { ... } */

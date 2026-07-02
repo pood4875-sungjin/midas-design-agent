@@ -1,0 +1,83 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+@import url("../onsite-designsystem/tokens/tokens.css?v=2");
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+/* 소스 node 10142:16670 실측: 컨텐츠 폭 1055 · bg 흰색 · 카드/쉐도우 없음
+   섹션제목 32(전체요약·프로젝트)/24(지도·계측·예측) · 테이블 헤더 h100·행 h78·text 16/15 */
+body { background: var(--color-surface); font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased; color: var(--color-label-strong); }
+.ss-text { font-feature-settings: "ss10" 1; }
+.gnb-frame { width: 100%; height: 72px; border: 0; display: block; }
+
+/* doc: 컨텐츠 1055 중앙. 제목블록 —60— 본문(섹션 gap80) */
+.doc { width: 1055px; margin: 0 auto; padding: 40px 0 100px; display: flex; flex-direction: column; gap: 60px; }
+
+/* 제목 블록 (h208): 제목48/부제15 중앙 + 툴바(드롭다운 좌 220 · 다운로드 우 h48) */
+.rpt-head { display: flex; flex-direction: column; gap: 16px; }
+.rpt-title { text-align: center; display: flex; flex-direction: column; gap: 16px; align-items: center; }
+.rpt-title h1 { font-size: var(--fs-display-2); font-weight: var(--fw-bold); letter-spacing: var(--ls-display); line-height: 1.3; }
+.rpt-title p { font-size: var(--fs-body-2); font-weight: var(--fw-regular); color: var(--p-bluegray-55); }
+.rpt-toolbar { display: flex; align-items: center; justify-content: space-between; }
+.sel { display: inline-flex; align-items: center; justify-content: space-between; gap: 8px; width: 220px;
+  height: 44px; padding: 12px; background: var(--color-surface); border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-xs); font-size: var(--fs-body-1); color: var(--color-label-neutral); cursor: pointer; }
+.gen { display: inline-flex; align-items: center; gap: 6px; height: 48px; padding: 14px 12px;
+  background: var(--p-emerald-50); color: #fff; border: none; border-radius: var(--radius-xs);
+  font-size: var(--fs-body-2); font-weight: var(--fw-semibold); cursor: pointer; }
+
+/* 본문 (섹션 gap 80) */
+.rpt-body { display: flex; flex-direction: column; gap: 80px; }
+.section { display: flex; flex-direction: column; gap: 32px; }
+.section__h { display: flex; align-items: center; justify-content: space-between; }
+.section__h h2 { font-size: var(--fs-title-4); font-weight: var(--fw-bold); color: var(--p-bluegray-20); letter-spacing: var(--ls-heading); }
+.section--lg .section__h h2 { font-size: var(--fs-title-2); }
+.section__h .upd { font-size: var(--fs-label-2); color: var(--p-bluegray-55); }
+
+/* 프로젝트 섹션 */
+.proj { display: flex; flex-direction: column; gap: 32px; }
+.proj__head { display: flex; flex-direction: column; gap: 4px; }
+.proj__t { font-size: var(--fs-title-2); font-weight: var(--fw-bold); color: var(--p-bluegray-20); letter-spacing: var(--ls-heading); }
+.proj__sub { font-size: var(--fs-body-2); color: var(--p-bluegray-55); }
+.proj__block { display: flex; flex-direction: column; gap: 16px; }
+.subhead { display: flex; align-items: center; justify-content: space-between; }
+.subhead h3 { font-size: var(--fs-title-4); font-weight: var(--fw-bold); color: var(--p-bluegray-20); letter-spacing: var(--ls-heading); }
+.subhead .upd { font-size: var(--fs-label-2); font-weight: var(--fw-regular); color: var(--p-bluegray-55); }
+
+/* status text */
+.st-danger { color: var(--color-danger); font-weight: var(--fw-semibold); }
+.st-caution { color: var(--color-caution); font-weight: var(--fw-semibold); }
+.st-info { color: var(--color-info); font-weight: var(--fw-semibold); }
+.st-stable { color: var(--color-label-alternative); }
+
+/* 테이블 — 헤더 h100 / 행 h78 / text 16·15 / 헤더bg whitblue-85 */
+.rtable { width: 100%; border-collapse: collapse; border: 1px solid var(--color-line);
+  border-radius: var(--radius-xs); overflow: hidden; }
+.rtable th, .rtable td { border: 1px solid var(--color-line); padding: 15px 12px; text-align: center;
+  font-size: var(--fs-body-1); color: var(--color-label-neutral); vertical-align: middle; height: 78px; }
+.rtable thead th { height: 100px; padding: 10px 12px; background: var(--p-whiteblue-85);
+  font-weight: var(--fw-semibold); color: var(--color-label-alternative); }
+.rtable td.left, .rtable th.left { text-align: left; }
+.rtable .lbl { background: var(--p-whiteblue-85); font-weight: var(--fw-semibold);
+  color: var(--color-label-neutral); width: 150px; text-align: left; }
+.rtable .sub { background: var(--p-whiteblue-90); font-weight: var(--fw-medium);
+  color: var(--color-label-alternative); font-size: var(--fs-body-2); }
+.rtable .strong { color: var(--color-label-strong); font-weight: var(--fw-semibold); }
+.rtable .date { font-size: var(--fs-body-2); color: var(--color-label-assistive); display: block; margin-top: 2px; font-weight: 400; }
+.nest { width: 100%; height: 100%; border-collapse: collapse; }
+.nest td, .nest th { border: 1px solid var(--color-line); height: auto; padding: 12px; text-align: center; font-size: var(--fs-body-1); }
+.nest .sub { padding: 8px 12px; }
+.rtable td.nowrap-cell { padding: 0; height: 78px; }
+
+/* legend */
+.legend { display: flex; gap: 18px; font-size: var(--fs-label-2); color: var(--color-label-alternative); }
+
+/* AI 요약 박스 (w888, 컨텐츠 1055 안에서 좌측) */
+.ai-box { background: var(--p-whiteblue-90); border: 1px solid var(--p-whiteblue-80);
+  border-radius: var(--radius-xs); padding: 20px 24px; }
+.ai-box__h { display: flex; align-items: center; gap: 6px; font-size: var(--fs-body-1);
+  font-weight: var(--fw-bold); color: var(--color-primary); margin-bottom: 10px; }
+.ai-box p { font-size: var(--fs-body-2); line-height: 1.7; color: var(--color-label-neutral); }
+
+/* map (960, 컨텐츠 1055 안) */
+.rmap { width: 960px; height: 485px; border-radius: var(--radius-xs); overflow: hidden; border: 1px solid var(--color-line); }
+.rmap img { width: 100%; height: 100%; object-fit: cover; }

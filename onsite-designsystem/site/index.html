@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <script>(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ONSITE Design System</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/tokens-midas.css" />
+  <link rel="stylesheet" href="css/ds-extra.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+  <header class="gnb gnb--solid">
+    <div class="gnb__inner">
+      <a class="gnb__logo" href="index.html"><span>ONSITE DS</span></a>
+      <nav class="gnb__nav" aria-label="Global">
+        <a href="foundation/color.html">Foundation</a>
+        <a href="components/button.html">Components</a>
+        <a href="patterns/map.html">Patterns</a>
+        <a href="audit.html">Audit</a>
+        <button class="gnb__theme" type="button" aria-label="다크 모드로 전환" aria-pressed="false">
+          <svg class="gnb__theme-icon gnb__theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <svg class="gnb__theme-icon gnb__theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero__content">
+        <h1 class="hero__title" data-reveal style="--i:0">ONSITE<br />Design System</h1>
+        <p class="hero__lead" data-reveal style="--i:1">Figma 시안에서 역추출한 토큰·컴포넌트를 단일 소스로 관리하는 3-tier 디자인 시스템.<br />이 사이트는 실제 tokens.css를 그대로 소비하므로, 여기 보이는 모든 게 곧 시스템 정합의 증명입니다.</p>
+        <div class="hero__cta" data-reveal style="--i:2">
+          <a class="btn-pill btn-pill--primary" href="foundation/color.html">Foundation 둘러보기 →</a>
+          <a class="btn-pill" href="audit.html">토큰 Audit</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section">
+      <h2 class="t-h2 section__title" data-reveal style="--i:0">둘러보기</h2>
+      <div class="home-grid" data-reveal style="--i:1">
+        <a class="home-card" href="foundation/color.html">
+          <div class="home-card__kicker">Foundation</div>
+          <h3 class="home-card__title t-heading-2 fw-bold">Color · Type · Space</h3>
+          <p class="home-card__desc">Emerald·Bluegray·Whiteblue 램프, 타이포 스케일, 스페이싱·라디우스</p>
+          <div class="home-card__status">● 126 토큰</div>
+        </a>
+        <a class="home-card" href="components/button.html">
+          <div class="home-card__kicker">Components</div>
+          <h3 class="home-card__title t-heading-2 fw-bold">7 Components</h3>
+          <p class="home-card__desc">Button · Selection · Input · Dropdown · Pagination · GNB · Loading 라이브</p>
+          <div class="home-card__status">● 실제 파일 임베드</div>
+        </a>
+        <a class="home-card" href="patterns/map.html">
+          <div class="home-card__kicker">Patterns</div>
+          <h3 class="home-card__title t-heading-2 fw-bold">소비자 화면 3종</h3>
+          <p class="home-card__desc">지도뷰 · 리스트뷰 · 현장요약 — 토큰으로 조립된 실제 화면</p>
+          <div class="home-card__status">● Map · List · Report</div>
+        </a>
+        <a class="home-card" href="audit.html">
+          <div class="home-card__kicker">System</div>
+          <h3 class="home-card__title t-heading-2 fw-bold">토큰 Audit</h3>
+          <p class="home-card__desc">문서↔코드 커버리지 검증 — 하드코딩 0 · raw 폰트 0 · 잠정 12</p>
+          <div class="home-card__status">◑ 검증표</div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner"><span>ONSITE Design System · ver 0.1 · Phase 0 역설계</span><span class="footer__badge">v 0.1</span></div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/theme.js" defer></script>
+</body>
+</html>

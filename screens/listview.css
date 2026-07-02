@@ -1,0 +1,66 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+@import url("../onsite-designsystem/tokens/tokens.css?v=2");
+@import url("../onsite-designsystem/components/pagination/pagination.css");
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--color-bg-subtle); font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased; color: var(--color-label-strong); }
+.ss-text { font-feature-settings: "ss10" 1; }
+
+/* GNB iframe */
+.gnb-frame { width: 100%; height: 72px; border: 0; display: block; }
+
+/* Content */
+.wrap { max-width: 1320px; margin: 0 auto; padding: 32px 0 60px; } /* GNB(72)→콘텐츠 top104 = 32px */
+/* 실측(node 5125:27750): 제목 28Bold · 카운트/정렬 15 · 헤더 13 · 이름 17SB · 날짜 15(#7a808d)
+   가동율 17 · 센서 18/14 · 상태(강조)18SB·안정14 · 행 px24 py16 h58 */
+.lv-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 0 4px; }
+.lv-head__title { display: flex; align-items: baseline; gap: 8px; }
+.lv-head__title h1 { font-size: var(--fs-title-3); font-weight: var(--fw-bold); letter-spacing: -0.66px; }
+.lv-head__title span { font-size: var(--fs-body-2); color: var(--color-label-alternative); letter-spacing: -0.029px; }
+.lv-head__title b { color: var(--color-primary); font-weight: var(--fw-bold); }
+.lv-sort { display: flex; align-items: center; gap: 6px; font-size: var(--fs-body-2);
+  font-weight: var(--fw-medium); color: var(--p-bluegray-55); cursor: pointer; background: none; border: none;
+  letter-spacing: -0.029px; }
+
+/* Table */
+.table { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-md); }
+.trow { display: grid; grid-template-columns: 246px 232px 148px 132px 150px 1fr;
+  align-items: center; padding: 0 24px; column-gap: 8px; }
+.thead { background: var(--color-bg-muted); border-radius: var(--radius-md) var(--radius-md) 0 0; }
+.thead .trow { height: 56px; }
+.th { font-size: var(--fs-label-2); font-weight: var(--fw-medium); color: var(--color-label-alternative); }
+.th--num { text-align: right; padding-right: 24px; }
+.tbody .trow { height: 58px; border-top: 1px solid var(--color-line); position: relative; }
+.tbody .trow:hover { background: var(--color-bg-subtle); }
+.td { font-size: var(--fs-label-1); color: var(--color-label-neutral); }
+.td--name { display: flex; align-items: center; gap: 8px; font-size: var(--fs-headline-2);
+  font-weight: var(--fw-semibold); color: var(--p-bluegray-20); letter-spacing: -0.0034px; }
+.td--date { font-size: var(--fs-body-2); color: var(--p-bluegray-55); }
+.pin { width: 18px; height: 18px; flex: none; }
+.pin--danger { color: var(--color-danger); } .pin--caution { color: var(--color-caution); }
+.pin--info { color: var(--color-info); } .pin--safe { color: var(--color-safe); }
+.td--num { text-align: right; padding-right: 24px; font-size: var(--fs-headline-2); font-weight: var(--fw-semibold); color: var(--color-label-strong); }
+.sensor b { font-size: var(--fs-heading-3); color: var(--color-safe); font-weight: var(--fw-bold); }
+.sensor em { font-size: var(--fs-label-1); color: var(--color-label-assistive); font-style: normal; }
+.st-danger, .st-caution, .st-info { font-size: var(--fs-heading-3); font-weight: var(--fw-semibold); }
+.st-danger { color: var(--color-danger); }
+.st-caution { color: var(--color-caution); }
+.st-info { color: var(--color-info); }
+.st-stable { font-size: var(--fs-label-1); color: var(--color-label-alternative); }
+
+/* row hover actions — 실측 node 5125:27827. gap 3 · 버튼 h32 w64 r6 · Bold 12 */
+.rowact { position: absolute; right: 24px; display: none; align-items: center; gap: 3px; }
+.trow:hover .rowact { display: flex; }
+.btn-sm { width: 64px; height: 32px; padding: 8px; border-radius: var(--radius-2xs); font-size: var(--fs-caption-1);
+  font-weight: var(--fw-bold); letter-spacing: -0.023px; cursor: pointer; border: 1px solid transparent;
+  display: inline-flex; align-items: center; justify-content: center; }
+.btn-sm--primary { background: var(--p-emerald-50); color: #fff; }       /* #1bb9cd */
+.btn-sm--outline { background: var(--color-surface); color: var(--p-bluegray-40);  /* #4b5563 */
+  border-color: var(--p-whiteblue-70); }                                /* #e1e7ee */
+.rowact__more { width: 32px; height: 32px; border-radius: 4px; border: none;
+  background: transparent; cursor: pointer; display: grid; place-items: center; }
+.rowact__more:hover { background: var(--color-bg-muted); }
+
+/* pagination wrapper */
+.lv-pager { display: flex; justify-content: center; margin-top: 24px; }

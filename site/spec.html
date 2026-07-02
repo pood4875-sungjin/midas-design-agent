@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>스펙 — MIDAS Design Agent</title>
+  <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body data-page="spec">
+  <article class="doc">
+    <h1 style="font-size:26px">제품 전체 스펙</h1>
+    <p class="doc__lead">결정론 엔진 + LLM 분석의 하이브리드 아키텍처. 파이프라인 각 단계는 JSON 계약으로 연결되고, 영속 저장되어 사람이 끼어들어 수정·재실행할 수 있다 — 이것이 "제어 가능".</p>
+
+    <h2>1. 시스템 구조 (파이프라인)</h2>
+    <table class="tbl">
+      <thead><tr><th>단계</th><th>역할</th><th>방식</th></tr></thead>
+      <tbody>
+        <tr><td>S1 Ingest</td><td>Markdown 기획 → 정규화 IR(JSON)</td><td>LLM</td></tr>
+        <tr><td>S2 Concept</td><td>IR → 컨셉 3종 + 토큰 시드</td><td>LLM (Phase 3)</td></tr>
+        <tr><td>S3 DesignSys</td><td>시드 → 전체 토큰 확장</td><td>엔진(결정론)</td></tr>
+        <tr><td>S4 Pages</td><td>IR × Pattern → 컴포넌트 트리</td><td>엔진 + LLM 폴백</td></tr>
+        <tr><td>S5 Prototype</td><td>페이지 링크 · User Flow 연결</td><td>엔진</td></tr>
+        <tr><td>S6 Render</td><td>트리 → HTML/CSS</td><td>엔진(Handlebars)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>2. 데이터 모델</h2>
+    <ul>
+      <li><strong>Project</strong> — planningInputId, conceptIds[], selectedConceptId, designSystemId, pageIds[], prototypeId</li>
+      <li><strong>PlanningInputIR</strong> — prd, ia[], userFlows[], uxPolicy[], uxWriting, pages[]( id, name, <strong>archetype</strong>, dataShape, fields[])</li>
+      <li><strong>Concept</strong> — name, mood[], rationale, tokenSeed</li>
+      <li><strong>DesignSystem</strong> — conceptId, tokens, components[] (외부 주입 가능 — 온사이트DS든 생성DS든 동일 입력)</li>
+      <li><strong>Page</strong> — specId, layoutRecipeId, tree(ComponentNode)</li>
+      <li><strong>Prototype</strong> — links[ fromPage/Node → toPage, transition ]</li>
+    </ul>
+    <p>archetype ∈ Dashboard·List·Detail·Form·Setting·Login·Monitoring — 패턴화 가능 영역을 enum으로 고정. 제어의 뼈대.</p>
+
+    <h2>3. Design Token — 3-tier (DTCG)</h2>
+    <table class="tbl">
+      <tbody>
+        <tr><td>Tier 1 Primitive</td><td>blue-500, gray-100, space-1..12 — 컴포넌트 직접참조 금지</td></tr>
+        <tr><td>Tier 2 Semantic</td><td>color.bg/fg/primary/border — 다크모드·테마는 이 레이어만 교체</td></tr>
+        <tr><td>Tier 3 Component</td><td>button.bg = {color.primary} — 컴포넌트가 참조하는 유일 레이어</td></tr>
+      </tbody>
+    </table>
+    <p>스페이싱 4·8·12·16·24·32·48·64 (8pt). 타입 12/14/16/20/24/32/40, line-height 본문 1.5(한글 1.45~1.6)·헤딩 1.25. DTCG 포맷 → Figma Variables 연동 거의 공짜.</p>
+
+    <h2>4. Component Library</h2>
+    <p>컴포넌트 = <strong>스키마(계약) + 렌더 템플릿</strong> 2파일. LLM은 스키마만 보고 조립, 픽셀은 모름. 스키마에 <code>a11y</code> 필드(role/focusRing/minTarget) 내장 → 접근성 기본 보장. MVP 세트: Button·Input·Select·Card·Table·Tag·Nav·Modal·Tabs·Stat·EmptyState·Avatar.</p>
+
+    <h2>5. Pattern Library</h2>
+    <p>archetype별 "페이지 레시피" — 어느 region(slot)에 어떤 컴포넌트가 들어가는지 규칙 + uxPolicyHooks(emptyState/loading 등). 핵심 가설의 구현체. 새 제품 = 패턴 재사용 + 토큰만 교체.</p>
+
+    <h2>6. Layout Recipe</h2>
+    <p>페이지 골격(shell) — 패턴과 분리, 여러 패턴이 공유. grid areas + 반응형 규칙 선언 → 생성물 자동 반응형. MVP: shell-sidebar · shell-topbar · centered.</p>
+
+    <h2>7. 생성 방식</h2>
+    <h3>컨셉 → 디자인 시스템</h3>
+    <p>LLM은 토큰값을 직접 안 만든다. 좁은 <strong>ConceptSeed</strong>(primaryHue, density, radius, fontPair, contrastTarget)만 생성 → 엔진이 컬러 ramp·WCAG 대비·스케일을 알고리즘으로 확장. 환각이 토큰값에 침투 못 함.</p>
+    <h3>디자인 시스템 → 페이지</h3>
+    <p>pattern + layout으로 트리 결정론 조립 → UX라이팅 주입 → UX정책 규칙 강제(삭제→확인모달 등) → 토큰 바인딩. LLM은 슬롯↔필드 매핑이 애매할 때만 폴백.</p>
+
+    <h2>8. HTML 출력 / Figma 확장</h2>
+    <p>토큰 = CSS Custom Properties, 다크모드 = <code>[data-theme]</code> 토글. 트리 → Handlebars 재귀 렌더. Render 단계에 어댑터(HtmlRenderer | FigmaRenderer) 추가로 확장 — 같은 트리/토큰 모델 공유라 비용 낮음. DTCG → Figma Variables, 스키마 variants → Component/Variant, layout areas → Auto Layout.</p>
+
+    <h2>9. 확정 결정</h2>
+    <table class="tbl">
+      <tbody>
+        <tr><td>입력 포맷</td><td>Markdown → JSON IR 정규화 (S1)</td></tr>
+        <tr><td>S4 슬롯 매핑</td><td>규칙 기반 + 애매할 때만 LLM 폴백</td></tr>
+        <tr><td>렌더 스택</td><td>Handlebars + CSS Custom Properties</td></tr>
+        <tr><td>토큰 구조</td><td>DTCG 3-tier</td></tr>
+        <tr><td>다크모드</td><td>semantic 토큰만 override</td></tr>
+      </tbody>
+    </table>
+  </article>
+  <script src="js/nav.js"></script>
+</body>
+</html>

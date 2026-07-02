@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Component — GNB</title>
+  <link rel="stylesheet" href="gnb.css?v=3" />
+</head>
+<body>
+  <header class="gnb">
+    <!-- Left: logo (node I5047...29:4134) -->
+    <div class="gnb__left">
+      <div class="logo">
+        <img class="l-sym" src="assets/logo-sym.svg" alt="" />
+        <img class="l-grp" src="assets/logo-grp.svg" alt="ONSITE" />
+        <img class="l0" src="assets/logo-0.svg" alt="" />
+        <img class="l1" src="assets/logo-1.svg" alt="" />
+        <img class="l2" src="assets/logo-2.svg" alt="" />
+        <img class="l3" src="assets/logo-3.svg" alt="" />
+        <img class="l4" src="assets/logo-4.svg" alt="" />
+        <img class="l5" src="assets/logo-5.svg" alt="" />
+        <img class="l6" src="assets/logo-6.svg" alt="GEOTECH" />
+      </div>
+    </div>
+
+    <!-- Center: nav (3 tabs) -->
+    <nav class="gnb__nav">
+      <a href="/screens/siteview.html" target="_parent" class="tab is-active">지도뷰</a>
+      <a href="/screens/listview.html" target="_parent" class="tab">리스트 뷰어</a>
+      <a href="/screens/sitesummary.html" target="_parent" class="tab">현장 요약</a>
+    </nav>
+
+    <!-- Right: 공통 유틸 -->
+    <div class="gnb__right">
+      <div class="weather" title="날씨">
+        <img class="weather__ico" src="assets/icon-weather.svg" alt="" />
+        <div class="weather__temp"><b>28°</b><span>구름많음</span></div>
+      </div>
+      <div class="util-cluster">
+        <div class="util-icons">
+          <div class="util util--siren" title="위험 알림 / 사이렌"><img src="assets/icon-siren.svg" alt="" /></div>
+          <div class="util util--bell" title="알림"><img src="assets/icon-bell.svg" alt="" /></div>
+          <div class="util util--disp" title="디스플레이 모드"><img src="assets/icon-disp.svg" alt="" /></div>
+        </div>
+        <div class="avatar">김</div>
+      </div>
+    </div>
+  </header>
+  <script>
+    // ?tab=N 으로 active 탭 지정 (컴포넌트 재사용용)
+    var t = new URLSearchParams(location.search).get("tab");
+    if (t !== null) document.querySelectorAll(".tab").forEach(function (el, i) {
+      el.classList.toggle("is-active", i === +t);
+    });
+  </script>
+</body>
+</html>

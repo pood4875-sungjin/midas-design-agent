@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>온사이트 — 주간 현장 요약 보고서</title>
+  <link rel="stylesheet" href="sitesummary.css?v=5" />
+</head>
+<body class="ss-text">
+  <!-- GNB 컴포넌트 (현장 요약 active) -->
+  <iframe class="gnb-frame" src="../onsite-designsystem/components/gnb/gnb.html?tab=2" title="GNB"></iframe>
+
+  <div class="doc">
+    <!-- 제목 블록: 제목48/부제15 중앙 + 툴바(드롭다운 좌·다운로드 우) -->
+    <div class="rpt-head">
+      <div class="rpt-title">
+        <h1>주간 현장 요약 보고서</h1>
+        <p>2026년 3월 4주차 : 3월 22일 - 3월 28일</p>
+      </div>
+      <div class="rpt-toolbar">
+        <span class="sel">2026년 3월 4주차
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </span>
+        <button class="gen">보고서 다운로드
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="rpt-body">
+      <!-- 전체 현장 요약 (제목 32) -->
+      <section class="section section--lg">
+        <div class="section__h"><h2>전체 현장 요약</h2></div>
+        <table class="rtable">
+          <colgroup>
+            <col style="width:80px"><col style="width:240px"><col style="width:100px">
+            <col style="width:100px"><col style="width:100px"><col style="width:100px"><col style="width:100px">
+            <col style="width:100px"><col style="width:135px">
+          </colgroup>
+          <thead><tr>
+            <th>No.</th><th class="left">현장명</th><th>진행률</th>
+            <th>현재</th><th>전주</th><th>변화량</th><th>상태</th><th>예측 결과</th><th>계측기 상태</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td class="left strong">△△지구 공동주택 신축공사<span class="date">2025. 07 - 2027. 03</span></td>
+              <td>67%</td><td class="strong">116</td><td>108</td><td>+8</td>
+              <td class="st-caution">2차 초과</td><td class="st-caution">주의</td><td>-</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td class="left strong">○○역 도시환경정비사업<span class="date">2025. 07 - 2027. 03</span></td>
+              <td>42%</td><td class="strong">116</td><td>78</td><td>+26</td>
+              <td class="st-info">1차 초과</td><td class="st-caution">주의</td><td>-</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td class="left strong">□□터널 확장공사<span class="date">2025. 07 - 2027. 03</span></td>
+              <td>23%</td><td class="strong">12.8</td><td>12.8</td><td>0</td>
+              <td class="st-stable">안정</td><td class="st-stable">안정</td><td>끊김 1건</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="legend"><span>· 상태 : 누적 안전율 기준</span><span>· 현재/전주 : 최대 안전율(%)</span><span>· 계측기 상태 : 운영 이상</span></div>
+      </section>
+
+      <!-- 현장 위치 지도 (제목 24) -->
+      <section class="section">
+        <div class="section__h"><h2>현장 위치 지도</h2><span class="upd">2026.03.01 09:00 업데이트</span></div>
+        <div class="rmap"><img src="assets/map.png" alt="현장 위치 지도" /></div>
+      </section>
+
+      <!-- 프로젝트: 판교지구 (제목 32) -->
+      <section class="proj">
+        <div class="proj__head">
+          <div class="proj__t">판교지구 공동주택 신축공사</div>
+          <div class="proj__sub">경기도 성남시 · 공정 67% · 2025. 07. 25 - 2027. 03. 31</div>
+        </div>
+
+        <div class="ai-box">
+          <div class="ai-box__h">✦ 주간 현황 AI 요약</div>
+          <p>금주 보고 기간 동안 전체 운영 계측기 108개 중 106개가 정상 범위 내에서 운영되었으며, 누적 최대 안전율은 1차 대비 104%로 1차 관리기준을 초과(2건) 한 상태가 관찰되었습니다 (전주 78% 대비 +26%p 악화). 위험 예측 단면 JJ는 예측 변위 안전율 1차 대비 114%로 1차 초과 상태이며, 설계 안전성 검토에서 NG가 발생해 보강 검토가 권장됩니다 (상세는 시트 4 참조).</p>
+        </div>
+
+        <!-- 계측 현황 (제목 24) -->
+        <div class="proj__block">
+          <div class="subhead"><h3>계측 현황</h3></div>
+          <table class="rtable">
+            <colgroup><col style="width:160px"><col></colgroup>
+            <thead><tr><th class="left">현장명</th><th class="left">내용</th></tr></thead>
+            <tbody>
+              <tr><td class="lbl">운영 중 계측기</td><td class="nowrap-cell">
+                <table class="nest"><tr><td class="sub" style="width:50%">자동</td><td class="sub">수동</td></tr>
+                <tr><td class="strong">12개</td><td class="strong">72개</td></tr></table></td></tr>
+              <tr><td class="lbl">누적 계측값 현황</td><td class="nowrap-cell">
+                <table class="nest"><tr><td class="sub">전주 안전율</td><td class="sub">현재 안전율</td><td class="sub">결과</td></tr>
+                <tr><td>67%</td><td class="st-caution">2차 초과</td><td class="st-caution">2차 초과</td></tr></table></td></tr>
+              <tr><td class="lbl">최대 계측값 현황</td><td class="nowrap-cell">
+                <table class="nest"><tr><td class="sub">대상 계측기</td><td class="sub">최대 발생값</td><td class="sub">기준값</td><td class="sub">안전율</td></tr>
+                <tr><td>지중경사계(토사) / INC-15</td><td class="strong">34.8mm</td><td>30mm(2차기준)</td><td class="st-caution">2차 대비 116%</td></tr></table></td></tr>
+              <tr><td class="lbl">단면</td><td class="left">A-A단면</td></tr>
+              <tr><td class="lbl">관리기준 이상 여부</td><td class="left st-caution">2차 초과 1건</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 예측 현황 (제목 24) -->
+        <div class="proj__block">
+          <div class="subhead"><h3>예측 현황</h3><span class="upd">최종 예측 : 2026. 04. 04</span></div>
+          <table class="rtable">
+            <colgroup><col style="width:160px"><col></colgroup>
+            <tbody>
+              <tr><td class="lbl">예측 상태</td><td class="left st-caution">주의</td></tr>
+              <tr><td class="lbl">위험 예측 단면</td><td class="left">BB</td></tr>
+              <tr><td class="lbl">예측 변위 결과</td><td class="nowrap-cell">
+                <table class="nest"><tr><td class="st-caution" style="width:50%">2차 초과</td><td class="st-caution">2차 대비 116%</td></tr></table></td></tr>
+              <tr><td class="lbl">설계 안전성 검토 결과</td><td class="left st-caution">2차 초과 1건</td></tr>
+              <tr><td class="lbl">최대 변위 관련 정보</td><td class="nowrap-cell">
+                <table class="nest"><tr><td class="sub">예측 시공단계</td><td class="sub">최대 변위</td><td class="sub">안전율</td><td class="sub">예측 정확도</td></tr>
+                <tr><td>12개</td><td>72개</td><td>72개</td><td>72개</td></tr></table></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

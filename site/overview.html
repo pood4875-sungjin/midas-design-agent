@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIDAS Design Agent — 프로젝트 개요</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<style>
+  :root{
+    --bg:#0b0e13; --surface:#141923; --surface2:#1b2230; --line:#262e3d;
+    --text:#e8edf3; --muted:#9aa4b2; --faint:#6b7480;
+    --green:#5fdc8a; --green-bg:#143524; --green-line:#2f6b48;
+    --orange:#f0a93c; --orange-bg:#34270f; --orange-line:#7a5a22;
+    --blue:#4cb8f5; --blue-bg:#0f2c43; --blue-line:#235a7e;
+    --gold:#ffd24d; --red:#ff6b6b;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:"Pretendard Variable",Pretendard,-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  h1{font-size:38px;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+  h2{font-size:26px;font-weight:800;letter-spacing:-.01em;margin-bottom:8px}
+  h3{font-size:17px;font-weight:700;margin-bottom:6px}
+  .lead{font-size:17px;color:var(--muted);margin-top:14px;max-width:760px}
+  .kicker{font-size:13px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+  .muted{color:var(--muted)} .faint{color:var(--faint)} .small{font-size:13px}
+  .tag{display:inline-block;font-size:12px;font-weight:700;padding:3px 9px;border-radius:20px;border:1px solid var(--line);color:var(--muted)}
+  .gold{color:var(--gold)}
+  /* nav */
+  nav{position:sticky;top:0;z-index:10;background:rgba(11,14,19,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;gap:18px;align-items:center;height:54px;overflow-x:auto}
+  nav a{color:var(--muted);text-decoration:none;font-size:13.5px;font-weight:600;white-space:nowrap}
+  nav a:hover{color:var(--text)}
+  nav .brand{color:var(--text);font-weight:800;margin-right:8px}
+  /* hero */
+  .hero{padding:80px 0 64px}
+  .analogy{margin-top:26px;padding:13px 16px;background:var(--surface);border:1px solid var(--line);border-radius:10px;font-size:13px;color:var(--muted)}
+  .analogy b{color:var(--gold);font-weight:700}
+  .analogy .albl{font-size:11px;font-weight:800;color:var(--faint);text-transform:uppercase;letter-spacing:.06em}
+  /* grid */
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:1fr 1fr} .g3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:760px){.g2,.g3{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .card h3{margin-bottom:8px}
+  .card p{font-size:14px;color:var(--muted)}
+  /* pipeline */
+  .pipe{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px;margin-top:24px}
+  .pstep{flex:1;min-width:128px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;position:relative}
+  .pstep .n{font-size:11px;font-weight:800;color:var(--faint)}
+  .pstep .t{font-size:14.5px;font-weight:700;margin:4px 0 2px}
+  .pstep .d{font-size:12px;color:var(--muted)}
+  .pstep .who{margin-top:8px;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px;display:inline-block}
+  .who.llm{background:rgba(95,220,138,.12);color:var(--green)}
+  .who.eng{background:rgba(76,184,245,.12);color:var(--blue)}
+  .who.human{background:rgba(255,210,77,.12);color:var(--gold)}
+  .arrow{align-self:center;color:var(--faint);font-size:20px}
+  /* layers */
+  .layer{border-radius:var(--radius);border:1px solid;padding:18px;margin-bottom:14px}
+  .layer.green{border-color:var(--green-line);background:linear-gradient(180deg,rgba(95,220,138,.06),transparent)}
+  .layer.orange{border-color:var(--orange-line);background:linear-gradient(180deg,rgba(240,169,60,.06),transparent)}
+  .layer.blue{border-color:var(--blue-line);background:linear-gradient(180deg,rgba(76,184,245,.06),transparent)}
+  .layer .lhead{display:flex;align-items:baseline;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+  .layer .lhead .nm{font-size:18px;font-weight:800}
+  .layer.green .nm{color:var(--green)} .layer.orange .nm{color:var(--orange)} .layer.blue .nm{color:var(--blue)}
+  .layer .lhead .sub{font-size:13px;color:var(--muted)}
+  .cells{display:grid;gap:10px;grid-template-columns:repeat(4,1fr)}
+  .cells.five{grid-template-columns:repeat(5,1fr)}
+  @media(max-width:760px){.cells,.cells.five{grid-template-columns:1fr 1fr}}
+  .cell{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:12px;position:relative}
+  .cell.add{border-color:var(--gold)}
+  .cell .em{font-size:18px}
+  .cell .ti{font-size:13px;font-weight:700;margin-top:4px}
+  .cell .co{font-size:11px;color:var(--faint);font-family:ui-monospace,monospace}
+  .cell .de{font-size:11.5px;color:var(--muted);margin-top:3px}
+  .cell .an{font-size:11px;color:var(--faint);margin-top:6px;font-style:italic;opacity:.85}
+  .dot{position:absolute;top:11px;right:11px;width:9px;height:9px;border-radius:50%}
+  .dot.ok{background:var(--green)} .dot.part{background:var(--orange)} .dot.no{background:var(--red)}
+  .star{color:var(--gold);font-weight:800}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:12.5px;color:var(--muted);align-items:center}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .ld{width:9px;height:9px;border-radius:50%;display:inline-block}
+  /* steps / timeline */
+  .tl{position:relative;margin-top:24px;padding-left:28px}
+  .tl::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--line)}
+  .tli{position:relative;margin-bottom:22px}
+  .tli::before{content:"";position:absolute;left:-24px;top:5px;width:14px;height:14px;border-radius:50%;background:var(--surface);border:2px solid var(--faint)}
+  .tli.now::before{background:var(--gold);border-color:var(--gold);box-shadow:0 0 0 5px rgba(255,210,77,.18)}
+  .tli.now .st{color:var(--gold)}
+  .tli .st{font-size:16px;font-weight:800}
+  .tli .sd{font-size:14px;color:var(--muted);margin-top:3px}
+  .tli .out{font-size:12.5px;color:var(--faint);margin-top:6px;font-family:ui-monospace,monospace}
+  .nowtag{font-size:11px;font-weight:800;color:#0b0e13;background:var(--gold);padding:2px 8px;border-radius:20px;margin-left:8px;vertical-align:middle}
+  /* tech */
+  .tech{display:grid;gap:14px;grid-template-columns:1fr 1fr;margin-top:20px}
+  @media(max-width:760px){.tech{grid-template-columns:1fr}}
+  .tech .card .k{font-size:12px;font-weight:700;color:var(--green);font-family:ui-monospace,monospace}
+  table.kv{width:100%;border-collapse:collapse;margin-top:8px}
+  table.kv td{padding:7px 0;border-bottom:1px solid var(--line);font-size:13.5px;vertical-align:top}
+  table.kv td:first-child{color:var(--muted);width:130px;font-weight:600}
+  .foot{padding:40px 0 70px;color:var(--faint);font-size:13px}
+  .hl{color:var(--text);font-weight:700}
+  .callout{border-left:3px solid var(--green);padding:10px 16px;background:var(--surface);border-radius:0 10px 10px 0;margin-top:16px;font-size:14px}
+  .callout.gold{border-color:var(--gold)}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <span class="brand">MDA</span>
+  <a href="#vision">비전</a>
+  <a href="#pipeline">파이프라인</a>
+  <a href="#how">생성 원리</a>
+  <a href="#structure">3층 구조</a>
+  <a href="#tech">기술</a>
+  <a href="#status">현황</a>
+  <a href="#roadmap">로드맵</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="kicker">MIDAS Design Agent</div>
+  <h1>기획을 입력하면<br>제품의 디자인 언어로<br>화면을 자동 생성한다.</h1>
+  <p class="lead">자연어 요구사항 → 기획서 → 디자인 컨셉 → 디자인 시스템 → 다중 페이지 UI → 프로토타입.
+  단순 생성이 아니라 <span class="hl">제어 가능한 생성</span>이 목표다.</p>
+  <div class="analogy">
+    <span class="albl">🍳 이해를 돕는 비유</span> &nbsp; 주방에 비유하면 — 주문(자연어)을 받아
+    <b>판단(주방장)</b>이 <b>지식(레시피북)</b>과 <b>자원(냉장고)</b>을 참조해 시안(요리)을 낸다. 검토 결과는 다시 정책에 반영.
+  </div>
+</div></header>
+
+<!-- VISION -->
+<section id="vision"><div class="wrap">
+  <div class="kicker">왜 만드나</div>
+  <h2>문제 — 생성형 도구는 결과는 내지만 제어가 안 된다</h2>
+  <p class="lead">제품마다 UX 정책·디자인 시스템·화면 구조·컴포넌트 규칙이 다르다.
+  AI에게 다 맡기면 그럴듯하지만 제품 맥락과 어긋난 결과가 나온다.</p>
+  <div class="grid g3" style="margin-top:24px">
+    <div class="card"><h3>가설</h3><p>모든 화면은 못 만들어도, 반복되는 영역(대시보드·목록·상세·폼·모니터링·설정)은 <b class="hl">패턴화</b> 가능하다.</p></div>
+    <div class="card"><h3>방법</h3><p>LLM은 <b class="hl">분석·선택</b>만. 실제 조립은 토큰·컴포넌트·패턴·레시피 기반 <b class="hl">결정론 엔진</b>이 한다.</p></div>
+    <div class="card"><h3>드림 스테이트</h3><p>역할 경계 해소. 전문가는 직접 제작 대신 <b class="hl">기준을 정의하고 결과를 검토</b>하는 역할로 이동.</p></div>
+  </div>
+</div></section>
+
+<!-- PIPELINE -->
+<section id="pipeline"><div class="wrap">
+  <div class="kicker">전체 흐름</div>
+  <h2>파이프라인 — 말에서 시안까지</h2>
+  <p class="lead">각 단계는 정해진 입력을 받아 다음 단계가 쓸 산출물을 만든다.
+  <span class="who llm" style="font-size:11px">LLM</span> = 분석·선택,
+  <span class="who eng" style="font-size:11px">엔진</span> = 결정론 조립,
+  <span class="who human" style="font-size:11px">사람</span> = 선택·검토.</p>
+  <div class="pipe">
+    <div class="pstep"><div class="n">S1</div><div class="t">자연어 → 기획서</div><div class="d">요구사항을 칸 있는 기획서(IR)로 정규화. 빈 칸은 되물음.</div><span class="who llm">LLM</span></div>
+    <div class="arrow">→</div>
+    <div class="pstep"><div class="n">S2</div><div class="t">컨셉 3개</div><div class="d">방향 다른 3안 + 좁은 토큰 시드. 사람이 선택.</div><span class="who llm">LLM</span></div>
+    <div class="arrow">→</div>
+    <div class="pstep"><div class="n">S3</div><div class="t">디자인 시스템</div><div class="d">시드 → 규칙대로 토큰·컴포넌트 확장.</div><span class="who eng">엔진</span></div>
+    <div class="arrow">→</div>
+    <div class="pstep"><div class="n">S4</div><div class="t">다중 페이지 UI</div><div class="d">화면별 archetype·recipe 판단 → DS 조립.</div><span class="who eng">엔진</span><span class="who llm">LLM 폴백</span></div>
+    <div class="arrow">→</div>
+    <div class="pstep"><div class="n">S5·6</div><div class="t">프로토타입 · HTML</div><div class="d">페이지 연결 + Handlebars 렌더.</div><span class="who eng">엔진</span></div>
+  </div>
+  <div class="callout gold">🧪 <b>지금은 온사이트로 거꾸로 검증 중.</b> 컨셉(S2)은 건너뛰고, 실제 제품 온사이트의 DS를 정답지로 깔아
+  <span class="hl">"이 DS로 화면이 제대로 나오나(S4)"</span>부터 증명한다. 제일 불확실한 곳부터 깨는 전략.</div>
+</div></section>
+
+<!-- HOW -->
+<section id="how"><div class="wrap">
+  <div class="kicker">생성 원리</div>
+  <h2>무엇을 참조해서 어떻게 나오나</h2>
+  <p class="lead">화면 하나를 만들 때, 주방장은 한 번에 정하지 않는다. <b class="hl">순서대로</b> 좁힌다.
+  앞 결정이 뒤 선택지를 좁히는 깔때기다.</p>
+  <div class="pipe" style="margin-top:20px">
+    <div class="pstep"><div class="n">1</div><div class="t">경로 판단</div><div class="d">요구 신호(목적·개수·읽기/쓰기)로 archetype 선택. <span class="faint">(무슨 요리인지)</span></div></div>
+    <div class="arrow">→</div>
+    <div class="pstep"><div class="n">2</div><div class="t">구조 판단</div><div class="d">recipe 펼쳐 슬롯 구성(필터바+테이블+페이지네이션). <span class="faint">(레시피 펼치기)</span></div></div>
+    <div class="arrow">→</div>
+    <div class="pstep"><div class="n">3</div><div class="t">자원 판단</div><div class="d">슬롯에 토큰·컴포넌트 배치. <span class="faint">(재료 꺼내기)</span></div></div>
+    <div class="arrow">→</div>
+    <div class="pstep"><div class="n">4</div><div class="t">점검</div><div class="d">대비·status색·하드코딩·필수슬롯 검수. <span class="faint">(나가기 전 검수)</span></div></div>
+  </div>
+  <div class="callout">🔑 핵심 — 구조를 정해야 어떤 리소스가 필요한지 안다. 그래서 <b class="hl">동시에 못 하고 순차</b>다.
+  그리고 분기에 필요한 정보가 입력에 없으면 못 만든다 → <b class="hl">기획 입력 단계에서 필수 신호를 강제</b>한다.</div>
+</div></section>
+
+<!-- STRUCTURE -->
+<section id="structure"><div class="wrap">
+  <div class="kicker">시스템 구조</div>
+  <h2>판단 · 지식 · 재료 — 3층</h2>
+  <p class="lead">DS(재료)는 "무엇을 만들 수 있나"만 준다. "무엇을 만들지" 결정은 판단층이 한다.
+  점 색 = 현재 구축 현황, <span class="star">★</span> = 대화에서 새로 보강한 칸.</p>
+
+  <div style="margin-top:24px"></div>
+  <!-- intake -->
+  <div class="cell add" style="max-width:440px;margin:0 auto 14px">
+    <span class="dot no"></span>
+    <div class="ti">입력 정규화 <span class="star">★</span></div>
+    <div class="co">IR 스키마</div><div class="de">분기에 필요한 정보를 강제 — 자유 입력을 구조화</div>
+    <div class="an">(📝 비유: 웨이터가 주문서 받아적기)</div>
+  </div>
+  <div style="text-align:center;color:var(--faint);margin:0 0 14px">↓</div>
+
+  <!-- green -->
+  <div class="layer green">
+    <div class="lhead"><span class="nm">판단 계층</span><span class="tag">Routing</span><span class="sub">요구사항을 어떤 규칙·경로로 해석할지 결정 <span class="faint">(🍳 주방장)</span></span></div>
+    <div class="cells">
+      <div class="cell"><span class="dot no"></span><div class="ti">운영 메타</div><div class="co">meta</div><div class="de">문서 구조·참조 순서·운영 기준</div><div class="an">(🗂️ 운영 매뉴얼)</div></div>
+      <div class="cell"><span class="dot no"></span><div class="ti">요구 라우팅</div><div class="co">requirement routing</div><div class="de">신호 → archetype 선택룰</div><div class="an">(🧭 무슨 요리인지 판단)</div></div>
+      <div class="cell add"><span class="dot no"></span><div class="ti">조회 전략 <span class="star">★</span></div><div class="co">retrieval playbook</div><div class="de">어떤 문서를 어떤 순서로</div><div class="an">(📖 어느 레시피 펼칠지)</div></div>
+      <div class="cell"><span class="dot part"></span><div class="ti">검증 체크리스트</div><div class="co">checklists</div><div class="de">구현 전후 점검 룰셋</div><div class="an">(✅ 나가기 전 검수)</div></div>
+    </div>
+  </div>
+  <div style="text-align:center;color:var(--faint);margin:0 0 14px">↕ 참조</div>
+
+  <!-- orange -->
+  <div class="layer orange">
+    <div class="lhead"><span class="nm">지식 계층</span><span class="tag">Policy</span><span class="sub">따라야 할 디자인 문법·UX 정책 <span class="faint">(📚 레시피북)</span></span></div>
+    <div class="cells">
+      <div class="cell"><span class="dot part"></span><div class="ti">화면 아키타입</div><div class="co">archetypes</div><div class="de">Dashboard·List·Detail…</div><div class="an">(🍜 요리 장르)</div></div>
+      <div class="cell"><span class="dot no"></span><div class="ti">UI 규칙</div><div class="co">ui rules</div><div class="de">레이아웃·텍스트·컴포넌트 기본</div><div class="an">(🍽️ 플레이팅 규칙)</div></div>
+      <div class="cell"><span class="dot part"></span><div class="ti">UX 패턴</div><div class="co">ux patterns</div><div class="de">반복 흐름·상호작용 (references→룰化)</div><div class="an">(👩‍🍳 검증된 조리법)</div></div>
+      <div class="cell"><span class="dot no"></span><div class="ti">전역 정책</div><div class="co">policies</div><div class="de">문구·표기·위계·우선순위</div><div class="an">(⚖️ 가게 원칙)</div></div>
+    </div>
+  </div>
+  <div style="text-align:center;color:var(--faint);margin:0 0 14px">↕ 꺼냄</div>
+
+  <!-- blue -->
+  <div class="layer blue">
+    <div class="lhead"><span class="nm">자원 계층</span><span class="tag">Resource</span><span class="sub">조립에 쓰는 토큰·컴포넌트·자산 <span class="faint">(🧊 냉장고·창고)</span></span></div>
+    <div class="cells five">
+      <div class="cell"><span class="dot ok"></span><div class="ti">디자인 토큰</div><div class="co">tokens</div><div class="de">색·타이포·간격</div><div class="an">(🧂 양념)</div></div>
+      <div class="cell add"><span class="dot no"></span><div class="ti">에셋 <span class="star">★</span></div><div class="co">assets</div><div class="de">아이콘·이미지·핀</div><div class="an">(🌿 고명)</div></div>
+      <div class="cell"><span class="dot part"></span><div class="ti">컴포넌트</div><div class="co">components</div><div class="de">버튼·입력·GNB…</div><div class="an">(🥬 손질 재료)</div></div>
+      <div class="cell"><span class="dot no"></span><div class="ti">레시피</div><div class="co">recipes</div><div class="de">슬롯 구성·조합 규칙</div><div class="an">(📋 조합법)</div></div>
+      <div class="cell"><span class="dot part"></span><div class="ti">페이지 셸</div><div class="co">page shell</div><div class="de">GNB·유틸바 공통 골격</div><div class="an">(🍱 기본 상차림)</div></div>
+    </div>
+  </div>
+  <div style="text-align:center;color:var(--faint);margin:0 0 6px">↓ 조립 → HTML 프로토타입 → 사람 선택·검토</div>
+  <div class="cell add" style="max-width:500px;margin:14px auto 0">
+    <span class="dot no"></span>
+    <div class="ti">피드백 루프 · 자기진화 <span class="star">★</span></div>
+    <div class="co">self-evolution</div><div class="de">선택·검토 결과를 정책에 반영 — "왜·맥락·일반화 가능?"까지. N회·다맥락 재현 시 정책 승격</div>
+    <div class="an">(↺ 손님 반응 → 레시피북 개정)</div>
+  </div>
+
+  <div class="legend">
+    <span><i class="ld" style="background:var(--green)"></i> 됨</span>
+    <span><i class="ld" style="background:var(--orange)"></i> 일부</span>
+    <span><i class="ld" style="background:var(--red)"></i> 없음</span>
+    <span><span class="star">★</span> 대화에서 보강한 칸</span>
+  </div>
+</div></section>
+
+<!-- TECH -->
+<section id="tech"><div class="wrap">
+  <div class="kicker">기술</div>
+  <h2>어떤 기술로 결과가 나오나</h2>
+  <div class="tech">
+    <div class="card"><div class="k">LLM</div><h3>분석 · 선택 · 시드</h3><p>요구사항 분석, 패턴 선택, 컨셉·토큰 시드 생성. <b class="hl">토큰값까지 뱉지 않고</b> 좁은 시드만 정한다.</p></div>
+    <div class="card"><div class="k">결정론 엔진</div><h3>규칙대로 조립</h3><p>시드를 규칙으로 확장. 같은 입력 → 항상 같은 출력. 제어 가능성의 핵심.</p></div>
+  </div>
+  <table class="kv">
+    <tr><td>입력 포맷</td><td>Markdown → JSON IR 정규화</td></tr>
+    <tr><td>토큰 구조</td><td>DTCG 3-tier (primitive → semantic → component)</td></tr>
+    <tr><td>다크/테마</td><td>semantic 토큰만 override, <code>[data-theme]</code> 토글</td></tr>
+    <tr><td>밀도 모드</td><td>심플/디테일 → spacing(inset) 토큰 2벌, <code>[data-density]</code></td></tr>
+    <tr><td>렌더 스택</td><td>Handlebars + CSS Custom Properties</td></tr>
+    <tr><td>슬롯↔필드</td><td>규칙 기반 + 애매할 때만 LLM 폴백</td></tr>
+    <tr><td>제품 척추</td><td>status 5레벨(안전~사이렌) · density 2벌 — 모든 화면에 곱해지는 직교축</td></tr>
+  </table>
+</div></section>
+
+<!-- STATUS -->
+<section id="status"><div class="wrap">
+  <div class="kicker">지금</div>
+  <h2>현재 — 온사이트 테스트베드에 DS 적재 중 <span class="nowtag">NOW</span></h2>
+  <p class="lead">전체 14칸 중 <b class="hl">재료층(파랑) 일부만</b> 채워졌다. 정작 판단(초록)·지식(주황)은 거의 비어있다.
+  이건 정상 — Phase 0은 재료(DS)를 원본 시안에서 역설계하는 단계다.</p>
+  <div class="grid g3" style="margin-top:22px">
+    <div class="card"><h3 style="color:var(--green)">🟢 재료 — 절반</h3><p>토큰 Pass A 완료. 컴포넌트(버튼·입력·GNB·드롭다운·페이지네이션) 일부. 공식 컬러·타이포 정합 반영.</p></div>
+    <div class="card"><h3 style="color:var(--orange)">🟠 지식 — 거의 빈칸</h3><p>archetype 목록만 IA에 있음. UX 정책·룰은 아직. references 라이브러리는 원천으로 존재.</p></div>
+    <div class="card"><h3 style="color:var(--red)">🟢 판단 — 텅 빔</h3><p>선택룰·retrieval playbook 0. audit 루프만 가동 중. → 다음 단계의 첫 삽 대상.</p></div>
+  </div>
+  <div class="callout">📍 정확히 지금 하는 일 — <b class="hl">통합 프로젝트 관리 3화면(지도뷰·리스트뷰·현장 요약)의 화면 설명서를 작성</b>하고,
+  Figma 원본과 함께 화면을 재현해 디자인 시스템(토큰·컴포넌트)을 누적하는 중. 추출 → 재생성 → 원본과 audit 루프.</div>
+</div></section>
+
+<!-- ROADMAP -->
+<section id="roadmap"><div class="wrap">
+  <div class="kicker">앞으로</div>
+  <h2>무엇을 어떤 순서로 할 건가</h2>
+  <p class="lead">원칙 — <b class="hl">한 화면을 끝까지 뚫어 구조를 검증한 뒤 복사.</b>
+  6종 룰을 다 만들고 틀리면 전부 재작업하기 때문.</p>
+  <div class="tl">
+    <div class="tli now">
+      <div class="st">STEP 0 · 첫 대상 = 통합 프로젝트 관리 3화면 <span class="nowtag">진행 중</span></div>
+      <div class="sd">프로젝트 선택 전 "통합 관리" 3화면 — <b class="hl">지도뷰 · 리스트뷰 · 현장 요약</b> — 부터 시작.
+      각 화면마다 <b class="hl">화면 설명서</b>(언제 쓰나 / 뼈대 / 규칙 / 상태처리)를 한 장씩 작성. AI에게 줄 설명서다.</div>
+      <div class="out">→ docs/screen-specs/01-지도뷰 · 02-리스트뷰 · 03-현장요약</div>
+    </div>
+    <div class="tli">
+      <div class="st">STEP 1 · 설명서 + Figma로 화면 재현 → 검증</div>
+      <div class="sd">화면 설명서(의도·규칙)와 Figma 원본(시각)을 함께 MCP에 넣어 화면 생성. 원본과 audit로 비교.
+      맞으면 설명서 틀이 검증된 것. 이때 나온 규칙이 곧 판단·지식 계층의 첫 내용이 된다.</div>
+      <div class="out">→ screens/* · audit/* · 누적 토큰·컴포넌트</div>
+    </div>
+    <div class="tli">
+      <div class="st">STEP 2 · 나머지 archetype 확장</div>
+      <div class="sd">견본 틀 그대로 Detail → Form → Report → Dashboard → Map. 매번 audit. UX 원칙·컴포넌트 누적.</div>
+      <div class="out">→ recipes/* · ux-principles/* · 컴포넌트 Pass B</div>
+    </div>
+    <div class="tli">
+      <div class="st">STEP 3 · 횡단 정리</div>
+      <div class="sd">status·density 직교축 규칙 확정. retrieval playbook(조회 전략). 점검 룰셋 표준화.</div>
+      <div class="out">→ retrieval-playbook · meta · ui-rules</div>
+    </div>
+    <div class="tli">
+      <div class="st">STEP 4 · 정책 운영틀 (나중)</div>
+      <div class="sd">정책 스키마(scope/priority). 자기진화 승격 게이트 — "왜·맥락·일반화가능?"까지 관리해야 시스템이 잘못 진화하지 않는다.</div>
+      <div class="out">→ policy-schema</div>
+    </div>
+  </div>
+  <div class="callout gold">⚠️ 공통 주의 — 어떤 문서도 백지에 미리 다 쓰지 않는다. <b class="hl">폴더(카테고리)만 잡고, 내용은 화면이 끌어낸다.</b>
+  추측으로 쓴 규칙은 원본과 안 맞아 검증할 수 없다.</div>
+</div></section>
+
+<div class="foot"><div class="wrap">
+  <p><span class="hl">MIDAS Design Agent</span> — 기획 산출물 → 디자인 시스템 → 다중 페이지 UI → 프로토타입 생성 AX 에이전트.</p>
+  <p class="faint" style="margin-top:6px">Phase 0 진행 중 · 온사이트 테스트베드 · 정답지(원본 Figma 시안) 기반 역설계 검증 루프.</p>
+</div></div>
+
+</body>
+</html>

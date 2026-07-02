@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>단계 — MIDAS Design Agent</title>
+  <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body data-page="stages">
+  <article class="doc">
+    <h1 style="font-size:26px">전체 단계</h1>
+    <p class="doc__lead" id="lead">현재 작업 위치를 <strong style="color:var(--active)">주황색</strong>으로 표시. 4초마다 자동 갱신.</p>
+    <div class="st" id="st"></div>
+  </article>
+  <script src="js/nav.js"></script>
+  <script>
+    (function () {
+      var $ = function (id) { return document.getElementById(id); };
+      var esc = function (s) { return String(s).replace(/[&<>]/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); };
+      function load(cb) {
+        var s = document.createElement("script");
+        s.src = "js/state.js?t=" + Date.now();
+        s.onload = function () { cb(window.MDA_STATE); s.remove(); };
+        s.onerror = function () { s.remove(); };
+        document.body.appendChild(s);
+      }
+      function render(d) {
+        if (!d || !d.stages) return;
+        $("lead").innerHTML = "지금: <strong style='color:var(--active)'>" +
+          esc(d.now.phase + " · " + d.now.step) + "</strong>";
+        $("st").innerHTML = d.stages.map(function (p) {
+          return '<div class="st__phase" data-s="' + p.status + '">' +
+            '<div class="st__hd"><span class="rm__dot"></span>' +
+            '<span class="st__id">' + esc(p.id) + '</span>' +
+            '<span class="st__title">' + esc(p.title) + '</span></div>' +
+            '<div class="st__steps">' + p.steps.map(function (s) {
+              return '<div class="st__step" data-s="' + s.status + '">' +
+                '<span class="st__mk">' + (s.status === "done" ? "✓" : "") + '</span>' +
+                esc(s.label) +
+                (s.status === "active" ? '<span class="st__here">지금 여기</span>' : '') + '</div>';
+            }).join("") + '</div></div>';
+        }).join("");
+      }
+      load(render);
+      setInterval(function () { load(render); }, 4000);
+    })();
+  </script>
+</body>
+</html>

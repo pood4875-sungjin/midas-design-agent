@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Component — Input</title>
+  <link rel="stylesheet" href="input.css?v=2" />
+  <style>
+    body { margin: 0; padding: 28px; background: #fff; font-family: var(--font-sans);
+      display: flex; flex-wrap: wrap; gap: 28px 24px; align-items: flex-start; }
+    .col { display: flex; flex-direction: column; gap: 20px; }
+    .col > .cap { font-size: 12px; font-weight: 700; color: #878a93; letter-spacing: .4px; text-transform: uppercase; }
+    .field { width: 300px; }
+  </style>
+</head>
+<body>
+  <script>
+    var SEARCH = '<span class="input__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></span>';
+    var CHEV = '<span class="input__chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>';
+    function field(size, label, cls, val, ph, help) {
+      return '<div class="field field--' + size + '"><label class="field__label">' + label + '</label>' +
+        '<div class="input ' + cls + '">' + SEARCH +
+        '<input ' + (cls.indexOf('disabled') > -1 ? 'disabled ' : '') + 'value="' + (val || '') + '" placeholder="' + (ph || 'Placeholder') + '">' + CHEV + '</div>' +
+        '<div class="field__help">' + (help || 'Helper Text') + '</div></div>';
+    }
+    // 공식 DS 사이즈 Large48 / Medium40 / Small32 (131:106·131:196·924:1168)
+    document.body.innerHTML =
+      '<div class="col"><span class="cap">Large · 48</span>' +
+        field('lg','Default','','','Placeholder') +
+        field('lg','Filled','input--fill','','Placeholder') +
+        field('lg','Typing','','계측 데이터','Placeholder') +
+        field('lg','Disabled','is-disabled','','Placeholder') +
+      '</div>' +
+      '<div class="col"><span class="cap">Medium · 40</span>' +
+        field('md','Default','','','Placeholder') +
+        field('md','Filled','input--fill','','Placeholder') +
+        field('md','Typing','','계측 데이터','Placeholder') +
+        field('md','Disabled','is-disabled','','Placeholder') +
+      '</div>' +
+      '<div class="col"><span class="cap">Small · 32</span>' +
+        field('sm','Default','','','Placeholder') +
+        field('sm','Filled','input--fill','','Placeholder') +
+        field('sm','Typing','','계측 데이터','Placeholder') +
+        field('sm','Disabled','is-disabled','','Placeholder') +
+      '</div>';
+  </script>
+</body>
+</html>

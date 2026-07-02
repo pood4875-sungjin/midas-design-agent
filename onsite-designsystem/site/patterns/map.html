@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <script>(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>지도뷰 · ONSITE DS</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens-midas.css" />
+  <link rel="stylesheet" href="../css/ds-extra.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <style>
+    .cmeta { font-family:ui-monospace,monospace; font-size:12px; color:var(--color-label-assistive); margin-left:8px; font-weight:400; }
+    .cframe { width:100%; border:0; display:block; background:var(--color-surface-subtle); border-radius:var(--radius-md); }
+    .ramp { display:flex; border-radius:var(--radius-sm); overflow:hidden; border:1px solid var(--color-line-solid); }
+    .ramp > i { flex:1; height:44px; }
+    .ramp-lab { display:flex; margin-top:4px; }
+    .ramp-lab > span { flex:1; text-align:center; font-size:10px; font-family:ui-monospace,monospace; color:var(--color-label-assistive); }
+    .ramp-lab > span.k { color:var(--color-accent); font-weight:700; }
+    .rw { margin-bottom:var(--space-5); }
+    .rw__h { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; }
+    .rw__n { font-size:14px; font-weight:700; color:var(--color-label-strong); }
+    .rw__note { font-size:12px; color:var(--color-label-assistive); }
+    .grad { height:52px; border-radius:var(--radius-sm); }
+    .ty-sample { color:var(--color-label-strong); }
+    
+  </style>
+</head>
+<body>
+  <header class="gnb gnb--solid">
+    <div class="gnb__inner">
+      <a class="gnb__logo" href="../index.html"><span>ONSITE DS</span></a>
+      <nav class="gnb__nav" aria-label="Global">
+        <a href="../foundation/color.html">Foundation</a>
+        <a href="../components/button.html">Components</a>
+        <a href="../patterns/map.html" aria-current="page">Patterns</a>
+        <a href="../audit.html">Audit</a>
+        <button class="gnb__theme" type="button" aria-label="다크 모드로 전환" aria-pressed="false">
+          <svg class="gnb__theme-icon gnb__theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <svg class="gnb__theme-icon gnb__theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-grid page-grid--no-toc">
+    <aside class="snb">
+      <div class="snb__inner">
+        <a class="snb__overview" href="../index.html"><span>Overview</span><span class="snb__overview-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 5.4 15.2 12l-6.6 6.6L7 17l4.9-5L7 7z"/></svg></span></a>
+        <div class="snb__caption">Patterns</div>
+        <nav class="snb__list">
+          <a class="snb__item" href="../patterns/map.html" aria-current="page">지도뷰<span class="snb__item-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 5.4 15.2 12l-6.6 6.6L7 17l4.9-5L7 7z"/></svg></span></a>
+          <a class="snb__item" href="../patterns/list.html">리스트뷰<span class="snb__item-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 5.4 15.2 12l-6.6 6.6L7 17l4.9-5L7 7z"/></svg></span></a>
+          <a class="snb__item" href="../patterns/report.html">현장요약<span class="snb__item-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 5.4 15.2 12l-6.6 6.6L7 17l4.9-5L7 7z"/></svg></span></a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="page-content">
+      <span class="page-eyebrow">Patterns</span>
+      <h1 class="page-content__title">지도뷰</h1>
+      <p class="page-content__lead">토큰·컴포넌트로 조립한 실제 제품 화면. GNB 컴포넌트를 그대로 임베드하고 tokens.css를 소비.</p>
+      <hr class="page-content__divider" />
+      <h2 class="doc-section__title t-heading-1 fw-bold" style="margin-top:0">지도뷰<span class="cmeta" style="color:var(--color-accent)">Map / Monitoring</span></h2>
+      <p class="doc-section__desc" style="margin-top:8px">통합 모니터링 지도. 마커·펄스링·상세 패널·하단 프로젝트 rail. 유체 레이아웃. <a href="../../../screens/siteview.html" target="_blank">전체화면 ↗</a></p>
+      <section class="doc-section"><div class="demo"><iframe class="cframe" src="../../../screens/siteview.html" style="height:620px" title="지도뷰"></iframe></div></section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__inner"><span>ONSITE Design System · ver 0.1 · Phase 0</span><span class="footer__badge">v 0.1</span></div>
+  </footer>
+  <script src="../js/main.js" defer></script>
+  <script src="../js/theme.js" defer></script>
+</body>
+</html>

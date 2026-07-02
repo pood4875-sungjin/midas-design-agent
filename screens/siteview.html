@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>온사이트 — 통합 모니터링 지도뷰</title>
+  <link rel="stylesheet" href="siteview.css?v=6" />
+</head>
+<body>
+  <main class="canvas ss-text">
+    <!-- Map -->
+    <img class="map" src="assets/map.png" alt="지도" decoding="sync" fetchpriority="high" />
+    <div class="map-fade"></div>
+
+    <!-- GNB = 시스템 컴포넌트 (onsite-designsystem/components/gnb), tab=0 지도뷰 -->
+    <iframe class="gnb-frame" src="../onsite-designsystem/components/gnb/gnb.html?tab=0" title="GNB"></iframe>
+
+    <!-- View type toggle -->
+    <div class="viewtype">
+      <span>위성</span><span>하이브리드</span><span class="is-active">도로</span>
+    </div>
+
+    <!-- Map markers -->
+    <div class="marker" style="left:626px;top:370px"><img src="assets/cluster-1.svg" alt="" /></div>
+    <div class="marker" style="left:744px;top:279px"><img src="assets/cluster-1.svg" alt="" /></div>
+    <div class="marker" style="left:1072px;top:449px"><img src="assets/cluster-2.svg" alt="" /></div>
+    <div class="marker" style="left:1520px;top:449px"><img src="assets/cluster-3.svg" alt="" /></div>
+    <div class="marker" style="left:1210px;top:300px"><img src="assets/cluster-2.svg" alt="" /></div>
+    <div class="marker" style="left:880px;top:521px;width:44px;height:52px"><img src="assets/pin-blue.svg" alt="" /></div>
+    <div class="marker" style="left:1316px;top:464px;width:44px;height:52px"><img src="assets/pin-red.svg" alt="" /></div>
+    <div class="maplabel" style="left:608px;top:413px">마성IC 프로젝트</div>
+    <div class="maplabel" style="left:723px;top:321px">마성IC 프로젝트</div>
+    <div class="maplabel" style="left:1052px;top:495px">마성IC 프로젝트</div>
+    <div class="maplabel" style="left:1500px;top:495px">마성IC 프로젝트</div>
+    <div class="maplabel" style="left:1190px;top:346px">마성IC 프로젝트</div>
+    <div class="maplabel" style="left:860px;top:587px">마성IC 프로젝트</div>
+    <div class="maplabel" style="left:1296px;top:530px">마성IC 프로젝트</div>
+
+    <!-- Left detail panel -->
+    <aside class="panel">
+      <span class="panel__close">✕</span>
+      <h2 class="panel__title">판교 테크노밸리 3단지</h2>
+      <div class="panel__meta">
+        <div class="metarow"><b>주소</b><i></i><span>경기도 성남시 판교로 228번길</span></div>
+        <div class="metarow"><b>공사 기간</b><i></i><span>2024.03.01 - 2024.12.31</span></div>
+      </div>
+      <div class="panel__btns">
+        <button class="btn btn--primary">요약보기</button>
+        <button class="btn btn--outline">상세보기</button>
+      </div>
+
+      <div class="secs">
+        <!-- 계측 결과 -->
+        <section class="sec">
+          <div class="sec__head"><h4>계측 결과</h4><span class="pill pill--safe">안정</span></div>
+          <div class="sec__body sec__body--stats">
+            <div class="stat">
+              <p class="stat__lbl">1차 기준 대비 (누적)</p>
+              <p class="stat__num"><b>80</b><em>%</em></p>
+              <p class="stat__sub"><b>하중계</b> B-1단면</p>
+            </div>
+            <div class="stat">
+              <p class="stat__lbl">1차 기준 대비 (변화량)</p>
+              <p class="stat__num"><b>105</b><em>%</em></p>
+              <p class="stat__sub"><b>지중경사계</b> B-1단면</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 예측 결과 (헤더 바only) -->
+        <section class="sec">
+          <div class="sec__head"><h4>예측 결과</h4><span class="pill pill--caution">주의</span></div>
+        </section>
+
+        <!-- 계측 운영 상태 -->
+        <section class="sec">
+          <div class="sec__head"><h4>계측 운영 상태</h4></div>
+          <div class="sec__body sec__body--ops">
+            <div class="ops__wheel"><img src="assets/wheel.svg" alt="" /><span><b>80</b><em>%</em></span></div>
+            <div class="ops__info">
+              <p>연결 센서</p>
+              <p class="ops__sensors"><b>27</b><em> / 32</em></p>
+              <div class="ops__legend"><i></i>운영중</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <p class="panel__upd">2026.03.01 09:00 업데이트</p>
+    </aside>
+
+    <!-- Bottom rail -->
+    <section class="rail">
+      <div class="rail__head"><h3>모든 프로젝트</h3><span class="caret">▾</span></div>
+      <div class="rail__filter">프로젝트 위험도 <span>▾</span></div>
+      <div class="rail__cards" id="cards"></div>
+    </section>
+  </main>
+
+  <script>
+    // 카드 아이콘 = status색 미니 핀 (node 5047:26162). body=currentColor, 중앙점=흰, stroke=흰
+    var PIN = '<svg viewBox="0 0 23.8 30.8" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+      '<path d="M12.5816 0.721293C18.4659 1.08367 23.1006 6.09931 23.1002 12.1959C23.1002 15.1757 21.8364 17.6968 20.359 19.9293C19.9965 20.477 18.329 22.773 16.7711 24.9068C15.988 25.9795 15.227 27.0194 14.6617 27.7906C14.3792 28.1761 14.1451 28.4942 13.982 28.7164C13.9005 28.8275 13.8361 28.915 13.7926 28.9742C13.771 29.0036 13.7549 29.0264 13.7438 29.0416C12.9066 30.4523 10.8934 30.4523 10.0563 29.0416L10.0553 29.0406C10.0442 29.0254 10.028 29.0027 10.0064 28.9732C9.96321 28.9141 9.90004 28.8264 9.81895 28.7154C9.65675 28.4934 9.42368 28.175 9.14219 27.7897C8.57921 27.019 7.82047 25.9806 7.0377 24.9088C5.47295 22.7663 3.81033 20.489 3.42246 19.9547C2.66336 18.9088 1.94889 17.6528 1.46445 16.3795V16.3785C0.971334 15.0815 0.699805 13.6711 0.699805 12.1969C0.699805 5.86217 5.80109 0.640447 12.0084 0.700785L12.5816 0.721293Z" fill="currentColor" stroke="#fff" stroke-width="1.4"/>' +
+      '<path d="M11.9003 16.1739C14.2195 16.1739 16.1006 14.2929 16.1006 11.9736C16.1006 9.65434 14.2195 7.77332 11.9003 7.77332C9.58102 7.77332 7.7 9.65434 7.7 11.9736C7.7 14.2929 9.58102 16.1739 11.9003 16.1739Z" fill="#fff"/></svg>';
+    var PINCOLOR = { danger:"var(--color-danger)", caution:"var(--color-caution)", info:"var(--color-info)", safe:"var(--color-safe)", neutral:"var(--color-label-alternative)" };
+    var cards = [
+      { t: "동탄IC 프로젝트", b: [["3차 초과","danger"],["예측 안정","safe"],["센서 끊김","neutral"]] },
+      { t: "동탄IC 프로젝트", sel: true, b: [["1차 초과","info"],["설계 NG","danger"]] },
+      { t: "일산IC 프로젝트", b: [["2차 초과","caution"],["예측 주의","danger"]] },
+      { t: "대곡IC 프로젝트", b: [["2차 초과","caution"],["예측 주의","danger"]] },
+      { t: "대곡IC 프로젝트", b: [["1차 초과","info"],["예측 안정","safe"]] },
+      { t: "마성IC 프로젝트", b: [["계측 안정","safe"],["예측 안정","safe"]] },
+      { t: "마성IC 프로젝트", b: [["계측 안정","safe"],["예측 안정","safe"]] },
+      { t: "마성IC 프로젝트", b: [["계측 안정","safe"],["예측 안정","safe"]] }
+    ];
+    document.getElementById("cards").innerHTML = cards.map(function (c) {
+      var pc = PINCOLOR[c.b[0][1]] || "var(--color-primary)";
+      return '<div class="pcard' + (c.sel ? " pcard--selected" : "") + '">' +
+        '<span class="pcard__more">⋯</span>' +
+        '<div class="pcard__top"><span class="pcard__ico" style="color:' + pc + '">' + PIN + '</span>' +
+        '<div><div class="pcard__tt">' + c.t + '</div>' +
+        '<div class="pcard__date">2024.03.01 - 2024.12.31</div></div></div>' +
+        '<div class="pcard__badges">' + c.b.map(function (x) {
+          return '<span class="badge badge--' + x[1] + '">' + x[0] + '</span>';
+        }).join("") + '</div></div>';
+    }).join("");
+  </script>
+</body>
+</html>

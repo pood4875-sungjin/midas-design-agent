@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>온사이트 — 리스트뷰</title>
+  <link rel="stylesheet" href="listview.css?v=2" />
+</head>
+<body class="ss-text">
+  <!-- GNB 컴포넌트 재사용 (리스트뷰어 active) -->
+  <iframe class="gnb-frame" src="../onsite-designsystem/components/gnb/gnb.html?tab=1" title="GNB"></iframe>
+
+  <div class="wrap">
+    <div class="lv-head">
+      <div class="lv-head__title"><h1>모든 프로젝트</h1><span>총 <b>49</b>개</span></div>
+      <button class="lv-sort">프로젝트 위험도순
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+
+    <div class="table">
+      <div class="thead">
+        <div class="trow">
+          <div class="th">프로젝트명</div>
+          <div class="th">공사기간</div>
+          <div class="th th--num">계측 가동율(%)</div>
+          <div class="th">운영 중 센서</div>
+          <div class="th">계측 상태</div>
+          <div class="th">예측 상태</div>
+        </div>
+      </div>
+      <div class="tbody" id="tbody"></div>
+    </div>
+
+    <div class="lv-pager"><nav class="pgn" id="pgn"></nav></div>
+  </div>
+
+  <script>
+    var PIN = function (c) { return '<svg class="pin pin--' + c + '" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-3.9 0-7 3.1-7 7 0 5 7 13 7 13s7-8 7-13c0-3.9-3.1-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>'; };
+    var rows = [
+      { n: "동탄역 호수공원 프로젝트", pin: "danger",  g: 85,  s: ["127","132"], m: ["3차 초과","danger"],  p: ["주의","caution"] },
+      { n: "일산 IC 프로젝트",        pin: "caution", g: 85,  s: ["127","132"], m: ["2차 초과","caution"], p: ["안정","stable"], hover: true },
+      { n: "판교 테크노밸리 3단지",    pin: "info",    g: 80,  s: ["100","120"], m: ["1차 초과","info"],    p: ["안정","stable"] },
+      { n: "대곡 IC 프로젝트",        pin: "safe",    g: 100, s: ["32","32"],   m: ["안정","stable"],     p: ["안정","stable"] },
+      { n: "마성 IC 프로젝트",        pin: "safe",    g: 100, s: ["32","32"],   m: ["안정","stable"],     p: ["안정","stable"] },
+      { n: "인천 송도 신항 프로젝트",  pin: "safe",    g: 100, s: ["32","32"],   m: ["안정","stable"],     p: ["안정","stable"] },
+      { n: "행신역 프로젝트",          pin: "safe",    g: 100, s: ["32","32"],   m: ["안정","stable"],     p: ["안정","stable"] },
+      { n: "동탄역 호수공원 프로젝트", pin: "safe",    g: 100, s: ["32","32"],   m: ["안정","stable"],     p: ["안정","stable"] },
+      { n: "동탄역 호수공원 프로젝트", pin: "safe",    g: 100, s: ["32","32"],   m: ["안정","stable"],     p: ["안정","stable"] },
+      { n: "동탄역 호수공원 프로젝트", pin: "safe",    g: 100, s: ["32","32"],   m: ["안정","stable"],     p: ["안정","stable"] },
+      { n: "판교 테크노밸리 2단지",    pin: "safe",    g: 100, s: ["32","32"],   m: ["안정","stable"],     p: ["안정","stable"] },
+      { n: "일산 IC 프로젝트",        pin: "safe",    g: 100, s: ["32","32"],   m: ["안정","stable"],     p: ["안정","stable"] }
+    ];
+    // hover 액션 = 모든 행 공통 (소스 node 5125:27827)
+    var ACT = '<div class="rowact">' +
+      '<button class="btn-sm btn-sm--primary">요약보기</button>' +
+      '<button class="btn-sm btn-sm--outline">상세보기</button>' +
+      '<button class="rowact__more"><svg viewBox="0 0 16 16" width="16" height="16" fill="#878a93"><circle cx="3" cy="8" r="1.3"/><circle cx="8" cy="8" r="1.3"/><circle cx="13" cy="8" r="1.3"/></svg></button></div>';
+    document.getElementById("tbody").innerHTML = rows.map(function (r) {
+      return '<div class="trow">' +
+        '<div class="td td--name">' + PIN(r.pin) + r.n + '</div>' +
+        '<div class="td td--date">2025. 06. 12 - 2026.12. 31</div>' +
+        '<div class="td td--num">' + r.g + '</div>' +
+        '<div class="td sensor"><b>' + r.s[0] + '</b><em>/' + r.s[1] + '</em></div>' +
+        '<div class="td st-' + r.m[1] + '">' + r.m[0] + '</div>' +
+        '<div class="td st-' + r.p[1] + '">' + r.p[0] + '</div>' + ACT + '</div>';
+    }).join("");
+
+    // Pagination
+    var chevL = '<svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>';
+    var chevR = '<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>';
+    var dchevL = '<svg viewBox="0 0 24 24"><path d="M17 6l-6 6 6 6M11 6l-6 6 6 6"/></svg>';
+    var dchevR = '<svg viewBox="0 0 24 24"><path d="M7 6l6 6-6 6M13 6l6 6-6 6"/></svg>';
+    (function (total, cur) {
+      var h = '<button class="pgn__item' + (cur === 1 ? ' is-disabled' : '') + '">' + dchevL + '</button>' +
+        '<button class="pgn__item' + (cur === 1 ? ' is-disabled' : '') + '">' + chevL + '</button>';
+      for (var p = 1; p <= total; p++) h += '<button class="pgn__item' + (p === cur ? ' is-active' : '') + '">' + p + '</button>';
+      h += '<button class="pgn__item">' + chevR + '</button><button class="pgn__item">' + dchevR + '</button>';
+      document.getElementById("pgn").innerHTML = h;
+    })(5, 2);
+  </script>
+</body>
+</html>

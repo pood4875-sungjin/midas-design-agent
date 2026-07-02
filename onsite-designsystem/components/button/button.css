@@ -1,0 +1,57 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+@import url("../../tokens/tokens.css?v=2");
+
+/* ============================================================
+   Component: Button — node 17:3880 (MIDAS Onsite DS)
+   소스 축: Style(Primary·Filled·Outline·Clear) × Size(XS-24·S-32·M-40·ML-44·L-48·XL-56)
+            × State(Default·Hover·Focus·Press·Disabled) · Content(Icons+Text·Only Icons)
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  border: 1px solid transparent; border-radius: 6px; cursor: pointer;
+  font-family: var(--font-sans); font-weight: var(--fw-semibold);
+  letter-spacing: -0.03px; white-space: nowrap; line-height: 1;
+  transition: background .12s, box-shadow .12s, border-color .12s;
+}
+.btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--p-blue-90); }
+.btn svg { display: block; flex: none; }
+
+/* ---- Size (소스: 높이-이름) ---- */
+.btn--xs { height: 24px; padding: 0 8px;  font-size: var(--fs-caption-1); gap: 4px; }
+.btn--s  { height: 32px; padding: 0 12px; font-size: var(--fs-label-2); }
+.btn--m  { height: 40px; padding: 0 14px; font-size: var(--fs-label-1); }
+.btn--ml { height: 44px; padding: 0 16px; font-size: var(--fs-label-1); }
+.btn--l  { height: 48px; padding: 0 18px; font-size: var(--fs-body-2); }
+.btn--xl { height: 56px; padding: 0 22px; font-size: var(--fs-heading-3); border-radius: var(--radius-xs); }
+
+/* ---- Style: Primary (emerald) ---- */
+.btn--primary { background: var(--p-emerald-50); color: #fff; }   /* #1bb9cd */
+.btn--primary:hover, .btn--primary:active { background: var(--p-emerald-40); }  /* #23a1b1 */
+
+/* ---- Style: Filled (다크 뉴트럴) ---- */
+.btn--filled { background: var(--p-bluegray-30); color: #fff; }   /* #374151 */
+.btn--filled:hover, .btn--filled:active { background: var(--p-bluegray-20); }   /* #1f2937 */
+
+/* ---- Style: Outline ---- */
+.btn--outline { background: var(--color-surface); color: var(--p-bluegray-40); border-color: var(--p-bluegray-85); }
+.btn--outline:hover { background: var(--color-bg-subtle); }
+
+/* ---- Style: Clear (투명) ---- */
+.btn--clear { background: transparent; color: var(--p-bluegray-40); }
+.btn--clear:hover { background: var(--color-bg-subtle); }
+
+/* ---- Style: Danger (파괴적 확정 — 제거 등. 생성: PRD 멤버 제거 모달) ---- */
+.btn--danger { background: var(--color-danger); color: #fff; }        /* #ff4242 */
+.btn--danger:hover, .btn--danger:active { background: var(--p-red-45); }  /* #f82e36 deepest */
+
+/* ---- Disabled (모든 스타일 공통, 소스: bluegray-99 / bluegray-65) ---- */
+.btn:disabled, .btn.is-disabled {
+  background: var(--p-bluegray-99); color: var(--p-bluegray-65);
+  border-color: transparent; cursor: not-allowed; box-shadow: none; pointer-events: none;
+}
+
+/* icon-only (정사각) */
+.btn--icon { padding: 0; aspect-ratio: 1; }
+.btn--icon.btn--xs { width: 24px; } .btn--icon.btn--s { width: 32px; }
+.btn--icon.btn--m { width: 40px; } .btn--icon.btn--ml { width: 44px; }
+.btn--icon.btn--l { width: 48px; } .btn--icon.btn--xl { width: 56px; }

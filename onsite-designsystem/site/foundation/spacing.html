@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <script>(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Spacing · Radius · Effect · ONSITE DS</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens-midas.css" />
+  <link rel="stylesheet" href="../css/ds-extra.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <style>
+    .cmeta { font-family:ui-monospace,monospace; font-size:12px; color:var(--color-label-assistive); margin-left:8px; font-weight:400; }
+    .cframe { width:100%; border:0; display:block; background:var(--color-surface-subtle); border-radius:var(--radius-md); }
+    .ramp { display:flex; border-radius:var(--radius-sm); overflow:hidden; border:1px solid var(--color-line-solid); }
+    .ramp > i { flex:1; height:44px; }
+    .ramp-lab { display:flex; margin-top:4px; }
+    .ramp-lab > span { flex:1; text-align:center; font-size:10px; font-family:ui-monospace,monospace; color:var(--color-label-assistive); }
+    .ramp-lab > span.k { color:var(--color-accent); font-weight:700; }
+    .rw { margin-bottom:var(--space-5); }
+    .rw__h { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; }
+    .rw__n { font-size:14px; font-weight:700; color:var(--color-label-strong); }
+    .rw__note { font-size:12px; color:var(--color-label-assistive); }
+    .grad { height:52px; border-radius:var(--radius-sm); }
+    .ty-sample { color:var(--color-label-strong); }
+    
+  </style>
+</head>
+<body>
+  <header class="gnb gnb--solid">
+    <div class="gnb__inner">
+      <a class="gnb__logo" href="../index.html"><span>ONSITE DS</span></a>
+      <nav class="gnb__nav" aria-label="Global">
+        <a href="../foundation/color.html" aria-current="page">Foundation</a>
+        <a href="../components/button.html">Components</a>
+        <a href="../patterns/map.html">Patterns</a>
+        <a href="../audit.html">Audit</a>
+        <button class="gnb__theme" type="button" aria-label="다크 모드로 전환" aria-pressed="false">
+          <svg class="gnb__theme-icon gnb__theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <svg class="gnb__theme-icon gnb__theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-grid page-grid--no-toc">
+    <aside class="snb">
+      <div class="snb__inner">
+        <a class="snb__overview" href="../index.html"><span>Overview</span><span class="snb__overview-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 5.4 15.2 12l-6.6 6.6L7 17l4.9-5L7 7z"/></svg></span></a>
+        <div class="snb__caption">Foundation</div>
+        <nav class="snb__list">
+          <a class="snb__item" href="../foundation/color.html">Color<span class="snb__item-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 5.4 15.2 12l-6.6 6.6L7 17l4.9-5L7 7z"/></svg></span></a>
+          <a class="snb__item" href="../foundation/typography.html">Typography<span class="snb__item-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 5.4 15.2 12l-6.6 6.6L7 17l4.9-5L7 7z"/></svg></span></a>
+          <a class="snb__item" href="../foundation/spacing.html" aria-current="page">Spacing · Radius<span class="snb__item-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 5.4 15.2 12l-6.6 6.6L7 17l4.9-5L7 7z"/></svg></span></a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="page-content">
+      <span class="page-eyebrow">Foundation</span>
+      <h1 class="page-content__title">Spacing · Radius · Effect</h1>
+      <p class="page-content__lead">8pt 추정 (확정: <code>--space-6=24</code>). radius 확정: <code>2xs=6</code> · <code>xs=8</code>.</p>
+      <hr class="page-content__divider" />
+      <div class="notice"><span class="notice__icon">◍</span><span>spacing 스케일·radius sm/md/lg는 잠정.</span></div>
+      <section class="doc-section">
+        <table class="spec-table">
+          <thead><tr><th>Spacing</th><th>값</th><th>Radius</th><th>값</th></tr></thead>
+          <tbody>
+            <tr><td><code>--space-1</code></td><td>4</td><td><code>--radius-2xs</code></td><td>6 · 확정</td></tr>
+            <tr><td><code>--space-2</code></td><td>8</td><td><code>--radius-xs</code></td><td>8 · 확정</td></tr>
+            <tr><td><code>--space-3</code></td><td>12</td><td><code>--radius-sm</code></td><td>10 · 잠정</td></tr>
+            <tr><td><code>--space-4</code></td><td>16</td><td><code>--radius-md</code></td><td>12 · 잠정</td></tr>
+            <tr><td><code>--space-5</code></td><td>20</td><td><code>--radius-lg</code></td><td>16 · 잠정</td></tr>
+            <tr><td><code>--space-6</code></td><td>24 · 확정</td><td><code>--radius-full</code></td><td>999</td></tr>
+            <tr><td><code>--space-8 / 10 / 12</code></td><td>32 / 40 / 48</td><td><code>--shadow-card</code></td><td>box-shadow-30</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__inner"><span>ONSITE Design System · ver 0.1 · Phase 0</span><span class="footer__badge">v 0.1</span></div>
+  </footer>
+  <script src="../js/main.js" defer></script>
+  <script src="../js/theme.js" defer></script>
+</body>
+</html>

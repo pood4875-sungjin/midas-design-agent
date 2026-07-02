@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Component — Pagination</title>
+  <link rel="stylesheet" href="pagination.css" />
+  <style>body{margin:0;padding:24px;display:flex;justify-content:center;background:#fff;}</style>
+</head>
+<body>
+  <nav class="pgn" id="pgn"></nav>
+  <script>
+    // 아이콘: 단일/이중 셰브론
+    var chevL = '<svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>';
+    var chevR = '<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>';
+    var dchevL = '<svg viewBox="0 0 24 24"><path d="M17 6l-6 6 6 6M11 6l-6 6 6 6"/></svg>';
+    var dchevR = '<svg viewBox="0 0 24 24"><path d="M7 6l6 6-6 6M13 6l6 6-6 6"/></svg>';
+    function render(total, current) {
+      var h = '';
+      h += '<button class="pgn__item' + (current === 1 ? ' is-disabled' : '') + '" title="처음">' + dchevL + '</button>';
+      h += '<button class="pgn__item' + (current === 1 ? ' is-disabled' : '') + '" title="이전">' + chevL + '</button>';
+      for (var p = 1; p <= total; p++)
+        h += '<button class="pgn__item' + (p === current ? ' is-active' : '') + '">' + p + '</button>';
+      h += '<button class="pgn__item' + (current === total ? ' is-disabled' : '') + '" title="다음">' + chevR + '</button>';
+      h += '<button class="pgn__item' + (current === total ? ' is-disabled' : '') + '" title="끝">' + dchevR + '</button>';
+      document.getElementById('pgn').innerHTML = h;
+    }
+    render(5, 2);
+  </script>
+</body>
+</html>

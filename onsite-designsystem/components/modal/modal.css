@@ -1,0 +1,37 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+@import url("../../tokens/tokens.css");
+
+/* ============================================================
+   Component: Modal (다이얼로그) — 생성 (bootstrap §4 모달 카탈로그)
+   유형: 확인 다이얼로그(소) 우선. 구조 = backdrop + card(header/body/footer).
+   근거: 파괴적 액션 confirm=primary, 취소=outline 좌. 딤 백드롭 --dim-backdrop.
+   ============================================================ */
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: 100;
+  background: var(--dim-backdrop);
+  display: grid; place-items: center; padding: var(--space-4);
+}
+.modal {
+  background: var(--color-surface); border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  width: 100%; max-width: 400px; /* 확인형 소형 */
+  font-family: var(--font-sans);
+  display: flex; flex-direction: column;
+}
+.modal--md { max-width: 560px; }
+
+.modal__head { padding: var(--space-6) var(--space-6) var(--space-3); }
+.modal__title {
+  font-size: var(--fs-heading-3); font-weight: var(--fw-semibold);
+  color: var(--color-label-strong); letter-spacing: var(--ls-tight); margin: 0;
+}
+.modal__body {
+  padding: 0 var(--space-6) var(--space-6);
+  font-size: var(--fs-body-2); line-height: var(--lh-body);
+  color: var(--color-label-neutral);
+}
+.modal__foot {
+  display: flex; justify-content: flex-end; gap: var(--space-2);
+  padding: var(--space-4) var(--space-6); border-top: 1px solid var(--color-line-subtle);
+}
+.modal__foot--split { justify-content: space-between; }

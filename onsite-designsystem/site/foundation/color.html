@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <script>(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Color · ONSITE DS</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens-midas.css" />
+  <link rel="stylesheet" href="../css/ds-extra.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <style>
+    .cmeta { font-family:ui-monospace,monospace; font-size:12px; color:var(--color-label-assistive); margin-left:8px; font-weight:400; }
+    .cframe { width:100%; border:0; display:block; background:var(--color-surface-subtle); border-radius:var(--radius-md); }
+    .ramp { display:flex; border-radius:var(--radius-sm); overflow:hidden; border:1px solid var(--color-line-solid); }
+    .ramp > i { flex:1; height:44px; }
+    .ramp-lab { display:flex; margin-top:4px; }
+    .ramp-lab > span { flex:1; text-align:center; font-size:10px; font-family:ui-monospace,monospace; color:var(--color-label-assistive); }
+    .ramp-lab > span.k { color:var(--color-accent); font-weight:700; }
+    .rw { margin-bottom:var(--space-5); }
+    .rw__h { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; }
+    .rw__n { font-size:14px; font-weight:700; color:var(--color-label-strong); }
+    .rw__note { font-size:12px; color:var(--color-label-assistive); }
+    .grad { height:52px; border-radius:var(--radius-sm); }
+    .ty-sample { color:var(--color-label-strong); }
+    
+  </style>
+</head>
+<body>
+  <header class="gnb gnb--solid">
+    <div class="gnb__inner">
+      <a class="gnb__logo" href="../index.html"><span>ONSITE DS</span></a>
+      <nav class="gnb__nav" aria-label="Global">
+        <a href="../foundation/color.html" aria-current="page">Foundation</a>
+        <a href="../components/button.html">Components</a>
+        <a href="../patterns/map.html">Patterns</a>
+        <a href="../audit.html">Audit</a>
+        <button class="gnb__theme" type="button" aria-label="다크 모드로 전환" aria-pressed="false">
+          <svg class="gnb__theme-icon gnb__theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <svg class="gnb__theme-icon gnb__theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-grid page-grid--no-toc">
+    <aside class="snb">
+      <div class="snb__inner">
+        <a class="snb__overview" href="../index.html"><span>Overview</span><span class="snb__overview-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 5.4 15.2 12l-6.6 6.6L7 17l4.9-5L7 7z"/></svg></span></a>
+        <div class="snb__caption">Foundation</div>
+        <nav class="snb__list">
+          <a class="snb__item" href="../foundation/color.html" aria-current="page">Color<span class="snb__item-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 5.4 15.2 12l-6.6 6.6L7 17l4.9-5L7 7z"/></svg></span></a>
+          <a class="snb__item" href="../foundation/typography.html">Typography<span class="snb__item-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 5.4 15.2 12l-6.6 6.6L7 17l4.9-5L7 7z"/></svg></span></a>
+          <a class="snb__item" href="../foundation/spacing.html">Spacing · Radius<span class="snb__item-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 5.4 15.2 12l-6.6 6.6L7 17l4.9-5L7 7z"/></svg></span></a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="page-content">
+      <span class="page-eyebrow">Foundation</span>
+      <h1 class="page-content__title">Color</h1>
+      <p class="page-content__lead">Tier1 원시 램프 → Tier2 시맨틱 역할. Brand = Emerald blue, Primary = 50 <code>#1bb9cd</code>. 네이밍 <code>{family}-{step}</code>, 99=밝음→10=어두움.</p>
+      <hr class="page-content__divider" />
+      <div class="notice"><span class="notice__icon">◍</span><span>semantic 역할 매핑·gradient 2번째 stop은 잠정. primitive 값은 확정.</span></div>
+      <section class="doc-section">
+        <div class="rw"><div class="rw__h"><span class="rw__n">Emerald blue · Brand</span><span class="rw__note">Primary = 50 #1bb9cd</span></div>
+          <div class="ramp"><i style="background:var(--p-emerald-99)"></i><i style="background:var(--p-emerald-90)"></i><i style="background:var(--p-emerald-80)"></i><i style="background:var(--p-emerald-70)"></i><i style="background:var(--p-emerald-60)"></i><i style="background:var(--p-emerald-55)"></i><i style="background:var(--p-emerald-50)"></i><i style="background:var(--p-emerald-40)"></i><i style="background:var(--p-emerald-30)"></i><i style="background:var(--p-emerald-20)"></i><i style="background:var(--p-emerald-10)"></i></div>
+          <div class="ramp-lab"><span>99</span><span>90</span><span>80</span><span>70</span><span>60</span><span>55</span><span class="k">50</span><span>40</span><span>30</span><span>20</span><span>10</span></div></div>
+        <div class="rw"><div class="rw__h"><span class="rw__n">Blue · Info / 선택컨트롤</span><span class="rw__note">info = 60</span></div>
+          <div class="ramp"><i style="background:var(--p-blue-95)"></i><i style="background:var(--p-blue-90)"></i><i style="background:var(--p-blue-60)"></i><i style="background:var(--p-blue-55)"></i><i style="background:var(--p-blue-50)"></i></div>
+          <div class="ramp-lab"><span>95</span><span>90</span><span class="k">60</span><span>55</span><span>50</span></div></div>
+        <div class="rw"><div class="rw__h"><span class="rw__n">Red · Danger / Siren</span><span class="rw__note">danger 50 · siren 45</span></div>
+          <div class="ramp"><i style="background:var(--p-red-99)"></i><i style="background:var(--p-red-95)"></i><i style="background:var(--p-red-70)"></i><i style="background:var(--p-red-55)"></i><i style="background:var(--p-red-50)"></i><i style="background:var(--p-red-45)"></i></div>
+          <div class="ramp-lab"><span>99</span><span>95</span><span>70</span><span>55</span><span class="k">50</span><span>45</span></div></div>
+        <div class="rw"><div class="rw__h"><span class="rw__n">Orange · Yellow · Green</span><span class="rw__note">caution 60 · safe 60</span></div>
+          <div class="ramp"><i style="background:var(--p-orange-95)"></i><i style="background:var(--p-orange-60)"></i><i style="background:var(--p-orange-48)"></i><i style="background:var(--p-yellow-90)"></i><i style="background:var(--p-yellow-55)"></i><i style="background:var(--p-yellow-45)"></i><i style="background:var(--p-green-90)"></i><i style="background:var(--p-green-60)"></i><i style="background:var(--p-green-30)"></i></div>
+          <div class="ramp-lab"><span>o95</span><span class="k">o60</span><span>o48</span><span>y90</span><span>y55</span><span>y45</span><span>g90</span><span class="k">g60</span><span>g30</span></div></div>
+        <div class="rw"><div class="rw__h"><span class="rw__n">Blue Gray · Neutral</span><span class="rw__note">텍스트·라인 (역순: 20=darkest)</span></div>
+          <div class="ramp"><i style="background:var(--p-bluegray-99)"></i><i style="background:var(--p-bluegray-95)"></i><i style="background:var(--p-bluegray-90)"></i><i style="background:var(--p-bluegray-85)"></i><i style="background:var(--p-bluegray-80)"></i><i style="background:var(--p-bluegray-75)"></i><i style="background:var(--p-bluegray-70)"></i><i style="background:var(--p-bluegray-65)"></i><i style="background:var(--p-bluegray-60)"></i><i style="background:var(--p-bluegray-55)"></i><i style="background:var(--p-bluegray-50)"></i><i style="background:var(--p-bluegray-40)"></i><i style="background:var(--p-bluegray-30)"></i><i style="background:var(--p-bluegray-20)"></i></div>
+          <div class="ramp-lab"><span>99</span><span>95</span><span>90</span><span>85</span><span>80</span><span>75</span><span>70</span><span>65</span><span>60</span><span>55</span><span>50</span><span>40</span><span>30</span><span>20</span></div></div>
+        <div class="rw" style="margin:0"><div class="rw__h"><span class="rw__n">White Blue · Surface/Line</span></div>
+          <div class="ramp"><i style="background:var(--p-whiteblue-99)"></i><i style="background:var(--p-whiteblue-90)"></i><i style="background:var(--p-whiteblue-85)"></i><i style="background:var(--p-whiteblue-80)"></i><i style="background:var(--p-whiteblue-70)"></i><i style="background:var(--p-whiteblue-60)"></i><i style="background:var(--p-whiteblue-50)"></i></div>
+          <div class="ramp-lab"><span>99</span><span>90</span><span>85</span><span>80</span><span>70</span><span>60</span><span>50</span></div></div>
+
+        <h2 class="doc-section__title t-heading-1 fw-bold" style="margin-top:var(--space-8)">Status · Gradient</h2>
+        <div class="swatch-grid">
+          <div><div class="swatch__chip" style="background:var(--color-safe)"></div><div class="swatch__name">safe · 안정</div><div class="swatch__value">#34ac5c</div></div>
+          <div><div class="swatch__chip" style="background:var(--color-caution)"></div><div class="swatch__name">caution · 주의</div><div class="swatch__value">#ff7b2e</div></div>
+          <div><div class="swatch__chip" style="background:var(--color-danger)"></div><div class="swatch__name">danger · 위험</div><div class="swatch__value">#ff4242</div></div>
+          <div><div class="swatch__chip" style="background:var(--color-siren)"></div><div class="swatch__name">siren · 사이렌</div><div class="swatch__value">#f82e36</div></div>
+          <div><div class="swatch__chip" style="background:var(--color-info)"></div><div class="swatch__name">info · 정보</div><div class="swatch__value">#3385ff</div></div>
+          <div><div class="grad" style="background:var(--grad-exceed-3)"></div><div class="swatch__name">grad-exceed-3</div><div class="swatch__value">3차 · 확정</div></div>
+          <div><div class="grad" style="background:var(--grad-exceed-2)"></div><div class="swatch__name">grad-exceed-2</div><div class="swatch__value">2차 · 잠정</div></div>
+          <div><div class="grad" style="background:var(--grad-safe)"></div><div class="swatch__name">grad-safe</div><div class="swatch__value">안전 · 잠정</div></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__inner"><span>ONSITE Design System · ver 0.1 · Phase 0</span><span class="footer__badge">v 0.1</span></div>
+  </footer>
+  <script src="../js/main.js" defer></script>
+  <script src="../js/theme.js" defer></script>
+</body>
+</html>

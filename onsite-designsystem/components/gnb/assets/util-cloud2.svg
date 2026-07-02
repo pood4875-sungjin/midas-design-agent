@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 32.3323 19.8057" fill="none" xmlns="http://www.w3.org/2000/svg">
+<foreignObject x="-4.23198" y="-4.23198" width="40.7963" height="28.2696"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(2.12px);clip-path:url(#bgblur_0_0_24_clip_path);height:100%;width:100%"></div></foreignObject><path id="Cloud" data-figma-bg-blur-radius="4.23198" d="M32.3323 14.381C32.3323 17.3769 29.8991 19.8057 26.8966 19.8057H7.2274C3.23609 19.8057 0 16.5766 0 12.5918C0 8.60808 3.23609 5.37786 7.2274 5.37786C7.58536 5.37786 7.93721 5.40529 8.28219 5.45519C9.91436 2.22001 13.271 0 17.1486 0C21.8406 0 25.7712 3.25155 26.8039 7.61997C26.9069 8.05612 26.9813 8.50294 27.0241 8.95815V8.95929C29.9663 9.02633 32.3323 11.4277 32.3323 14.381V14.381Z" fill="url(#paint0_linear_0_24)"/>
+<defs>
+<clipPath id="bgblur_0_0_24_clip_path" transform="translate(4.23198 4.23198)"><path d="M32.3323 14.381C32.3323 17.3769 29.8991 19.8057 26.8966 19.8057H7.2274C3.23609 19.8057 0 16.5766 0 12.5918C0 8.60808 3.23609 5.37786 7.2274 5.37786C7.58536 5.37786 7.93721 5.40529 8.28219 5.45519C9.91436 2.22001 13.271 0 17.1486 0C21.8406 0 25.7712 3.25155 26.8039 7.61997C26.9069 8.05612 26.9813 8.50294 27.0241 8.95815V8.95929C29.9663 9.02633 32.3323 11.4277 32.3323 14.381V14.381Z"/>
+</clipPath><linearGradient id="paint0_linear_0_24" x1="5.12069" y1="3.47022" x2="28.058" y2="19.8057" gradientUnits="userSpaceOnUse">
+<stop offset="0.416176" stop-color="#E2F1FF" stop-opacity="0.7"/>
+<stop offset="1" stop-color="#E2F1FF" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>
